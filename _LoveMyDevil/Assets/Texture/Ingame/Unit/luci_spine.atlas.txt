@@ -1,0 +1,160 @@
+
+luci_spine.png
+size: 403,141
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Lucy_Body
+  rotate: false
+  xy: 372, 7
+  size: 18, 21
+  orig: 18, 21
+  offset: 0, 0
+  index: -1
+Lucy_Body_Arm_L
+  rotate: false
+  xy: 117, 3
+  size: 23, 12
+  orig: 23, 12
+  offset: 0, 0
+  index: -1
+Lucy_Body_Arm_R
+  rotate: true
+  xy: 162, 3
+  size: 12, 19
+  orig: 12, 19
+  offset: 0, 0
+  index: -1
+Lucy_Body_Arm_R02
+  rotate: true
+  xy: 142, 2
+  size: 13, 18
+  orig: 13, 18
+  offset: 0, 0
+  index: -1
+Lucy_Body_Leg_L
+  rotate: true
+  xy: 88, 3
+  size: 12, 27
+  orig: 12, 27
+  offset: 0, 0
+  index: -1
+Lucy_Body_Leg_R
+  rotate: true
+  xy: 372, 30
+  size: 17, 27
+  orig: 17, 27
+  offset: 0, 0
+  index: -1
+Lucy_Body_Leg_R02
+  rotate: false
+  xy: 183, 5
+  size: 20, 11
+  orig: 20, 11
+  offset: 0, 0
+  index: -1
+Lucy_Head01
+  rotate: false
+  xy: 216, 76
+  size: 49, 63
+  orig: 51, 65
+  offset: 1, 1
+  index: -1
+Lucy_Head02
+  rotate: false
+  xy: 221, 11
+  size: 49, 63
+  orig: 51, 65
+  offset: 1, 1
+  index: -1
+Lucy_Head03
+  rotate: false
+  xy: 267, 76
+  size: 49, 63
+  orig: 51, 65
+  offset: 1, 1
+  index: -1
+Lucy_Head04
+  rotate: false
+  xy: 272, 11
+  size: 49, 63
+  orig: 51, 65
+  offset: 1, 1
+  index: -1
+Lucy_Head_Hair_F01
+  rotate: true
+  xy: 174, 18
+  size: 43, 45
+  orig: 43, 45
+  offset: 0, 0
+  index: -1
+Lucy_Head_Hair_F02
+  rotate: true
+  xy: 367, 78
+  size: 16, 24
+  orig: 16, 24
+  offset: 0, 0
+  index: -1
+Lucy_Head_Hair_L
+  rotate: true
+  xy: 2, 13
+  size: 44, 84
+  orig: 44, 84
+  offset: 0, 0
+  index: -1
+Lucy_Head_Hair_R
+  rotate: true
+  xy: 88, 17
+  size: 44, 84
+  orig: 44, 84
+  offset: 0, 0
+  index: -1
+dash
+  rotate: true
+  xy: 2, 59
+  size: 80, 79
+  orig: 82, 81
+  offset: 1, 1
+  index: -1
+hair_F
+  rotate: false
+  xy: 372, 49
+  size: 28, 27
+  orig: 28, 27
+  offset: 0, 0
+  index: -1
+hair_L
+  rotate: false
+  xy: 83, 63
+  size: 65, 76
+  orig: 65, 76
+  offset: 0, 0
+  index: -1
+hair_R
+  rotate: false
+  xy: 150, 63
+  size: 64, 76
+  orig: 65, 76
+  offset: 0, 0
+  index: -1
+hair_S
+  rotate: false
+  xy: 367, 96
+  size: 34, 43
+  orig: 34, 43
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 323, 15
+  size: 47, 61
+  orig: 49, 63
+  offset: 1, 1
+  index: -1
+head02
+  rotate: false
+  xy: 318, 78
+  size: 47, 61
+  orig: 49, 63
+  offset: 1, 1
+  index: -1
