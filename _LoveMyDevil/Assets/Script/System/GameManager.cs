@@ -10,6 +10,9 @@ public class GameManager : MonoSingleton<GameManager>
 
     private float allPoints;
     private float nowPoints;
+
+    public GameObject _player { get; private set; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +30,10 @@ public class GameManager : MonoSingleton<GameManager>
 
     }
 
+    public void setPlayer(GameObject player)
+    {
+        _player = player;
+    }
     public void SetPoint()
     {
         allPoints++;

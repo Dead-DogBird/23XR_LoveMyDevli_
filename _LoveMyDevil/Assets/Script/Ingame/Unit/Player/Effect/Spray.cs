@@ -24,7 +24,7 @@ public class Spray : PoolableObj
         GetComponent<CircleCollider2D>().enabled = true;
         my_collider = GetComponent<CircleCollider2D>();
         _sprite = GetComponent<SpriteRenderer>();
-       
+        OnColliderCheck();
     }
     void Update()
     {
@@ -41,7 +41,6 @@ public class Spray : PoolableObj
     public void CancelDestroyCallback()
     {
         isColiderCheck = true;
-        Debug.Log("Called cancelCallback!");
         GetComponent<CircleCollider2D>().enabled = false;
     }
 
@@ -61,12 +60,29 @@ public class Spray : PoolableObj
         while (timer >= 0f)
         {
             timer -= 0.1f;
-            if (isColiderCheck || isDie)
+            /*if (isColiderCheck)
+            {
+                timer = 10f;
+                isColiderCheck = false;
+            }*/
+            if (isDie)
             {
                 return;
             }
             await UniTask.Delay(TimeSpan.FromSeconds(0.1f));
         }
         GameManager.Instance._poolingManager.Despawn(this);
+    }
+
+    void OnColliderCheck()
+    {
+        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, 0.1f);
+        foreach (var var_ in colls)
+        {
+            if (var_.transform.CompareTag("Spray"))
+            {
+                GameManager.Instance._poolingManager.Despawn(this);
+            }
+        }
     }
 }

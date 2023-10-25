@@ -48,6 +48,7 @@ public class PlayerMove : MonoBehaviour
         _spriteRenderer.color = Color.white;
         _boxCollider2D.isTrigger = false;
         speed = 5.3f;
+        GameManager.Instance.setPlayer(gameObject);
     }
 
     void Update()
