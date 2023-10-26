@@ -46,9 +46,8 @@ public class ColoredPlatform : MonoBehaviour
         Collider2D[] hit = Physics2D.OverlapBoxAll(transform.position, _scale, 0);
         foreach (Collider2D i in hit)
         {
-            if (i.CompareTag("Spray"))
+            if (i.CompareTag("MouseCollider"))
             {
-                i.GetComponent<CircleCollider2D>().enabled = false;
                 PaintedPlatform();
                 if (!isDisapper)
                     disappearFillAmount().Forget();

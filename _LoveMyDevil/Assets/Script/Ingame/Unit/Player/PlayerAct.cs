@@ -2,15 +2,16 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.Pipes;
 using UnityEngine;
 
 public class PlayerAct : MonoBehaviour
 {
     [SerializeField] private GameObject spray;
     [SerializeField] private Transform mousePointer;
-    [Header("스프레이 색깔")]
-    [SerializeField] private Color _sprayColor;
-    PlayerContrl _playerContrl;
+
+    private PlayerContrl _playerContrl;
+    
     private float _sprayGauge = 100;
     private float sprayGauge
     {
@@ -23,10 +24,13 @@ public class PlayerAct : MonoBehaviour
     }
     private bool fillGauge;
     private bool isWaitForfillGauge;
+    private CircleCollider2D _mouseCollider;
+    private bool isFirst;
+    private GameObject nowSpray;
     void Start()
     {
         _playerContrl = GetComponent<PlayerContrl>();
-        GameManager.Instance._poolingManager.AddPoolingList<Spray>(100, spray);
+        _mouseCollider = mousePointer.GetComponent<CircleCollider2D>();
     }
 
     void Update()
@@ -37,14 +41,42 @@ public class PlayerAct : MonoBehaviour
         {
             FillGaugeTask().Forget();
         }
+        if(Input.GetMouseButtonUp(0))
+        {
+            isFirst = true;
+            isWaitForfillGauge = false;
+            if(nowSpray)
+            {
+                nowSpray.transform.parent = null;
+                nowSpray = null; 
+                _mouseCollider.enabled = false;
+            }
+        }
     }
     void Spray()
     {
         if (sprayGauge > 0)
         {
+            if (isFirst)
+            {
+                isFirst = false;
+                nowSpray = Instantiate(spray, mousePointer.transform, true);
+                nowSpray.transform.position = mousePointer.transform.position;
+                _mouseCollider.enabled = true;
+            }
+
             isWaitForfillGauge = false;
             sprayGauge -= 0.2f;
-            GameManager.Instance._poolingManager.Spawn<Spray>().Init(mousePointer.position, _sprayColor);
+        }
+        else
+        {
+            isFirst = true;
+            if(nowSpray)
+            {
+                nowSpray.transform.parent = null;
+                nowSpray = null; 
+                _mouseCollider.enabled = false;
+            }
         }
     }
     async UniTaskVoid FillGaugeTask()
