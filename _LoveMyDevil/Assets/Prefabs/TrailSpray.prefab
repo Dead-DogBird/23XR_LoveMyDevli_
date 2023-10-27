@@ -53,7 +53,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c4325c37d7a921c41a55432c59e8dbc6, type: 2}
+  - {fileID: 2100000, guid: ee35b24502ed5ce449321046b50f4cd9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,8 +96,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0, b: 0, a: 1}
-      key1: {r: 0, g: 0, b: 0, a: 1}
+      key0: {r: 0, g: 0, b: 0, a: 0.654902}
+      key1: {r: 0, g: 0, b: 0, a: 0.654902}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -124,11 +124,11 @@ TrailRenderer:
       m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 15
-    numCapVertices: 12
+    numCornerVertices: 0
+    numCapVertices: 0
     alignment: 0
-    textureMode: 3
-    textureScale: {x: 1, y: 1}
+    textureMode: 0
+    textureScale: {x: 0.5, y: 0.5}
     shadowBias: 0.5
     generateLightingData: 0
   m_MinVertexDistance: 0
@@ -189,7 +189,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c4325c37d7a921c41a55432c59e8dbc6, type: 2}
+  - {fileID: 2100000, guid: ee35b24502ed5ce449321046b50f4cd9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -260,11 +260,11 @@ TrailRenderer:
       m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 15
-    numCapVertices: 12
+    numCornerVertices: 0
+    numCapVertices: 0
     alignment: 0
-    textureMode: 3
-    textureScale: {x: 1, y: 1}
+    textureMode: 0
+    textureScale: {x: 0.5, y: 0.5}
     shadowBias: 0.5
     generateLightingData: 0
   m_MinVertexDistance: 0
@@ -359,7 +359,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c4325c37d7a921c41a55432c59e8dbc6, type: 2}
+  - {fileID: 2100000, guid: ee35b24502ed5ce449321046b50f4cd9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -430,11 +430,11 @@ TrailRenderer:
       m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 15
-    numCapVertices: 12
+    numCornerVertices: 0
+    numCapVertices: 0
     alignment: 0
-    textureMode: 3
-    textureScale: {x: 1, y: 1}
+    textureMode: 0
+    textureScale: {x: 0.5, y: 0.5}
     shadowBias: 0.5
     generateLightingData: 0
   m_MinVertexDistance: 0

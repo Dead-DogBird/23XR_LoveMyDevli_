@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.U2D;
 
@@ -27,9 +28,21 @@ public class TestColorObject : MonoBehaviour
             colordPart.SetActive(true);
             isActive = true;
             GameManager.Instance.GetPoint();
+            SetImageTask().Forget();
             Destroy(this);
        }
     }
 
-    
+    async UniTaskVoid SetImageTask()
+    {
+        var ColorPart = colordPart.GetComponent<SpriteRenderer>();
+        colordPart.SetActive(true);
+        ColorPart.color = Color.clear;
+        for (int i = 0; i < 50; i++)
+        {
+            ColorPart.color += (Color.white - ColorPart.color) / 10;
+            await UniTask.Yield(PlayerLoopTiming.LastFixedUpdate);
+        }
+    }
+
 }

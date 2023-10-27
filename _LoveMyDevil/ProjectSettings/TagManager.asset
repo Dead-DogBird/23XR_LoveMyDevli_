@@ -62,3 +62,9 @@ TagManager:
   - name: MaskPlatform
     uniqueID: 3552415033
     locked: 0
+  - name: GraffitiTexture
+    uniqueID: 2433593381
+    locked: 0
+  - name: DefaultTexture
+    uniqueID: 2043800849
+    locked: 0
