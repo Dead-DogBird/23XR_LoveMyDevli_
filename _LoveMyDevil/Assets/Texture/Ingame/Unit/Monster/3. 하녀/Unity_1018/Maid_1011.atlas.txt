@@ -1,0 +1,132 @@
+
+Maid_1011.png
+size: 94,242
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Maid_Apron
+  rotate: false
+  xy: 61, 185
+  size: 29, 40
+  orig: 29, 40
+  offset: 0, 0
+  index: -1
+Maid_Arm_L
+  rotate: true
+  xy: 58, 130
+  size: 19, 32
+  orig: 19, 32
+  offset: 0, 0
+  index: -1
+Maid_Arm_R
+  rotate: true
+  xy: 61, 227
+  size: 13, 31
+  orig: 13, 31
+  offset: 0, 0
+  index: -1
+Maid_Frill
+  rotate: true
+  xy: 49, 7
+  size: 49, 43
+  orig: 49, 43
+  offset: 0, 0
+  index: -1
+Maid_Hair
+  rotate: false
+  xy: 58, 151
+  size: 34, 32
+  orig: 34, 32
+  offset: 0, 0
+  index: -1
+Maid_Head01
+  rotate: false
+  xy: 2, 152
+  size: 54, 45
+  orig: 56, 47
+  offset: 1, 1
+  index: -1
+Maid_Head02
+  rotate: false
+  xy: 2, 105
+  size: 54, 45
+  orig: 56, 47
+  offset: 1, 1
+  index: -1
+Maid_Head03
+  rotate: false
+  xy: 2, 58
+  size: 54, 45
+  orig: 56, 47
+  offset: 1, 1
+  index: -1
+Maid_Head04
+  rotate: true
+  xy: 2, 2
+  size: 54, 45
+  orig: 56, 47
+  offset: 1, 1
+  index: -1
+Maid_Ribbon
+  rotate: true
+  xy: 74, 75
+  size: 11, 12
+  orig: 13, 14
+  offset: 1, 1
+  index: -1
+Maid_Skirt
+  rotate: true
+  xy: 2, 199
+  size: 41, 57
+  orig: 41, 57
+  offset: 0, 0
+  index: -1
+Maid_Tail01
+  rotate: false
+  xy: 58, 88
+  size: 26, 16
+  orig: 26, 16
+  offset: 0, 0
+  index: -1
+Maid_Tail02
+  rotate: true
+  xy: 58, 106
+  size: 22, 27
+  orig: 22, 27
+  offset: 0, 0
+  index: -1
+Maid_Tears
+  rotate: true
+  xy: 87, 97
+  size: 18, 4
+  orig: 20, 6
+  offset: 1, 1
+  index: -1
+Maid_TearsL
+  rotate: false
+  xy: 87, 123
+  size: 5, 5
+  orig: 7, 7
+  offset: 1, 1
+  index: -1
+Maid_Tears_R02
+  rotate: false
+  xy: 87, 123
+  size: 5, 5
+  orig: 7, 7
+  offset: 1, 1
+  index: -1
+Maid_Tears_R01
+  rotate: false
+  xy: 87, 117
+  size: 5, 4
+  orig: 7, 6
+  offset: 1, 1
+  index: -1
+Maid_horn
+  rotate: true
+  xy: 58, 76
+  size: 10, 14
+  orig: 12, 16
+  offset: 1, 1
+  index: -1

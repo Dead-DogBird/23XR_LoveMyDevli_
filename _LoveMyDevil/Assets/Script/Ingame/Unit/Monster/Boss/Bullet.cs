@@ -45,25 +45,25 @@ public class Bullet : MonoBehaviour
     {
     }
 
-    public GameObject Init(Vector3 bulletpos, Vector3 _toVector, float _speed, float delay = 0,float deleteDelay = 3)
+    public GameObject Init(Vector3 bulletpos, Vector3 _toVector, float _speed,float deleteDelay = 3)
     {
-
         time = 0;
         transform.position = bulletpos;
-        toVector = CustomAngle.VectorRotation(CustomAngle.PointDirection(bulletpos,
-            _toVector));
-        //damage = getinfo.damage;
         speed = _speed;
-        // _sprite.color = getinfo.bulletColor;
-        // orbitColor = getinfo.orbitcolors;
-        // targetFigure = getinfo.targetFigure;
-        transform.rotation = Quaternion.Euler(0, 0,
-            CustomAngle.PointDirection(bulletpos, _toVector));
-        FireTask(delay).Forget();
-        Destroy(gameObject,deleteDelay);
+        this.deleteDelay = deleteDelay;
         return gameObject;
     }
 
+    private float deleteDelay;
+    public void GetFire(Vector3 _toVector)
+    {
+        toVector = CustomAngle.VectorRotation(CustomAngle.PointDirection(transform.position,
+            _toVector));
+        transform.rotation = Quaternion.Euler(0, 0,
+            CustomAngle.PointDirection(transform.position, _toVector));
+        Destroy(gameObject,deleteDelay);
+        isFire = true;
+    }
     async UniTaskVoid FireTask(float _delay)
     {
         float temp = _delay;

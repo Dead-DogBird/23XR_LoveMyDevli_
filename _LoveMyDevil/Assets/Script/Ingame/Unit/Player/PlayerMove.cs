@@ -10,7 +10,7 @@ public class PlayerMove : MonoBehaviour
     public Rigidbody2D _playerRigidbody { get; private set; }
     private BoxCollider2D _boxCollider2D;
     private PlayerContrl _playerControll;
-
+    private PlayerAnimation _playerAnimation;
 
 
     [Header("플레이어 스탯")]
@@ -45,6 +45,8 @@ public class PlayerMove : MonoBehaviour
         _playerRigidbody = GetComponent<Rigidbody2D>();
         _playerControll = GetComponent<PlayerContrl>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _playerAnimation = GetComponent<PlayerAnimation>();
+        
         _spriteRenderer.color = Color.white;
         _boxCollider2D.isTrigger = false;
         speed = 5.3f;
@@ -54,9 +56,9 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         Jump();
-        if (_playerControll.Userinput.SkillKey && !isBlink && _playerControll.Userinput.AxisState != 0)
+        if (_playerControll.Userinput.SkillKey && !isBlink)
         {
-            Blink().Forget();
+            Blink(_playerControll.Userinput.AxisState).Forget();
         }
         if (XcameraCtrl.PlayerDeath == true)
         {
@@ -75,7 +77,17 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!_isjumping && _playerControll.Userinput.AxisState != 0)
+        {
+            _playerAnimation.SetAnimation((_playerControll.Userinput.AxisState>0)
+                ?PlayerAnimation.Animations.leftrun:PlayerAnimation.Animations.rightrun,true);
+        }
+        else if(!_isjumping &&_playerAnimation.nowAnimation!=PlayerAnimation.Animations.idle)
+        {
+            _playerAnimation.SetAnimation(PlayerAnimation.Animations.idle,true);
+        }
         transform.Translate(new Vector3(speed * _playerControll.Userinput.AxisState, 0) * Time.deltaTime);
+        
     }
 
 
@@ -85,23 +97,29 @@ public class PlayerMove : MonoBehaviour
         if (!_playerControll.Userinput.SpaceState) return;
         _isjumping = true;
         jumpCount++;
-
+        _playerAnimation.SetAnimation((_playerControll.Userinput.AxisState>=0)
+            ?PlayerAnimation.Animations.leftjump:PlayerAnimation.Animations.rightjump,false);
         if (jumpCount == 2)
         {
+            GetComponent<Player_Effect>().getEffect(Player_Effect.Effects.DoubleJump);
+            _playerAnimation.SetAnimation(PlayerAnimation.Animations.doublejump,false);
             _playerRigidbody.velocity = Vector2.zero;
             _playerRigidbody.AddForce(new Vector2(0, jumpForce));
             return;
         }
+        //GetComponent<Player_Effect>().getEffect(Player_Effect.Effects.Jump);
+        //_playerAnimation.SetAnimation(PlayerAnimation.Animations.jump,false);
         _playerRigidbody.AddForce(new Vector2(0, jumpForce));
         _playerRigidbody.velocity = Vector2.zero;
 
     }
 
     private bool isCollisionWall;
-    async UniTaskVoid Blink()
+    async UniTaskVoid Blink(float getAxis)
     {
         isBlink = true;
         _playerOriSpeed = speed;
+        GetComponent<Player_Effect>().getEffect(Player_Effect.Effects.Dash);
         oriGravity = _playerRigidbody.gravityScale;
         oriColliderxsize = _boxCollider2D.size.x;
         _playerRigidbody.velocity = Vector2.zero;
@@ -111,7 +129,7 @@ public class PlayerMove : MonoBehaviour
 
         float blinktimer = blinkDuration;
         float blinkDelay = BlinkDelay;
-        float toPos = Mathf.Clamp(_playerControll.Userinput.AxisState, -1f, 1f);
+        float toPos = Mathf.Clamp(getAxis, -1f, 1f);
         while (blinktimer > 0)
         {
             blinktimer -= 0.1f;
@@ -120,12 +138,14 @@ public class PlayerMove : MonoBehaviour
                 isCollisionWall = false;
                 break;
             }
+            // _playerAnimation.SetAnimation(PlayerAnimation.Animations.doublejump,true);
             transform.Translate(new Vector3(_playerOriSpeed * 3 * toPos, 0) * Time.deltaTime);
             await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
         }
 
         speed = _playerOriSpeed;
         _playerRigidbody.gravityScale = oriGravity;
+        //_playerAnimation.SetAnimation(PlayerAnimation.Animations.jump,true);
         while (blinkDelay > 0)
         {
             blinkDelay -= 0.1f;
@@ -144,10 +164,12 @@ public class PlayerMove : MonoBehaviour
         {
             _isjumping = false;
             jumpCount = 0;
+            _playerAnimation.SetAnimation(PlayerAnimation.Animations.idle,true);
         }
         if (other.transform.CompareTag("DropPlatform") && other.transform.position.y < transform.position.y)
         {
             other.transform.GetComponent<DroppedPlatform>().Dropped().Forget();
+            _playerAnimation.SetAnimation(PlayerAnimation.Animations.idle,true);
         }
         if (other.gameObject.CompareTag("Wall"))
         {

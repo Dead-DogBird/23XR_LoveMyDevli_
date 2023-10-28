@@ -1,0 +1,125 @@
+
+Deacon_20231009.png
+size: 298,78
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+01
+  rotate: false
+  xy: 33, 7
+  size: 6, 9
+  orig: 8, 11
+  offset: 1, 1
+  index: -1
+Deacon_ Mask
+  rotate: false
+  xy: 191, 3
+  size: 40, 35
+  orig: 42, 37
+  offset: 1, 1
+  index: -1
+Deacon_ head
+  rotate: true
+  xy: 2, 25
+  size: 51, 48
+  orig: 53, 50
+  offset: 1, 1
+  index: -1
+Deacon_Arm_L
+  rotate: false
+  xy: 234, 40
+  size: 31, 36
+  orig: 31, 36
+  offset: 0, 0
+  index: -1
+Deacon_Arm_R
+  rotate: false
+  xy: 127, 4
+  size: 27, 24
+  orig: 29, 26
+  offset: 1, 1
+  index: -1
+Deacon_Body
+  rotate: true
+  xy: 233, 3
+  size: 35, 32
+  orig: 37, 34
+  offset: 1, 1
+  index: -1
+Deacon_Tail01
+  rotate: true
+  xy: 136, 38
+  size: 38, 48
+  orig: 38, 48
+  offset: 0, 0
+  index: -1
+Deacon_Tail01_1
+  rotate: false
+  xy: 267, 42
+  size: 29, 34
+  orig: 31, 36
+  offset: 1, 1
+  index: -1
+Deacon_Tail01_2
+  rotate: true
+  xy: 156, 2
+  size: 34, 33
+  orig: 36, 35
+  offset: 1, 1
+  index: -1
+Deacon_Tail01_3
+  rotate: false
+  xy: 267, 4
+  size: 27, 36
+  orig: 29, 38
+  offset: 1, 1
+  index: -1
+Deacon_Tail01_4
+  rotate: true
+  xy: 93, 3
+  size: 25, 32
+  orig: 27, 34
+  offset: 1, 1
+  index: -1
+Deacon_Tail02
+  rotate: false
+  xy: 93, 30
+  size: 41, 46
+  orig: 41, 46
+  offset: 0, 0
+  index: -1
+Deacon_Tail03
+  rotate: false
+  xy: 52, 26
+  size: 39, 50
+  orig: 39, 50
+  offset: 0, 0
+  index: -1
+Deacon_Tail04
+  rotate: true
+  xy: 186, 40
+  size: 36, 46
+  orig: 36, 46
+  offset: 0, 0
+  index: -1
+Deacon_Towel_F
+  rotate: false
+  xy: 2, 2
+  size: 17, 21
+  orig: 17, 21
+  offset: 0, 0
+  index: -1
+Deacon_apple
+  rotate: false
+  xy: 21, 5
+  size: 10, 11
+  orig: 12, 13
+  offset: 1, 1
+  index: -1
+Deacon_eye
+  rotate: false
+  xy: 21, 18
+  size: 22, 5
+  orig: 24, 7
+  offset: 1, 1
+  index: -1

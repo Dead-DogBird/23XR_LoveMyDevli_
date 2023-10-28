@@ -10,15 +10,13 @@ namespace Script.System
         [SerializeField] private GameObject[] _toYposes;
         [Header("발판 떨림 폭")] [SerializeField][Range(0.001f,0.30f)] private float platformVibration = 0.1f;
         [Header("발판 떨림 속도")] [SerializeField][Range(0.00f,2.00f)] private float platformVibrationSpeed = 0.1f;
+        [Header("발판 이동 속도")] [SerializeField][Range(0.00f,2.00f)] private float platformMoveSpeed = 0.1f;
         // Start is called before the first frame update
         public PlayerMove player { get; private set; }
-        private bool[] isMovePlatform = new bool[5];
+        private bool[] isMovePlatform = new bool[6];
         void Start()
         {
-            MovePlatformTask(0, 1,1,3).Forget();
-            MovePlatformTask(2, 0,1,3).Forget();
-            MovePlatformTask(4, 1,1,3).Forget();
-           // player = GameObject.Find("Player").GetComponent<PlayerMove>();
+            player = GameObject.Find("Player").GetComponent<PlayerMove>();
         }
 
         // Update is called once per frame

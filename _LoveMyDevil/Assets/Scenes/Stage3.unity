@@ -392,7 +392,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &66875952
 Animator:
   serializedVersion: 5
@@ -4308,7 +4308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &800315667
 Transform:
   m_ObjectHideFlags: 0
@@ -4408,7 +4408,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 140b754f9d333ff44b43d9e3ed984cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 66875957}
 --- !u!1 &807499167
 GameObject:
   m_ObjectHideFlags: 0
@@ -5173,9 +5172,9 @@ SpriteMask:
   m_Sprite: {fileID: 21300000, guid: 5fef752ac1c4878439ceaa5aa703d497, type: 3}
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: 153996231
-  m_BackSortingLayerID: 0
+  m_BackSortingLayerID: 153996231
   m_FrontSortingLayer: 2
-  m_BackSortingLayer: 0
+  m_BackSortingLayer: 2
   m_FrontSortingOrder: 1
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 1
@@ -9287,7 +9286,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61484c18cb9abaa4ab7d044615564173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keeper: {fileID: 66875951}
 --- !u!4 &1754186265
 Transform:
   m_ObjectHideFlags: 0
@@ -11398,6 +11396,10 @@ PrefabInstance:
     - target: {fileID: 292225673047587837, guid: 72998f8e14f9ae146b302826984bf939, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1394634977943076499, guid: 72998f8e14f9ae146b302826984bf939, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1675574704362687705, guid: 72998f8e14f9ae146b302826984bf939, type: 3}
       propertyPath: m_Name

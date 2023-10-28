@@ -12,14 +12,15 @@ public class PlayerAct : MonoBehaviour
 
     private PlayerContrl _playerContrl;
     
-    private float _sprayGauge = 100;
+    [SerializeField] private float _sprayGauge = 100;
+    private float maxGauge;
     private float sprayGauge
     {
         get => _sprayGauge;
         set
         {
             _sprayGauge = value;
-            UImanager.Instance.SetSprayGauge(_sprayGauge);
+            UImanager.Instance.SetSprayGauge(_sprayGauge/maxGauge*100);
         }
     }
     private bool fillGauge;
@@ -31,6 +32,7 @@ public class PlayerAct : MonoBehaviour
     {
         _playerContrl = GetComponent<PlayerContrl>();
         _mouseCollider = mousePointer.GetComponent<CircleCollider2D>();
+        maxGauge = _sprayGauge;
     }
 
     void Update()
@@ -52,6 +54,15 @@ public class PlayerAct : MonoBehaviour
                 _mouseCollider.enabled = false;
             }
         }
+
+        if (nowSpray)
+        {
+            _mouseCollider.enabled = true;
+        }
+        else
+        {
+            _mouseCollider.enabled = false;
+        }
     }
     void Spray()
     {
@@ -62,7 +73,6 @@ public class PlayerAct : MonoBehaviour
                 isFirst = false;
                 nowSpray = Instantiate(spray, mousePointer.transform, true);
                 nowSpray.transform.position = mousePointer.transform.position;
-                _mouseCollider.enabled = true;
             }
 
             isWaitForfillGauge = false;
@@ -91,7 +101,7 @@ public class PlayerAct : MonoBehaviour
             }
             await UniTask.Delay(TimeSpan.FromSeconds(0.01f));
         }
-        while (sprayGauge < 100)
+        while (sprayGauge < maxGauge)
         {
             if (_playerContrl.Userinput.LeftMouseState)
             {
@@ -101,7 +111,7 @@ public class PlayerAct : MonoBehaviour
             sprayGauge += 0.5f;
             await UniTask.Yield(PlayerLoopTiming.Update);
         }
-        sprayGauge = 100;
+        sprayGauge = maxGauge;
     }
 
 }

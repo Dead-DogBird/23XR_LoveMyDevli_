@@ -1,0 +1,55 @@
+
+Ghost_20231003.png
+size: 135,57
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+01
+  rotate: true
+  xy: 83, 2
+  size: 18, 4
+  orig: 20, 6
+  offset: 1, 1
+  index: -1
+Ghost_Body
+  rotate: true
+  xy: 2, 6
+  size: 49, 50
+  orig: 49, 50
+  offset: 0, 0
+  index: -1
+Ghost_Mask
+  rotate: false
+  xy: 54, 22
+  size: 38, 33
+  orig: 40, 35
+  offset: 1, 1
+  index: -1
+Ghost_Tail01
+  rotate: false
+  xy: 94, 24
+  size: 22, 31
+  orig: 24, 33
+  offset: 1, 1
+  index: -1
+Ghost_Tail02
+  rotate: true
+  xy: 54, 2
+  size: 18, 27
+  orig: 20, 29
+  offset: 1, 1
+  index: -1
+Ghost_Tail03
+  rotate: true
+  xy: 94, 2
+  size: 20, 28
+  orig: 22, 30
+  offset: 1, 1
+  index: -1
+Ghost_Tail04
+  rotate: false
+  xy: 118, 26
+  size: 15, 29
+  orig: 17, 31
+  offset: 1, 1
+  index: -1
