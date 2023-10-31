@@ -307,9 +307,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DashEffect: {fileID: 9084704823120070909, guid: c570518dfc01d1842a32dfcb9726f8e0, type: 3}
   RunEffect: {fileID: 0}
-  LandEffect: {fileID: 6618588227795311387, guid: abc97be54c8e8a44ca014b0c9f25a654, type: 3}
-  JumpEffect: {fileID: 7428943635731812662, guid: 35b4c146d376d864e80833911f5d394b, type: 3}
-  DoubleJumpEffect: {fileID: 1651679220280851740, guid: 6423e0d88b751334784b75939d9fb971, type: 3}
+  LandEffect: {fileID: 8533015100848834431, guid: 78dd0c7ea12392846a98f7a470508184, type: 3}
+  JumpEffect: {fileID: 3307609075345816855, guid: d1b1be9b5874a77409f45c014c296bf0, type: 3}
+  DoubleJumpEffect: {fileID: 5683095170710968634, guid: 351f1bdbe9b3c634eb8a70cd7d6b8991, type: 3}
 --- !u!114 &1469133931327859391
 MonoBehaviour:
   m_ObjectHideFlags: 0

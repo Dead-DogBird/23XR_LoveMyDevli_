@@ -5,15 +5,18 @@ using UnityEngine;
 public class Player_Effect : MonoBehaviour
 {
 
-    [SerializeField] private GameObject DashEffect;
+    [SerializeField] private GameObject RightDashEffect;
+    [SerializeField] private GameObject LeftDashEffect;
     [SerializeField] private GameObject RunEffect;
     [SerializeField] private GameObject LandEffect;
     [SerializeField] private GameObject JumpEffect;
     [SerializeField] private GameObject DoubleJumpEffect;
 
+    public GameObject SprayEffect;
     public enum Effects
     {
-        Dash,
+        LeftDash,
+        RightDash,
         Run,
         Land,
         Jump,
@@ -22,7 +25,7 @@ public class Player_Effect : MonoBehaviour
     
     void Start()
     {
-        
+        SprayEffect.SetActive(false);
     }
 
     // Update is called once per frame
@@ -35,8 +38,11 @@ public class Player_Effect : MonoBehaviour
     {
         switch (_effects)
         {
-            case Effects.Dash:
-                Instantiate(DashEffect, transform.position, Quaternion.identity);
+            case Effects.LeftDash:
+                Instantiate(LeftDashEffect, transform.position, Quaternion.identity);
+                break;
+            case Effects.RightDash:
+                Instantiate(RightDashEffect, transform.position, Quaternion.identity);
                 break;
             case Effects.Run:
                 Instantiate(RunEffect, transform.position, Quaternion.identity);

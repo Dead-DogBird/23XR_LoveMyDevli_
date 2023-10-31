@@ -119,7 +119,7 @@ public class PlayerMove : MonoBehaviour
     {
         isBlink = true;
         _playerOriSpeed = speed;
-        GetComponent<Player_Effect>().getEffect(Player_Effect.Effects.Dash);
+        GetComponent<Player_Effect>().getEffect(getAxis>0?Player_Effect.Effects.LeftDash:Player_Effect.Effects.RightDash);
         oriGravity = _playerRigidbody.gravityScale;
         oriColliderxsize = _boxCollider2D.size.x;
         _playerRigidbody.velocity = Vector2.zero;

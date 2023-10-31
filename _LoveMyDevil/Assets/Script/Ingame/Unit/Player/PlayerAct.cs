@@ -28,11 +28,16 @@ public class PlayerAct : MonoBehaviour
     private CircleCollider2D _mouseCollider;
     private bool isFirst;
     private GameObject nowSpray;
+
+    private Player_Effect _playerEffect;
     void Start()
     {
         _playerContrl = GetComponent<PlayerContrl>();
         _mouseCollider = mousePointer.GetComponent<CircleCollider2D>();
+        _playerEffect = GetComponent<Player_Effect>();
         maxGauge = _sprayGauge;
+        _playerEffect.SprayEffect.transform.parent = mousePointer;
+        _playerEffect.SprayEffect.transform.localPosition = new Vector3(0, 0, 0);
     }
 
     void Update()
@@ -57,10 +62,12 @@ public class PlayerAct : MonoBehaviour
 
         if (nowSpray)
         {
+            _playerEffect.SprayEffect.SetActive(true);
             _mouseCollider.enabled = true;
         }
         else
         {
+            _playerEffect.SprayEffect.SetActive(false);
             _mouseCollider.enabled = false;
         }
     }
@@ -73,6 +80,7 @@ public class PlayerAct : MonoBehaviour
                 isFirst = false;
                 nowSpray = Instantiate(spray, mousePointer.transform, true);
                 nowSpray.transform.position = mousePointer.transform.position;
+                
             }
 
             isWaitForfillGauge = false;
@@ -86,6 +94,7 @@ public class PlayerAct : MonoBehaviour
                 nowSpray.transform.parent = null;
                 nowSpray = null; 
                 _mouseCollider.enabled = false;
+                _playerEffect.SprayEffect.SetActive(false);
             }
         }
     }
