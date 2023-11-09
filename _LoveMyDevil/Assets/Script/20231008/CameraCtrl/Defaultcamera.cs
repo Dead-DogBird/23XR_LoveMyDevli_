@@ -20,10 +20,10 @@ public class Defaultcamera : MonoBehaviour
         float playerY = player.position.y;
 
 
-        if (playerY < minY)
-        {
-            playerY = minY;
-        }
+        // if (playerY < minY)
+        // {
+        //     playerY = minY;
+        // }
 
         Vector3 playerposition = new Vector3(player.position.x + incase.x, playerY + incase.y, player.position.z + incase.z);
         transform.position = Vector3.SmoothDamp(transform.position, playerposition, ref velocity, Timeformove);

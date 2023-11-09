@@ -26,7 +26,7 @@ public class PlayerAct : MonoBehaviour
     private bool fillGauge;
     private bool isWaitForfillGauge;
     private CircleCollider2D _mouseCollider;
-    private bool isFirst;
+    private bool isFirst = true;
     private GameObject nowSpray;
 
     private Player_Effect _playerEffect;

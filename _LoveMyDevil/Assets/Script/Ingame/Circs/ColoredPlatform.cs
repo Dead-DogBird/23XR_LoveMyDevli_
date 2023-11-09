@@ -14,28 +14,35 @@ public class ColoredPlatform : MonoBehaviour
 
     private BoxCollider2D _collider;
     private Vector3 _scale;
-    private float max = 8;
+    private float max = 6;
     private float curfillingAmount = 0;
-    [SerializeField] private Transform _mask;
-
+    [SerializeField] private GameObject _mask;
+    private SpriteRenderer _maskSprite;
     [Header("사라지는 속도(기본값 : 0.1)")]
     [SerializeField] private float disappearFigure = 0.1f;
 
     [Header("사라질 때 까지 걸리는 시간(초 단위)")]
     [SerializeField] private float disappearDelay = 2.5f;
-
     private bool isDie = false;
 
     private bool isDone = false;
+
+    [SerializeField] private Sprite[] sprites;
     private void Start()
     {
         _collider = GetComponent<BoxCollider2D>();
         _collider.enabled = false;
         _scale = transform.localScale;
         ratio = (0 - initialYOffset) / (1 - initialSizeY);
+        _maskSprite = _mask.GetComponent<SpriteRenderer>();
     }
     // Update is called once per frame
     private void Update()
+    {
+       
+    }
+
+    private void FixedUpdate()
     {
         OnSprayHit();
     }
@@ -43,7 +50,7 @@ public class ColoredPlatform : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     void OnSprayHit()
     {
-        Collider2D[] hit = Physics2D.OverlapBoxAll(transform.position, _scale, 0);
+        Collider2D[] hit = Physics2D.OverlapBoxAll(transform.position, _collider.size, 0);
         foreach (Collider2D i in hit)
         {
             if (i.CompareTag("MouseCollider"))
@@ -57,41 +64,19 @@ public class ColoredPlatform : MonoBehaviour
         }
     }
 
-    bool PaintedPlatform(bool addAmount = true, float amount = 0.1f)
+    private int currentIntAmount;
+    bool PaintedPlatform(bool addAmount = true, float amount = 0.3f)
     {
-        if (!_collider.enabled)
-            _collider.enabled = true;
         curfillingAmount += addAmount ? amount : -amount;
-        if (Mathf.Abs(curfillingAmount - max) <= 0.008f && addAmount)
-        {
+        if (curfillingAmount > max)
             curfillingAmount = max;
-            _collider.size = new Vector2(_collider.size.x, 1);
-            _collider.offset = new Vector2(_collider.offset.x, 0);
-            _mask.localPosition = new Vector3(_mask.localPosition.x, 0);
-            return false;
-        }
         if (curfillingAmount < 0)
+            curfillingAmount = 0;
+        if (currentIntAmount != (int)MathF.Floor(curfillingAmount))
         {
-            _collider.size = new Vector2(_collider.size.x, 0);
-            _collider.offset = new Vector2(_collider.offset.x, 0.5f);
-            _mask.localScale = new Vector2(_mask.localScale.x, 0);
-            _mask.localPosition = new Vector2(_mask.localPosition.x, -0.5f);
-            return false;
-        }
-        // 크기 조절
-        float newSize = Mathf.Lerp(0, 1.0f, curfillingAmount / max);
-
-        _collider.size = new Vector2(_collider.size.x, newSize);
-        _mask.localScale = new Vector2(_mask.localScale.x, newSize);
-
-        // Offset 계산
-        float newOffset = initialYOffset + (ratio * (newSize - initialSizeY));
-        newOffset = Mathf.Clamp(newOffset, initialYOffset, maxHeight);
-
-        // Offset 값 설정
-        _collider.offset = new Vector2(_collider.offset.x, newOffset);
-        _mask.localPosition = new Vector2(_mask.localPosition.x, newOffset);
-
+            currentIntAmount = (int)MathF.Floor(curfillingAmount);
+            SetSprite(currentIntAmount,addAmount);
+        } 
         return true;
     }
 
@@ -123,4 +108,30 @@ public class ColoredPlatform : MonoBehaviour
         isDelay = false;
     }
 
+    void SetSprite(int i,bool isAdd)
+    {
+        Debug.Log(i);
+        if (i < 1 && i > sprites.Length) return;
+        if (isAdd)
+        {
+            _maskSprite.sprite = sprites[i-1];
+            if(i>4)
+                _collider.enabled = true;
+        }
+        else
+        {
+            if(sprites.Length - (i - 1)>6)
+                _collider.enabled = false;
+            if (sprites.Length - (i - 1) < sprites.Length)
+            {
+                _maskSprite.sprite = sprites[^(i - 1)];
+            }
+            else
+            {
+                _maskSprite.sprite = sprites[^1];
+                
+            }
+        }
+    }
+    
 }

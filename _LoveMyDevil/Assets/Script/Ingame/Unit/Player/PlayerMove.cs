@@ -101,6 +101,8 @@ public class PlayerMove : MonoBehaviour
             ?PlayerAnimation.Animations.leftjump:PlayerAnimation.Animations.rightjump,false);
         if (jumpCount == 2)
         {
+            
+            GetComponent<Player_Effect>().GetDash(0.7f,_playerControll.Userinput.AxisState>0);
             GetComponent<Player_Effect>().getEffect(Player_Effect.Effects.DoubleJump);
             _playerAnimation.SetAnimation(PlayerAnimation.Animations.doublejump,false);
             _playerRigidbody.velocity = Vector2.zero;
@@ -119,17 +121,17 @@ public class PlayerMove : MonoBehaviour
     {
         isBlink = true;
         _playerOriSpeed = speed;
-        GetComponent<Player_Effect>().getEffect(getAxis>0?Player_Effect.Effects.LeftDash:Player_Effect.Effects.RightDash);
+        //GetComponent<Player_Effect>().getEffect(getAxis>0?Player_Effect.Effects.LeftDash:Player_Effect.Effects.RightDash);
         oriGravity = _playerRigidbody.gravityScale;
         oriColliderxsize = _boxCollider2D.size.x;
         _playerRigidbody.velocity = Vector2.zero;
         _playerRigidbody.gravityScale = 0;
-
+        GetComponent<Player_Effect>().GetDash(blinkDuration,getAxis>0);
         speed = 0;
 
         float blinktimer = blinkDuration;
         float blinkDelay = BlinkDelay;
-        float toPos = Mathf.Clamp(getAxis, -1f, 1f);
+        float toPos =getAxis>0? 1f : -1f;
         while (blinktimer > 0)
         {
             blinktimer -= 0.1f;
@@ -160,7 +162,7 @@ public class PlayerMove : MonoBehaviour
         if ((other.gameObject.CompareTag("Ground") ||
               other.gameObject.CompareTag("ColoredPlatform") ||
               other.gameObject.CompareTag("DropPlatform") ||
-              other.gameObject.CompareTag("Platform")) && other.contacts[1].normal.y > 0.7f)
+              other.gameObject.CompareTag("Platform")) && other.contacts[1].normal.y > 0.5f)
         {
             _isjumping = false;
             jumpCount = 0;

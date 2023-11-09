@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class Player_Effect : MonoBehaviour
@@ -11,7 +12,7 @@ public class Player_Effect : MonoBehaviour
     [SerializeField] private GameObject LandEffect;
     [SerializeField] private GameObject JumpEffect;
     [SerializeField] private GameObject DoubleJumpEffect;
-
+    [SerializeField] private GameObject DashSprite;
     public GameObject SprayEffect;
     public enum Effects
     {
@@ -59,5 +60,22 @@ public class Player_Effect : MonoBehaviour
         }
         
         
+    }
+
+    public void GetDash(float _time,bool isRight)
+    {
+        DashTask(_time,isRight).Forget();
+    }
+    async UniTaskVoid DashTask(float time,bool isRight)
+    {
+        while(time > 0)
+        {
+            time -= 0.1f;
+            var temp =Instantiate(DashSprite, transform.position, Quaternion.identity);
+            Destroy(temp,0.12f);
+            if (!isRight)
+                temp.transform.localScale = new Vector3(-1, 1, 1);  
+            await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+        }
     }
 }
