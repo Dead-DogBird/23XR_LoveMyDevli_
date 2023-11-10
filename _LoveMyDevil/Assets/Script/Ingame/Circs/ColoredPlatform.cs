@@ -20,6 +20,8 @@ public class ColoredPlatform : MonoBehaviour
     private SpriteRenderer _maskSprite;
     [Header("사라지는 속도(기본값 : 0.1)")]
     [SerializeField] private float disappearFigure = 0.1f;
+    [Header("채워지는 속도(기본값 : 0.1)")] 
+    [SerializeField] private float fillFigure = 0.1f;
 
     [Header("사라질 때 까지 걸리는 시간(초 단위)")]
     [SerializeField] private float disappearDelay = 2.5f;
@@ -55,7 +57,7 @@ public class ColoredPlatform : MonoBehaviour
         {
             if (i.CompareTag("MouseCollider"))
             {
-                PaintedPlatform();
+                PaintedPlatform(true,fillFigure);
                 if (!isDisapper)
                     disappearFillAmount().Forget();
                 if (!isDelay)
@@ -65,9 +67,9 @@ public class ColoredPlatform : MonoBehaviour
     }
 
     private int currentIntAmount;
-    bool PaintedPlatform(bool addAmount = true, float amount = 0.3f)
+    bool PaintedPlatform(bool addAmount = true,float fillcount = 0.1f)
     {
-        curfillingAmount += addAmount ? amount : -amount;
+        curfillingAmount += addAmount ? fillcount : -fillcount;
         if (curfillingAmount > max)
             curfillingAmount = max;
         if (curfillingAmount < 0)
@@ -115,7 +117,7 @@ public class ColoredPlatform : MonoBehaviour
         if (isAdd)
         {
             _maskSprite.sprite = sprites[i-1];
-            if(i>4)
+            if(i-1>=0)
                 _collider.enabled = true;
         }
         else
