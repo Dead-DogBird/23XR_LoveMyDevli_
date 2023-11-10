@@ -232,6 +232,7 @@ MonoBehaviour:
   maxHeight: 1
   _mask: {fileID: 4106970416936422949}
   disappearFigure: 0.1
+  fillFigure: 0.5
   disappearDelay: 2.5
   sprites:
   - {fileID: 21300000, guid: 579ebf1fe929ee44d971b51ca2096268, type: 3}
