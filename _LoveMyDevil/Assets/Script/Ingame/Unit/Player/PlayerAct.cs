@@ -9,7 +9,7 @@ public class PlayerAct : MonoBehaviour
 {
     [SerializeField] private GameObject spray;
     [SerializeField] private Transform mousePointer;
-
+    [SerializeField] private bool isBossStage=false;
     private PlayerContrl _playerContrl;
     
     [SerializeField] private float _sprayGauge = 100;
@@ -36,6 +36,8 @@ public class PlayerAct : MonoBehaviour
         _mouseCollider = mousePointer.GetComponent<CircleCollider2D>();
         _playerEffect = GetComponent<Player_Effect>();
         maxGauge = _sprayGauge;
+        if (isBossStage)
+            _sprayGauge = 0;
         _playerEffect.SprayEffect.transform.parent = mousePointer;
         _playerEffect.SprayEffect.transform.localPosition = new Vector3(0, 0, 0);
     }
@@ -100,6 +102,7 @@ public class PlayerAct : MonoBehaviour
     }
     async UniTaskVoid FillGaugeTask()
     {
+        if (isBossStage) return;
         isWaitForfillGauge = true;
         for (int i = 0; i < 50; i++)
         {
@@ -123,4 +126,10 @@ public class PlayerAct : MonoBehaviour
         sprayGauge = maxGauge;
     }
 
+    public void GetSpray(float filled)
+    {
+        sprayGauge += maxGauge * (filled / 100);
+        if (sprayGauge > maxGauge)
+            sprayGauge = maxGauge;
+    }
 }

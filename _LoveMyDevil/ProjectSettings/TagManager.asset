@@ -16,6 +16,8 @@ TagManager:
   - boardground
   - ssa
   - MouseCollider
+  - SprayItem
+  - PlayerPlatformCollider
   layers:
   - Default
   - TransparentFX

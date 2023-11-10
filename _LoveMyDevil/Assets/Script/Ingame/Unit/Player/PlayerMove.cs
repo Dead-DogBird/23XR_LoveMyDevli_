@@ -27,12 +27,13 @@ public class PlayerMove : MonoBehaviour
     [Tooltip("점멸 딜레이")]
     [SerializeField] private float BlinkDelay = 1;
 
+
+    [SerializeField] private ColliderCallbackController platformCollider;
     //기타 트리거들
     private bool _isjumping;
     private int jumpCount = 0;
 
     private float _playerOriSpeed;
-    private float oriColliderxsize;
     private float oriGravity;
     private bool isBlink;
 
@@ -51,6 +52,12 @@ public class PlayerMove : MonoBehaviour
         _boxCollider2D.isTrigger = false;
         speed = 5.3f;
         GameManager.Instance.setPlayer(gameObject);
+        platformCollider.onColiderEnter += PlatformEnter;
+        platformCollider.onColiderExit += PlatformExit;
+    }
+
+    private void OnEnable()
+    {
     }
 
     void Update()
@@ -123,7 +130,6 @@ public class PlayerMove : MonoBehaviour
         _playerOriSpeed = speed;
         //GetComponent<Player_Effect>().getEffect(getAxis>0?Player_Effect.Effects.LeftDash:Player_Effect.Effects.RightDash);
         oriGravity = _playerRigidbody.gravityScale;
-        oriColliderxsize = _boxCollider2D.size.x;
         _playerRigidbody.velocity = Vector2.zero;
         _playerRigidbody.gravityScale = 0;
         GetComponent<Player_Effect>().GetDash(blinkDuration,getAxis>0);
@@ -155,14 +161,24 @@ public class PlayerMove : MonoBehaviour
         }
         isBlink = false;
     }
-
-
+    
     private void OnCollisionEnter2D(Collision2D other)
     {
+       
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+
+    }
+
+    void PlatformEnter(Collider2D other)
+    {
+        Debug.Log("바닥에 닿임");
         if ((other.gameObject.CompareTag("Ground") ||
-              other.gameObject.CompareTag("ColoredPlatform") ||
-              other.gameObject.CompareTag("DropPlatform") ||
-              other.gameObject.CompareTag("Platform")) && other.contacts[1].normal.y > 0.5f)
+             other.gameObject.CompareTag("ColoredPlatform") ||
+             other.gameObject.CompareTag("DropPlatform") ||
+             other.gameObject.CompareTag("Platform")))
         {
             _isjumping = false;
             jumpCount = 0;
@@ -179,7 +195,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D other)
+    void PlatformExit(Collider2D other)
     {
         if ((other.gameObject.CompareTag("Ground") ||
              other.gameObject.CompareTag("ColoredPlatform") ||
@@ -189,8 +205,12 @@ public class PlayerMove : MonoBehaviour
             jumpCount = 1;
         }
     }
-
-   
-
-
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("SprayItem"))
+        {
+            Destroy(other.gameObject);
+            GetComponent<PlayerAct>().GetSpray(20);
+        }
+    }
 }
