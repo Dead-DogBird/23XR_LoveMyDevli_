@@ -30,7 +30,6 @@ public class SkullMonster : MonoBehaviour
 
     private void OnEnable()
     {
-        colliderCallbackController.onColiderEnter += Findedplayer;
     }
 
     private void OnDestroy()
@@ -41,52 +40,27 @@ public class SkullMonster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!_targetedPlayer)
-        {
-            NontargetPlayerMove();
-        }
-        else
-        {
-            TargetedPlayer();
-        }
+       NontargetPlayerMove();
     }
 
-    void TargetedPlayer()
-    {
-        if (Mathf.Abs(transform.position.x - player.transform.position.x) >= distanceFromPlayer)
-        {
-            transform.Translate(new Vector3(_speed*(player.transform.position.x > transform.position.x? 2 : -2), 0) * Time.deltaTime);
-        }
-        if (player.transform.position.x < transform.position.x&&transform.localScale.x<0)
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-        else if (player.transform.position.x > transform.position.x&&transform.localScale.x>0)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }   
-        var frontVec = new Vector2(_rigid.position.x + (transform.localScale.x>0 ? -0.5f:0.5f),_rigid.position.y+0.2f);
-        Debug.DrawLine(frontVec,frontVec+new Vector2(0,1),Color.red);
-        if (Physics2D.Raycast(frontVec, Vector3.up, 1, LayerMask.GetMask("Platform")))
-        {
-            _rigid.AddForce(new Vector2(0,1),ForceMode2D.Impulse);
-        }
-    }
     void NontargetPlayerMove()
     {
         _rigid.velocity = new Vector2(nextMove, _rigid.velocity.y);
-        Vector2 frontVec = new Vector2(_rigid.position.x + nextMove*0.2f,_rigid.position.y);
-        if (!Physics2D.Raycast(frontVec, Vector3.down, 1, LayerMask.GetMask("Platform")))
+        Vector3 frontVec = new Vector3(_rigid.position.x + nextMove*0.7f,_rigid.position.y);
+        Debug.DrawLine(frontVec,frontVec+Vector3.down*1,Color.blue);
+        if (!Physics2D.Raycast(frontVec, Vector3.down, 1))
         {
+         
             nextMove *= -1;
             transform.localScale = nextMove > 0 ? new Vector3(-1,1) : new Vector3(1,1);
         }
+
         frontVec = new Vector2(_rigid.position.x + nextMove*0.2f,_rigid.position.y+0.5f);
-        if (Physics2D.Raycast(frontVec, Vector3.up, 1, LayerMask.GetMask("Platform")))
-        {
-            nextMove *= -1;
-            transform.localScale = nextMove > 0 ? new Vector3(-1,1) : new Vector3(1,1);
-        }
+        // if (Physics2D.Raycast(frontVec, Vector3.up, 1, LayerMask.GetMask("Platform")))
+        // {
+        //     nextMove *= -1;
+        //     transform.localScale = nextMove > 0 ? new Vector3(-1,1) : new Vector3(1,1);
+        // }
     }
     async UniTaskVoid MoveSelect()
     {
@@ -95,22 +69,7 @@ public class SkullMonster : MonoBehaviour
             nextMove =  Random.Range(-1, 2);
             transform.localScale = nextMove > 0 ? new Vector3(-1,1) : new Vector3(1,1);
             await UniTask.Delay(TimeSpan.FromSeconds(5), ignoreTimeScale: false);
-            await UniTask.WaitUntil(() => !_targetedPlayer);
         }
-    }
-    protected void Findedplayer(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            SetTargetPlayer(other.transform);
-        }
-    }
-    protected virtual void SetTargetPlayer(Transform _player)
-    {
-        if (_targetedPlayer) return;
-        
-        player = _player;
-        _targetedPlayer = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
