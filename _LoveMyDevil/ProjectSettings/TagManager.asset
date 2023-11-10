@@ -18,6 +18,7 @@ TagManager:
   - MouseCollider
   - SprayItem
   - PlayerPlatformCollider
+  - CameraCollider
   layers:
   - Default
   - TransparentFX

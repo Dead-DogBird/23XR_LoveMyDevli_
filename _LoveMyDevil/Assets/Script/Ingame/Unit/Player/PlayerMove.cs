@@ -212,5 +212,10 @@ public class PlayerMove : MonoBehaviour
             Destroy(other.gameObject);
             GetComponent<PlayerAct>().GetSpray(20);
         }
+
+        if (other.CompareTag("CameraCollider"))
+        {
+            Camera.main.GetComponent<CameraChanger>().UpdateCamera(other.GetComponent<CameraCollider>().colliderID);
+        }
     }
 }
