@@ -33,6 +33,13 @@ public class PlayerMove : MonoBehaviour
     private bool _isjumping;
     private int jumpCount = 0;
 
+    //더블탭 대쉬
+    public bool Blinkmode = true;
+    private float FirstTimeChecker;
+    private float Betweentime = 0.5f;
+    private bool isTimeCheck = true;
+    private int click = 0;
+    
     private float _playerOriSpeed;
     private float oriGravity;
     private bool isBlink;
@@ -40,6 +47,7 @@ public class PlayerMove : MonoBehaviour
     //임시 애니메이션 구현 
     private SpriteRenderer _spriteRenderer;
 
+    private bool isKnockBack;
     void Start()
     {
         _boxCollider2D = GetComponent<BoxCollider2D>();
@@ -52,8 +60,8 @@ public class PlayerMove : MonoBehaviour
         _boxCollider2D.isTrigger = false;
         speed = 5.3f;
         GameManager.Instance.setPlayer(gameObject);
-        platformCollider.onColiderEnter += PlatformEnter;
-        platformCollider.onColiderExit += PlatformExit;
+        platformCollider.onColliderEnter += PlatformEnter;
+        platformCollider.onColliderExit += PlatformExit;
     }
 
     private void OnEnable()
@@ -62,15 +70,49 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+        if (isKnockBack) return;
         Jump();
-        if (_playerControll.Userinput.SkillKey && !isBlink)
+        if (Blinkmode)
         {
-            Blink(_playerControll.Userinput.AxisState).Forget();
+            if (_playerControll.Userinput.SkillKey && !isBlink)
+            {
+                Blink(_playerControll.Userinput.AxisState).Forget();
+            }
         }
+        // 키보드 A,D 더블탭 대쉬
+        if (Blinkmode == false&&!isBlink)
+        {
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.A))
+            {
+                click += 1;
+            }
+            if (click == 1 && isTimeCheck)
+            {
+                FirstTimeChecker = Time.time;
+                StartCoroutine(DoubleClicked());
+            }
+        }
+
         if (XcameraCtrl.PlayerDeath == true)
         {
             deathfromkeeper();
         }
+    }
+    // 더블탭 대쉬 
+    private IEnumerator DoubleClicked()
+    {
+        isTimeCheck = false;
+        while (Time.time < FirstTimeChecker + Betweentime)
+        {
+            if (click == 2)
+            {
+                Blink(_playerControll.Userinput.AxisState).Forget();
+                break;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+        click = 0;
+        isTimeCheck = true;
     }
 
     //죽음
@@ -84,6 +126,7 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isKnockBack) return;
         if (!_isjumping && _playerControll.Userinput.AxisState != 0)
         {
             _playerAnimation.SetAnimation((_playerControll.Userinput.AxisState>0)
@@ -172,9 +215,17 @@ public class PlayerMove : MonoBehaviour
 
     }
 
+    public void GetKnockBack(Vector3 pos, float knokbackfos)
+    {
+        Debug.Log("넉백");
+       // _playerRigidbody.AddForce(CustomAngle.VectorRotation(CustomAngle.PointDirection(transform.position,pos))*knokbackfos,ForceMode2D.Impulse);
+        _playerRigidbody.velocity = (CustomAngle.VectorRotation(CustomAngle.PointDirection(transform.position, new Vector2(pos.x,transform.position.y-0.5f))+180) * knokbackfos);
+        _playerAnimation.SetAnimation(PlayerAnimation.Animations.hit);
+        isKnockBack = true;
+    }
+
     void PlatformEnter(Collider2D other)
     {
-        Debug.Log("바닥에 닿임");
         if ((other.gameObject.CompareTag("Ground") ||
              other.gameObject.CompareTag("ColoredPlatform") ||
              other.gameObject.CompareTag("DropPlatform") ||
@@ -183,6 +234,7 @@ public class PlayerMove : MonoBehaviour
             _isjumping = false;
             jumpCount = 0;
             _playerAnimation.SetAnimation(PlayerAnimation.Animations.idle,true);
+            isKnockBack = false;
         }
         if (other.transform.CompareTag("DropPlatform") && other.transform.position.y < transform.position.y)
         {

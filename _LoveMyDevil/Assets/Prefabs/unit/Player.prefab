@@ -297,6 +297,7 @@ MonoBehaviour:
   blinkDuration: 0.7
   BlinkDelay: 0.3
   platformCollider: {fileID: 4317552679213134618}
+  Blinkmode: 1
 --- !u!114 &4938931592348431392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,7 +449,7 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: 
+  _animationName: animation5
   loop: 1
   timeScale: 1
 --- !u!1 &5618720472787833618

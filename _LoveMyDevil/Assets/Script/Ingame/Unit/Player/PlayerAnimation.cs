@@ -54,7 +54,7 @@ public class PlayerAnimation : MonoBehaviour
                 animationName = "animation4-3";
                 break;
             case Animations.hit:
-                animationName = "animation5-1";
+                animationName = "animation5";
                 break;
             case Animations.successes:
                 animationName = "animation6";

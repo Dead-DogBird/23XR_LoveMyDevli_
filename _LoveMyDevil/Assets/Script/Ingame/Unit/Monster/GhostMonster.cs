@@ -7,109 +7,134 @@ using Random = UnityEngine.Random;
 
 public class GhostMonster : MonoBehaviour
 {
-    [SerializeField] ColliderCallbackController colliderCallbackController;
-    [SerializeField] private float distanceFromPlayer;
-    [SerializeField] private float _speed = 3;
-    private Rigidbody2D _rigid;
+    [SerializeField] private GameObject _body;
+    [SerializeField] private ColliderCallbackController _checkCollider;
 
-    private bool _targetedPlayer;
-    private Transform player;
-    int nextMove;
-    private bool isDie = false;
-
-    [SerializeField] private float knockbackForce = 5f; // 넉백 힘 설정
-
-    // Start is called before the first frame update
-    void Start()
+    [Header("속도")] [SerializeField] private float _speed;
+    [Header("넉백 강도")] [SerializeField] private float _knockbackFos;
+    private Rigidbody2D _bodyRigid;
+    private bool isDie;
+    private State ghostState;
+    private Vector3 SpawnPos;
+    
+    private GameObject player;
+    private Vector3 toPos;
+    private int nextMove = 1;
+    enum State
     {
-        _rigid = GetComponent <Rigidbody2D>();
-        MoveSelect().Forget();
-    }
-
-    private void OnEnable()
-    {
-        colliderCallbackController.onColiderEnter += Findedplayer;
+        NonTargeted,
+        Targeted,
+        BackSpawn
     }
     private void OnDestroy()
     {
         isDie = true;
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        _checkCollider.onColliderEnter += OnCheckTriggerEnter;
+        _checkCollider.onColliderExit += OnCheckTriggerExit;
+        
+        _body.GetComponent<ColliderCallbackController>().onColliderEnter += OnBodyTriggerEnter;
+        _body.GetComponent<ColliderCallbackController>().onColliderExit += OnBodyTriggerExit;
+        _body.GetComponent<ColliderCallbackController>().onCollisionEnter += OnBodyCollisionEnter;
+
+        _bodyRigid = _body.GetComponent<Rigidbody2D>();
+        SpawnPos = _body.transform.position;
+        MoveSelect().Forget();
+    }
+
     void Update()
     {
-        if (!_targetedPlayer)
+        switch (ghostState)
         {
-            NontargetPlayerMove();
-        }
-        else
-        {
-            TargetedPlayer();
+            case State.NonTargeted:
+                NonTargetedMove();
+                break;
+            case State.Targeted:
+                TargetedMove();
+                break;
+            
+            case State.BackSpawn:
+                BackSpawn();
+                break;
         }
     }
 
-    private Vector3 toPos;
-    void TargetedPlayer()
+    void NonTargetedMove()
     {
-        if (Mathf.Abs(transform.position.x - player.transform.position.x) >= distanceFromPlayer)
-        {
-            toPos = (player.position - transform.position).normalized;
-            transform.Translate(toPos * (_speed * Time.deltaTime)); 
-        }
-        if (player.transform.position.x < transform.position.x && transform.localScale.x < 0)
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-        else if (player.transform.position.x > transform.position.x && transform.localScale.x > 0)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-        var frontVec = new Vector2(_rigid.position.x + (transform.localScale.x > 0 ? -0.5f : 0.5f),
-            _rigid.position.y + 0.2f);
-        Debug.DrawLine(frontVec, frontVec + new Vector2(0, 1), Color.red);
+        _bodyRigid.velocity = new Vector2(nextMove, 0);
     }
-
-    void NontargetPlayerMove()
+    void TargetedMove()
     {
-        _rigid.velocity = new Vector2(nextMove, 0);
+        if (Mathf.Abs(_body.transform.position.x - player.transform.position.x) >= 0)
+        {
+            toPos = (player.transform.position - _body.transform.position).normalized;
+            _body.transform.Translate(toPos * (_speed * Time.deltaTime)); 
+        }
+        if (player.transform.position.x < _body.transform.position.x && _body.transform.localScale.x < 0)
+        {
+            _body.transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if (player.transform.position.x > _body.transform.position.x && _body.transform.localScale.x > 0)
+        {
+            _body.transform.localScale = new Vector3(-1, 1, 1);
+        }
     }
-
+    void BackSpawn()
+    {
+        toPos = (SpawnPos - _body.transform.position).normalized;
+        _body.transform.Translate(toPos * (_speed * Time.deltaTime));
+        if (Vector2.Distance(_body.transform.position,SpawnPos) <= 0.1f)
+        {
+            ghostState = State.NonTargeted;
+        }
+    }
     async UniTaskVoid MoveSelect()
     {
         while (!isDie)
         {
             nextMove = Random.Range(-1, 2);
-            transform.localScale = nextMove > 0 ? new Vector3(-1, 1) : new Vector3(1, 1);
+            _body.transform.localScale = nextMove > 0 ? new Vector3(1, 1) : new Vector3(-1, 1);
             await UniTask.Delay(TimeSpan.FromSeconds(5), ignoreTimeScale: false);
-            await UniTask.WaitUntil(() => !_targetedPlayer);
+            await UniTask.WaitUntil(() => ghostState==State.NonTargeted);
         }
     }
-    protected void Findedplayer(Collider2D other)
+    
+    //body콜라이더의 충돌 처리
+    void OnBodyTriggerEnter(Collider2D other)
+    {
+        
+    }
+
+    void OnBodyCollisionEnter(Collision2D other)
+    {
+        if (other.transform.CompareTag("Player"))
+        {
+            other.transform.GetComponent<PlayerMove>().GetKnockBack(_body.transform.position,_knockbackFos);
+        }
+    }
+    void OnBodyTriggerExit(Collider2D other)
+    {
+        if (other.CompareTag("GhostCheckCollider"))
+        {
+            ghostState = State.BackSpawn;
+        }
+    }
+    //check콜라이더의 충돌처리
+    void OnCheckTriggerEnter(Collider2D other)
     {
         if (other.CompareTag("Player"))
-        {                    
-            SetTargetPlayer(other.transform);         
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
         {
-            Rigidbody2D playerRigidbody = collision.GetComponent<Rigidbody2D>();
-            if (playerRigidbody != null)
-            {
-                Vector2 knockbackDirection = (collision.transform.position - transform.position).normalized;
-                playerRigidbody.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
-            }
+            ghostState = State.Targeted;
+            player = other.gameObject;
         }
     }
-
-    protected virtual void SetTargetPlayer(Transform _player)
+    void OnCheckTriggerExit(Collider2D other)
     {
-        if (_targetedPlayer) return;
 
-        player = _player;
-        _targetedPlayer = true;
     }
+    
+    
 }

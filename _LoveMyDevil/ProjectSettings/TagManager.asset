@@ -19,6 +19,9 @@ TagManager:
   - SprayItem
   - PlayerPlatformCollider
   - CameraCollider
+  - PosCollider
+  - MadeTargetCollider
+  - GhostCheckCollider
   layers:
   - Default
   - TransparentFX
