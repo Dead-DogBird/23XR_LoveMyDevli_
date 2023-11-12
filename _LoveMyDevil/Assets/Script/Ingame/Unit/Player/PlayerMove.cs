@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -221,7 +222,19 @@ public class PlayerMove : MonoBehaviour
        // _playerRigidbody.AddForce(CustomAngle.VectorRotation(CustomAngle.PointDirection(transform.position,pos))*knokbackfos,ForceMode2D.Impulse);
         _playerRigidbody.velocity = (CustomAngle.VectorRotation(CustomAngle.PointDirection(transform.position, new Vector2(pos.x,transform.position.y-0.5f))+180) * knokbackfos);
         _playerAnimation.SetAnimation(PlayerAnimation.Animations.hit);
+        
+        CinemachineImpulseSource? source = GetComponent<CinemachineImpulseSource>();
+        if (source)
+        {
+            source.m_DefaultVelocity = ((CustomAngle.VectorRotation(CustomAngle.PointDirection(transform.position, new Vector2(pos.x,transform.position.y))+180) * knokbackfos))*0.07f;
+            source.m_ImpulseDefinition.m_ImpulseDuration = 0.3f;
+            //source.m_ImpulseDefinition.m_ImpulseChannel = 0;
+            source.GenerateImpulse();
+        }
+        
+        
         isKnockBack = true;
+        
     }
 
     void PlatformEnter(Collider2D other)

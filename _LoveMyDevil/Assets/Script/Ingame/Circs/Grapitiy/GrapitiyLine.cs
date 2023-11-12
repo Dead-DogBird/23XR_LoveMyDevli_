@@ -31,6 +31,10 @@ public class GrapitiyLine : MonoBehaviour
         {
             GameManager.Instance.GetPoint();
             _spriteRenderer.enabled = true;
+            foreach (var var_ in _grapitiyPoints)
+            {
+                var_.gameObject.SetActive(false);
+            }
         }
     }
 }
