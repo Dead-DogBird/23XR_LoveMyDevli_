@@ -28,6 +28,7 @@ public class GrapitiyPoint : MonoBehaviour
         _spriteMask.sprite = _spriteRenderer.sprite;
         activeRenderObj = new GameObject("activeRenderObj");
         activeRenderObj.transform.parent = transform;
+        activeRenderObj.transform.localScale = Vector3.one;
         activeRenderObj.transform.localPosition = new Vector3(0, 0, transform.localPosition.y-1);
         activeRenderObj.AddComponent<SpriteRenderer>();
         activeRenderObj.GetComponent<SpriteRenderer>().sprite = _spriteRenderer.sprite;

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -12,16 +13,20 @@ public class PlayerMove : MonoBehaviour
     private BoxCollider2D _boxCollider2D;
     private PlayerContrl _playerControll;
     private PlayerAnimation _playerAnimation;
-
+    private int BossStageHp = 5;
 
     [Header("플레이어 스탯")]
     [SerializeField] private float speed = 5f;
     [Tooltip("플레이어 점프력 (보통 1000 해놓음)")]
     [SerializeField] private float jumpForce = 1000;
+    [Header("플레이어 무적 시간")]
+    [Tooltip("플레이어 무적 시간 (기본값 0.5초)")]
+    [SerializeField] private float ignoreTime = 0.5f;
 
     [Header("플레이어 최대 점프 횟수")]
     [SerializeField] private int MAXJUMP = 2;
-
+    [Header("스프레이 아이템 회복량(%)")]
+    [SerializeField] private float Getspray = 30;
     [Header("플레이어 점멸 관련 변수들")]
     [Tooltip("점멸 시간")]
     [SerializeField] float blinkDuration = 0.5f;
@@ -34,6 +39,7 @@ public class PlayerMove : MonoBehaviour
     private bool _isjumping;
     private int jumpCount = 0;
 
+    private bool isIgnore=false;
     //더블탭 대쉬
     public bool Blinkmode = true;
     private float FirstTimeChecker;
@@ -215,13 +221,15 @@ public class PlayerMove : MonoBehaviour
     {
 
     }
-
-    public void GetKnockBack(Vector3 pos, float knokbackfos)
+    
+    public void GetKnockBack(Vector3 pos, float knokbackfos,bool isDie = false)
     {
+        if (isIgnore) return;
+        IgnoreTask().Forget();
         Debug.Log("넉백");
        // _playerRigidbody.AddForce(CustomAngle.VectorRotation(CustomAngle.PointDirection(transform.position,pos))*knokbackfos,ForceMode2D.Impulse);
         _playerRigidbody.velocity = (CustomAngle.VectorRotation(CustomAngle.PointDirection(transform.position, new Vector2(pos.x,transform.position.y-0.5f))+180) * knokbackfos);
-        _playerAnimation.SetAnimation(PlayerAnimation.Animations.hit);
+        if(!isDie)_playerAnimation.SetAnimation(PlayerAnimation.Animations.hit);
         
         CinemachineImpulseSource? source = GetComponent<CinemachineImpulseSource>();
         if (source)
@@ -234,9 +242,65 @@ public class PlayerMove : MonoBehaviour
         
         
         isKnockBack = true;
-        
+        KnockBackTask().Forget();
     }
 
+    async UniTaskVoid KnockBackTask()
+    {
+        float timer = 0.67f;
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            if (!isKnockBack) break;
+            await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+        }
+        isKnockBack = false;
+    }
+
+    async UniTaskVoid IgnoreTask()
+    {
+        float timer = ignoreTime;
+        isIgnore = true;
+        ColorTask().Forget();
+        while (timer >= 0)
+        {
+            timer -= Time.deltaTime;
+            
+            await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+        }
+        isIgnore = false;
+    }
+    async UniTaskVoid ColorTask()
+    {
+        int tick = 0;
+        float timer = 0.5f;
+        while (isIgnore)
+        {
+            tick++;
+            timer = 0.1f;
+            _playerAnimation.SetColor(tick%2==0?Color.white:new Color(1,0,0,0.8f));
+            while (timer > 0)
+            {
+                if (!isIgnore) break;
+                timer -= Time.deltaTime;
+                await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+            }
+        }
+        _playerAnimation.SetColor(Color.white);
+    }
+    async UniTaskVoid GameOverTask()
+    {
+        GetComponent<BoxCollider2D>().enabled = false;
+        float timer = 3;
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            transform.rotation = Quaternion.Euler(0, 0,transform.eulerAngles.z+6f);
+            await UniTask.Delay(TimeSpan.FromSeconds(0.1f));
+        }
+        //TODO : 게임오버 연출
+        SceneManager.LoadScene("stage4");
+    }
     void PlatformEnter(Collider2D other)
     {
         if ((other.gameObject.CompareTag("Ground") ||
@@ -253,6 +317,7 @@ public class PlayerMove : MonoBehaviour
         {
             other.transform.GetComponent<DroppedPlatform>().Dropped().Forget();
             _playerAnimation.SetAnimation(PlayerAnimation.Animations.idle,true);
+            isKnockBack = false;
         }
         if (other.gameObject.CompareTag("Wall"))
         {
@@ -275,12 +340,28 @@ public class PlayerMove : MonoBehaviour
         if (other.CompareTag("SprayItem"))
         {
             Destroy(other.gameObject);
-            GetComponent<PlayerAct>().GetSpray(20);
+            GetComponent<PlayerAct>().GetSpray(Getspray);
         }
-
         if (other.CompareTag("CameraCollider"))
         {
             Camera.main.GetComponent<CameraChanger>().UpdateCamera(other.GetComponent<CameraCollider>().colliderID);
+        }
+
+        if (other.CompareTag("BossAttack")&&!isIgnore)
+        {
+            BossStageHp--;
+            var contactPos = other.ClosestPoint(transform.position);
+            if (BossStageHp > 0)
+            {
+                BossStageCamera.Instance.Shake(0.04f,0.04f,0,1,100);
+                GetKnockBack(contactPos, 10.79f);
+            }
+            else
+            {
+                BossStageCamera.Instance.Shake(0.12f,0.12f,0,1f,100);
+                GetKnockBack(contactPos, 20,true);
+                GameOverTask().Forget();
+            }
         }
     }
 }

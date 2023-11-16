@@ -63,4 +63,10 @@ public class PlayerAnimation : MonoBehaviour
         _animation.AnimationName = animationName;
         _animation.loop = isloop;
     }
+
+    public void SetColor(Color _color)
+    {
+        _animation.skeleton.SetColor(_color);
+        
+    }
 }

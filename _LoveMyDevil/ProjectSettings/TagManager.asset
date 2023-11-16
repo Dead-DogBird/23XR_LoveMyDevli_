@@ -22,6 +22,7 @@ TagManager:
   - PosCollider
   - MadeTargetCollider
   - GhostCheckCollider
+  - BossAttack
   layers:
   - Default
   - TransparentFX

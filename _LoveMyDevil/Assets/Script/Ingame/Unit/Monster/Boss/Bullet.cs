@@ -45,13 +45,13 @@ public class Bullet : MonoBehaviour
     {
     }
 
-    public GameObject Init(Vector3 bulletpos, Vector3 _toVector, float _speed,float deleteDelay = 3)
+    public Bullet Init(Vector3 bulletpos, Vector3 _toVector, float _speed,float deleteDelay = 3)
     {
         time = 0;
         transform.position = bulletpos;
         speed = _speed;
         this.deleteDelay = deleteDelay;
-        return gameObject;
+        return this;
     }
 
     private float deleteDelay;

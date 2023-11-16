@@ -16,13 +16,15 @@ public class UImanager : MonoSingleton<UImanager>
     [SerializeField] private Image sprayGaugeBg;
     private Camera _camera;
     private bool isplayer;
-
+    public bool isBossStage;
     private bool isOnGaugeTask;
     // Start is called before the first frame update
     void Start()
     {
         _camera = Camera.main;
         GetPlayerTask().Forget();
+        if(isBossStage)
+            SprayGaugeTask().Forget();
     }
     
     // Update is called once per frame
@@ -36,7 +38,7 @@ public class UImanager : MonoSingleton<UImanager>
     }
     public void SetSprayGauge(float _gauge)
     {
-        if (Math.Abs(_gauge - 100) <= 0.01f)
+        if (Math.Abs(_gauge - 100) <= 0.01f&&!isBossStage)
         {
             SprayGaugeTask().Forget();
         }
@@ -44,6 +46,8 @@ public class UImanager : MonoSingleton<UImanager>
         {
             sprayGaugeBg.gameObject.SetActive(true);
         }
+        if(isBossStage)
+            SprayGaugeTask().Forget();
         else
         {
             if (isOnGaugeTask)
