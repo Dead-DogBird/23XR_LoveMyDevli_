@@ -12,7 +12,7 @@ public class UImanager : MonoSingleton<UImanager>
     [SerializeField] private Text sprayGaugeText;
 
     [SerializeField] private Text StageProgress;
-
+    [SerializeField] private Image StageProgressImg;
     [SerializeField] private Image sprayGaugeBg;
     private Camera _camera;
     private bool isplayer;
@@ -53,13 +53,14 @@ public class UImanager : MonoSingleton<UImanager>
             if (isOnGaugeTask)
                 isOnGaugeTask = false;
         }
-        sprayGaugeText.text = $"Spray : {_gauge:F0}%";
+        sprayGaugeText.text = $"{_gauge:F0}%";
         sprayGauge.fillAmount = _gauge/100f*0.68f;
     }
 
     public void SetStageProgress(float progress)
     {
-        StageProgress.text = $"맵 진행 : {progress*100:F1}";
+        StageProgress.text = $"{progress*100:F1}";
+        StageProgressImg.fillAmount = progress;
     }
 
    
