@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
+    public int graffitiactive1 = 0;
+
+
     public float progress;
     internal PoolingManager _poolingManager;
 
@@ -43,6 +46,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void GetPoint()
     {
         nowPoints++;
+        graffitiactive1 += 1;
         UImanager.Instance.SetStageProgress(nowPoints / allPoints);
     }
 

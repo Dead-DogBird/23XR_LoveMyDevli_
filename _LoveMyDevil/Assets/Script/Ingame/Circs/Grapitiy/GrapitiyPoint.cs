@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class GrapitiyPoint : MonoBehaviour
 {
+
+
+
     private GrapitiyLine _grapitiyLine;
 
     private SpriteRenderer _spriteRenderer;
@@ -37,11 +40,12 @@ public class GrapitiyPoint : MonoBehaviour
         activeRenderObj.GetComponent<SpriteRenderer>().sortingOrder = 1;
         activeRenderObj.GetComponent<SpriteRenderer>().color = activeRenderColor;
         activeRenderObj.SetActive(false);
+       
     }
 
     void Update()
     {
-
+       
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -59,6 +63,6 @@ public class GrapitiyPoint : MonoBehaviour
         _spriteRenderer.color = new Color(1, 1, 1, 0);
         _spriteRenderer.DOColor(Color.white,3f);
         activeRenderObj.SetActive(true);
-        activeRenderObj.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), 3f);
+        activeRenderObj.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), 3f);       
     }
 }
