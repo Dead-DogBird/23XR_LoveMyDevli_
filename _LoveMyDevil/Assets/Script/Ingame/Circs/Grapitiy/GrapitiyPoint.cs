@@ -59,6 +59,7 @@ public class GrapitiyPoint : MonoBehaviour
     void DoActive()
     {
         _grapitiyLine.GetPoint();
+        GetComponent<CircleCollider2D>().enabled=false;
         _spriteRenderer.enabled = true;
         _spriteRenderer.color = new Color(1, 1, 1, 0);
         _spriteRenderer.DOColor(Color.white,3f);
