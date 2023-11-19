@@ -1601,7 +1601,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f73f5a7d75bc549a1746247c4977e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  images: 0
 --- !u!212 &188123796
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3600,7 +3599,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f73f5a7d75bc549a1746247c4977e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  images: 0
 --- !u!212 &416361266
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5002,7 +5000,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f73f5a7d75bc549a1746247c4977e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  images: 0
 --- !u!212 &661133300
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5612,7 +5609,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f73f5a7d75bc549a1746247c4977e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  images: 0
 --- !u!212 &753142476
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9062,7 +9058,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f73f5a7d75bc549a1746247c4977e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  images: 0
 --- !u!212 &1197948364
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10299,7 +10294,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f73f5a7d75bc549a1746247c4977e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  images: 0
 --- !u!212 &1435478299
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12375,6 +12369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   graffitiactive1: 0
   progress: 0
+  CurStage: 1
 --- !u!114 &1873437446
 MonoBehaviour:
   m_ObjectHideFlags: 0

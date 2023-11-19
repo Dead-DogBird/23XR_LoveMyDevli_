@@ -8,10 +8,13 @@ public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private Image SettingCanvasBG;
     [SerializeField] private Canvas SettingCanvas;
-
+    [SerializeField] private Image Keybords;
+    [SerializeField] private Sprite[] KeyBordSet;
     private bool isSetting = false;
     private bool isEnterGame = false;
 
+    private int KeybordSetting;
+    private Vector3 Onpos = new Vector2(201,-260);
     void Start()
     {
     }
@@ -30,10 +33,11 @@ public class MainMenuManager : MonoBehaviour
             }
             else
             {
-                SettingCanvas.transform.localPosition += (new Vector3(0, -1800)) * (Time.unscaledDeltaTime * 10);
+                SettingCanvas.transform.localPosition += (new Vector3(0, -1800)) * (Time.unscaledDeltaTime * 7);
                 SettingCanvasBG.color += (Color.clear - SettingCanvasBG.color) *
                                          (Time.unscaledDeltaTime * 5);
             }
+            
         }
         else
         {
@@ -52,11 +56,19 @@ public class MainMenuManager : MonoBehaviour
         isEnterGame = true;
         EnterGameTask().Forget();
     }
+
+    public void KeybordSet(bool isUp)
+    {
+        if (isUp) KeybordSetting = 1;
+        else KeybordSetting = 0;
+        Keybords.sprite = KeyBordSet[KeybordSetting];
+
+    }
     async UniTaskVoid EnterGameTask()
     {
         await UniTask.WaitUntil(() =>Mathf.Abs(SettingCanvasBG.color.a-1)<0.004f);
         //TODO : 게임시작
         //로딩씬
-        Debug.Log("게임시작");
+        LoadingSceneManager.LoadScene("Stage1",0);
     }
 }
