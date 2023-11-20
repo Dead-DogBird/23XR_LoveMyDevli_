@@ -105,7 +105,10 @@ public class GhostMonster : MonoBehaviour
     //body콜라이더의 충돌 처리
     void OnBodyTriggerEnter(Collider2D other)
     {
-        
+        if (other.transform.CompareTag("Player"))
+        {
+            other.transform.GetComponent<PlayerMove>().GetKnockBack(_body.transform.position,_knockbackFos);
+        }
     }
 
     void OnBodyCollisionEnter(Collision2D other)
