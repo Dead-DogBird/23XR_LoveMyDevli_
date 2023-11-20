@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using Script.System;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class TestBoss : MonoBehaviour
@@ -35,6 +37,7 @@ public class TestBoss : MonoBehaviour
 
     protected void Start()
     {
+        SceneManager.sceneLoaded += LoadedsceneEvent;
         _rigid = GetComponent<Rigidbody2D>();
         BossPatterns = new BossPattern[] { BossPattern1, BossPattern2, BossPattern3, BossPattern4};
         _player = BossStagePlatformController.Instance.player;
@@ -62,6 +65,9 @@ public class TestBoss : MonoBehaviour
     protected async UniTaskVoid EnterDelay()
     {
         isBossPattern = true;
+        await UniTask.WaitUntil(() => TypingManager.instance.inputcount >= 16, cancellationToken: cancel.Token);
+        WaitForSec(1.5f).Forget();
+        await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         //BossStagePlatformController.Instance.MovePlatform(0, 0, 2.5f, 3);
        // BossStagePlatformController.Instance.MovePlatform(5, 0,2.5f,3);
         isBossPattern = false;
@@ -72,7 +78,7 @@ public class TestBoss : MonoBehaviour
         isBossPattern = true;
         PatternCount++;
         WaitForSec(2.5f).Forget();
-        await UniTask.WaitUntil(() => waitTime);
+        await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         //불똥 올라오는 패턴
         for (int i=0; i < 6; i++)
         {
@@ -82,10 +88,10 @@ public class TestBoss : MonoBehaviour
                 .Init(new Vector3(8.5f - (i * 1.5f), -5), new Vector3(8.5f - (i * 1.5f), 20), 15, 4).GetFire(new Vector3(8.5f - (i * 1.5f), 20));
             
             WaitForSec(1.5f).Forget();
-            await UniTask.WaitUntil(() => waitTime);
+            await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         }
         WaitForSec(3f).Forget();
-        await UniTask.WaitUntil(() => waitTime);
+        await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
 
         float pos;
         // 뭐시기 날라오는 패턴
@@ -99,13 +105,13 @@ public class TestBoss : MonoBehaviour
                 GetFire(new Vector3(pos*-1 , -3.75f+j*0.2f));
            }
            WaitForSec(1.5f).Forget();
-            await UniTask.WaitUntil(() => waitTime);
+            await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         }
         
         
         //레이저 패턴
         WaitForSec(1.5f).Forget();
-        await UniTask.WaitUntil(() => waitTime);
+        await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         for (int i = 0; i < 10; i++)
         {
             var temp = Instantiate(Laser, new Vector3(-8.5f+i*2.5f,20), quaternion.identity);
@@ -113,7 +119,7 @@ public class TestBoss : MonoBehaviour
                 CustomAngle.PointDirection(temp.transform.position, temp.transform.position-new Vector3(0,10)));
             Destroy(temp, 1.6f);
             WaitForSec(0.5f).Forget();
-            await UniTask.WaitUntil(() => waitTime);
+            await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         }
         
         // await UniTask.WaitUntil(() => waitTime);
@@ -150,10 +156,10 @@ public class TestBoss : MonoBehaviour
         BossStagePlatformController.Instance.MovePlatform(4, 3, 1.25f, 3);
         BossStagePlatformController.Instance.MovePlatform(5, 3, 1.25f, 3);
         WaitForSec(4.5f).Forget();
-        await UniTask.WaitUntil(() => waitTime);
+        await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         RepeatFire().Forget();
         WaitForSec(3.5f).Forget();
-        await UniTask.WaitUntil(() => waitTime);
+        await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         float pos;
         for (int i = 0; i < 3; i++)
         {
@@ -163,7 +169,7 @@ public class TestBoss : MonoBehaviour
                 CustomAngle.PointDirection(temp.transform.position, temp.transform.position+new Vector3(0,-4.25f)));
             Destroy(temp, 1.6f);
             WaitForSec(3.5f).Forget();
-            await UniTask.WaitUntil(() => waitTime);
+            await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
 
         }
         // for (int i = 0; i < 30; i++)
@@ -196,7 +202,7 @@ public class TestBoss : MonoBehaviour
             BossStagePlatformController.Instance.MovePlatform(i, 4, 3.25f, 3);
         }
         WaitForSec(3.2f).Forget();
-        await UniTask.WaitUntil(() => waitTime);
+        await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         for (int i = 0; i < 4; i++)
         {
             var temp = Instantiate(Laser, new Vector3(-1.6f-i*2f,4.25f), quaternion.identity);
@@ -205,7 +211,7 @@ public class TestBoss : MonoBehaviour
             Destroy(temp, 1.6f);
         }
         WaitForSec(3.5f).Forget();
-        await UniTask.WaitUntil(() => waitTime);
+        await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         for (int i = 0; i < 4; i++)
         {
             var temp = Instantiate(Laser, new Vector3(1.6f+i*2f,4.25f), quaternion.identity);
@@ -218,7 +224,7 @@ public class TestBoss : MonoBehaviour
             transform.position +=
                 (new Vector3(transform.position.x, 20) - transform.position) *
                 (2.5f * Time.deltaTime);
-            await UniTask.Yield(PlayerLoopTiming.Update);
+            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: cancel.Token);
         }
         float time = 5;
         while (time >= 0)
@@ -231,42 +237,42 @@ public class TestBoss : MonoBehaviour
                 temp.GetFire(temp.transform.position+new Vector3(Random.Range(-3.0f,3.0f), -20));
                 
             }
-            await UniTask.Yield(PlayerLoopTiming.LastFixedUpdate);
+            await UniTask.Yield(PlayerLoopTiming.LastFixedUpdate, cancellationToken: cancel.Token);
         }
         WaitForSec(1.5f).Forget();
-        await UniTask.WaitUntil(() => waitTime);
+        await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
 
         while (MathF.Abs(transform.position.y - (_toYposes[0].transform.position.y + 1)) >= 0.08f)
         {
             transform.position +=
                 (new Vector3(transform.position.x, _toYposes[0].transform.position.y + 1) - transform.position) *
                 (2.5f * Time.deltaTime);
-            await UniTask.Yield(PlayerLoopTiming.Update);
+            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: cancel.Token);
         }
         WaitForSec(1.5f).Forget();
-        await UniTask.WaitUntil(() => waitTime);
+        await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
 
         while (MathF.Abs(transform.position.y - (_toYposes[0].transform.position.y + 1)) >= 0.08f)
         {
             transform.position +=
                 (new Vector3(transform.position.x, _toYposes[0].transform.position.y + 1) - transform.position) *
                 (2.5f * Time.deltaTime);
-            await UniTask.Yield(PlayerLoopTiming.Update);
+            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: cancel.Token);
         }
 
         for (int i = 0; i < 3; i++)
         {
             WaitForSec(1.5f).Forget();
-            await UniTask.WaitUntil(() => waitTime);
+            await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
             var temp = Instantiate(Laser, transform.position, quaternion.identity);
             temp.transform.rotation = Quaternion.Euler(0, 0,
                 CustomAngle.PointDirection(transform.position, _player.transform.position));
             Destroy(temp, 1.6f);
             WaitForSec(1f).Forget();
-            await UniTask.WaitUntil(() => waitTime);
+            await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         }
         WaitForSec(2f).Forget();
-        await UniTask.WaitUntil(() => waitTime);
+        await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         int random = Random.Range(5, 9);
         for (int i = 0; i < random; i++)
         {
@@ -275,10 +281,10 @@ public class TestBoss : MonoBehaviour
                 Quaternion.identity);
             temp.GetComponent<FireWork>().Init(pos,Random.Range(10, 15));
             WaitForSec(1.2f).Forget();
-            await UniTask.WaitUntil(() => waitTime);
+            await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         }
         WaitForSec(3f).Forget();
-        await UniTask.WaitUntil(() => waitTime);
+        await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         Instantiate(SprayItem, new Vector3(Random.Range(-6f, 6f), -3.3f), Quaternion.identity);
         isBossPattern = false;
     }
@@ -288,21 +294,21 @@ public class TestBoss : MonoBehaviour
         isBossPattern = true;
         PatternCount=0;
         WaitForSec(3f).Forget();
-        await UniTask.WaitUntil(() => waitTime);
+        await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         //TODO : 화면 어두워지는 셰이더 적용 할 것
         for (int i = 0; i < 3; i++)
         {
             WaitForSec(1.5f).Forget();
-            await UniTask.WaitUntil(() => waitTime);
+            await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
             var temp = Instantiate(Laser, transform.position, quaternion.identity);
             temp.transform.rotation = Quaternion.Euler(0, 0,
                 CustomAngle.PointDirection(transform.position, _player.transform.position));
             Destroy(temp, 1.6f);
             WaitForSec(1f).Forget();
-            await UniTask.WaitUntil(() => waitTime);
+            await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         }
         WaitForSec(3f).Forget();
-        await UniTask.WaitUntil(() => waitTime);
+        await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         
         for (int i = 0; i < 3; i++)
         {
@@ -319,20 +325,20 @@ public class TestBoss : MonoBehaviour
                 CustomAngle.PointDirection(temp_.transform.position, temp_.transform.position+new Vector3(0,-8)));
             Destroy(temp_, 1.6f);
             WaitForSec(2.5f).Forget();
-            await UniTask.WaitUntil(() => waitTime);
+            await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         }
         
         WaitForSec(3f).Forget();
-        await UniTask.WaitUntil(() => waitTime);
+        await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         while (Vector3.Distance(new Vector3(8.32f,0),transform.position) >= 0.08f)
         {
             transform.position +=
                 (new Vector3(8.32f,0) - transform.position) *
                 (2.5f * Time.deltaTime);
-            await UniTask.Yield(PlayerLoopTiming.Update);
+            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: cancel.Token);
         }
         WaitForSec(1.5f).Forget();
-        await UniTask.WaitUntil(() => waitTime);
+        await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         float time = 5;
         while (time >= 0)
         {
@@ -344,7 +350,7 @@ public class TestBoss : MonoBehaviour
                 temp.GetFire(temp.transform.position+new Vector3(-20,Random.Range(-3.0f,3.0f)));
                 
             }
-            await UniTask.Yield(PlayerLoopTiming.LastFixedUpdate);
+            await UniTask.Yield(PlayerLoopTiming.LastFixedUpdate, cancellationToken: cancel.Token);
         }
         Instantiate(SprayItem, new Vector3(Random.Range(-6f, 6f), -3.3f), Quaternion.identity);
         isBossPattern = false;
@@ -361,7 +367,7 @@ public class TestBoss : MonoBehaviour
         while (_time >= 0)
         {
             _time -= 0.1f;
-            await UniTask.Delay(TimeSpan.FromSeconds(0.1f));
+            await UniTask.Delay(TimeSpan.FromSeconds(0.1f), cancellationToken: cancel.Token);
         }
         waitTime = true;
     }
@@ -380,10 +386,16 @@ public class TestBoss : MonoBehaviour
             temp.transform.position = new Vector3(temp.transform.position.x + MathF.Cos(tick) * 0.2f, temp.transform.position.y);
             temp2.transform.position = new Vector3(temp2.transform.position.x - MathF.Cos(tick) * 0.2f, temp2.transform.position.y);
 
-            await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+            await UniTask.Yield(PlayerLoopTiming.FixedUpdate, cancellationToken: cancel.Token);
         }
         Destroy(temp.gameObject);
         Destroy(temp2.gameObject);
 
+    }    
+    private CancellationTokenSource cancel = new CancellationTokenSource();
+
+    private void LoadedsceneEvent(Scene scene, LoadSceneMode mode)
+    {
+        cancel.Cancel();
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using Cinemachine;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -294,7 +295,7 @@ public class PlayerMove : MonoBehaviour
         float timer = 3;
         while (timer > 0)
         {
-            timer -= Time.deltaTime;
+            timer -= 0.1f;
             transform.rotation = Quaternion.Euler(0, 0,transform.eulerAngles.z+6f);
             await UniTask.Delay(TimeSpan.FromSeconds(0.1f));
         }
@@ -364,4 +365,5 @@ public class PlayerMove : MonoBehaviour
             }
         }
     }
+
 }

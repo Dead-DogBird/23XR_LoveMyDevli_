@@ -10,22 +10,14 @@ public class TypingManager : MonoBehaviour
 {
   
     private int SpaceClicked = 1;
-
     public int inputcount = 0;
-
-   
-
-
     public static TypingManager instance;
-
+    
     [Header("Times for each character")]
-    public float timeForCharacter; 
-
+    public float timeForCharacter;
     [Header("Times for each character when speed up")]
-    public float timeForCharacter_Fast; 
-
-    float characterTime; 
-
+    public float timeForCharacter_Fast;
+    float characterTime;
     string[] dialogsSave;
     TextMeshProUGUI tmpSave;
 
