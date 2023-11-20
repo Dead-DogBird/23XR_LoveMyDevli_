@@ -522,7 +522,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -1.28, y: -1.6}
   serializedVersion: 2
   m_Radius: 0.2
 --- !u!50 &48958557
@@ -749,11 +749,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 494748762347999257, guid: 517a882f1404f044f81e88d21363798a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.23
+      value: 3.14
       objectReference: {fileID: 0}
     - target: {fileID: 6288680456360508253, guid: 517a882f1404f044f81e88d21363798a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.9
+      value: -2.86
       objectReference: {fileID: 0}
     - target: {fileID: 7333795340047371394, guid: 517a882f1404f044f81e88d21363798a, type: 3}
       propertyPath: m_Mesh
@@ -881,7 +881,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 7.91, y: 5.02}
+  m_Offset: {x: 13.44, y: 4.28}
   serializedVersion: 2
   m_Radius: 0.2
 --- !u!50 &107858787
@@ -1096,7 +1096,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -10.92, y: 6.86}
+  m_Offset: {x: -12, y: 7}
   serializedVersion: 2
   m_Radius: 0.2
 --- !u!50 &117992319
@@ -2623,7 +2623,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 2.34}
+  m_Offset: {x: -0.35, y: 0.6}
   serializedVersion: 2
   m_Radius: 0.2
 --- !u!50 &326288715
@@ -2940,7 +2940,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.53, y: -6}
+  m_Offset: {x: -2.5, y: -5.75}
   serializedVersion: 2
   m_Radius: 0.2
 --- !u!50 &357395864
@@ -3849,7 +3849,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -8.89, y: -1}
+  m_Offset: {x: -9, y: -0.75}
   serializedVersion: 2
   m_Radius: 0.2
 --- !u!50 &502603093
@@ -5120,7 +5120,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -3.63, y: 3.45}
+  m_Offset: {x: -4, y: 3.5}
   serializedVersion: 2
   m_Radius: 0.2
 --- !u!50 &663509161
@@ -5914,7 +5914,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -7.95, y: 2.2}
+  m_Offset: {x: -9.8, y: 5.11}
   serializedVersion: 2
   m_Radius: 0.2
 --- !u!50 &771468370
@@ -6610,7 +6610,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -7.76, y: -5.61}
+  m_Offset: {x: -7.5, y: -6}
   serializedVersion: 2
   m_Radius: 0.2
 --- !u!50 &851437348
@@ -7157,7 +7157,7 @@ Transform:
   m_GameObject: {fileID: 931346847}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.75, y: 146.7, z: -1}
+  m_LocalPosition: {x: 19.75, y: 142.8, z: -1}
   m_LocalScale: {x: 1, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8251,7 +8251,7 @@ Transform:
   m_GameObject: {fileID: 1066145259}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22.5, y: 175.20001, z: -1}
+  m_LocalPosition: {x: 22.5, y: 166, z: -1}
   m_LocalScale: {x: 1, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9267,7 +9267,7 @@ Transform:
   m_GameObject: {fileID: 1238421083}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22, y: 206.8, z: -1}
+  m_LocalPosition: {x: 21, y: 200.9, z: -1}
   m_LocalScale: {x: 1, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9635,9 +9635,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 9.933746, y: 0.16285622}
-      - {x: 18.939686, y: -0.59861803}
-      - {x: 25.526863, y: -0.59445095}
+    - - {x: 9.751752, y: 0.026360154}
+      - {x: 18.939686, y: -0.7502799}
+      - {x: 25.5117, y: -0.7461128}
       - {x: 25.499947, y: -11.955362}
       - {x: -9.0201, y: -11.928346}
       - {x: -9.013509, y: -5.010997}
@@ -10597,11 +10597,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 494748762347999257, guid: 517a882f1404f044f81e88d21363798a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.98
+      value: 2.23
       objectReference: {fileID: 0}
     - target: {fileID: 6288680456360508253, guid: 517a882f1404f044f81e88d21363798a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.5
+      value: -5.79
       objectReference: {fileID: 0}
     - target: {fileID: 7333795340047371394, guid: 517a882f1404f044f81e88d21363798a, type: 3}
       propertyPath: m_Mesh
@@ -10724,7 +10724,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.61, y: -6.25}
+  m_Offset: {x: 1.6, y: -7.75}
   serializedVersion: 2
   m_Radius: 0.2
 --- !u!50 &1503657891
@@ -11167,7 +11167,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -5.61, y: 0}
+  m_Offset: {x: -3.6, y: 0.26}
   serializedVersion: 2
   m_Radius: 0.2
 --- !u!50 &1671140515
@@ -13270,7 +13270,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -6.19, y: 4.44}
+  m_Offset: {x: -6, y: 4.2}
   serializedVersion: 2
   m_Radius: 0.2
 --- !u!50 &1974206031
@@ -13485,7 +13485,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 6.66, y: 1.19}
+  m_Offset: {x: 5.56, y: 6.58}
   serializedVersion: 2
   m_Radius: 0.2
 --- !u!50 &2002530607
@@ -14343,7 +14343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 475766642316322497, guid: 93f94a67c85501a47b431643bc4b4d55, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 250
+      value: 255
       objectReference: {fileID: 0}
     - target: {fileID: 475766642316322497, guid: 93f94a67c85501a47b431643bc4b4d55, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14746,7 +14746,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.34, y: -3.73}
+  m_Offset: {x: 3.15, y: -3.66}
   serializedVersion: 2
   m_Radius: 0.2
 --- !u!50 &2101038547
@@ -15040,7 +15040,7 @@ Transform:
   m_GameObject: {fileID: 6359132932039268551}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.57236, y: 1.7525101, z: -14}
+  m_LocalPosition: {x: -17.178896, y: 1.7877798, z: -14}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
