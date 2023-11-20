@@ -63,6 +63,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     async UniTaskVoid GetNextStage()
     {
+        if (CurStage == Stage.stage1) return;
         _player.GetComponent<Rigidbody2D>().simulated = false;
         await UniTask.Delay(TimeSpan.FromSeconds(1.6f));
         switch (CurStage)
