@@ -20,20 +20,19 @@ public class TestBoss : MonoBehaviour
     [SerializeField] private GameObject Laser;
     [SerializeField] private GameObject SprayItem;
     public float SkillDamage;
-    public bool isDie { get; protected set; } = false;
 
+    private PlayerMove _player;
 
     protected delegate UniTaskVoid BossPattern();
-
     protected BossPattern[] BossPatterns;
     [SerializeField] private GameObject[] _toYposes;
+    public bool isDie { get; protected set; } = false;
+    
     protected Rigidbody2D _rigid;
+    private BossAnimation _animation;
 
     protected bool isBossPattern = true;
-
     private bool waitTime;
-    // Start is called before the first frame update
-    private PlayerMove _player;
 
     protected void Start()
     {
@@ -43,6 +42,8 @@ public class TestBoss : MonoBehaviour
         _player = BossStagePlatformController.Instance.player;
         isDie = false;
         EnterDelay().Forget();
+        _animation = GetComponent<BossAnimation>();
+        _animation.cancelToken = cancel;
     }
     private void OnEnable()
     {
@@ -79,6 +80,7 @@ public class TestBoss : MonoBehaviour
         PatternCount++;
         WaitForSec(2.5f).Forget();
         await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
+        _animation.SetAnimation(BossAnimation.Animations.Attack);
         //불똥 올라오는 패턴
         for (int i=0; i < 6; i++)
         {
@@ -94,6 +96,7 @@ public class TestBoss : MonoBehaviour
         await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
 
         float pos;
+        _animation.SetAnimation(BossAnimation.Animations.Attack2);
         // 뭐시기 날라오는 패턴
         for (int i=0; i < 4; i++)
         {
@@ -108,7 +111,7 @@ public class TestBoss : MonoBehaviour
             await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         }
         
-        
+        _animation.SetAnimation(BossAnimation.Animations.Attack);
         //레이저 패턴
         WaitForSec(1.5f).Forget();
         await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
@@ -161,6 +164,7 @@ public class TestBoss : MonoBehaviour
         WaitForSec(3.5f).Forget();
         await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         float pos;
+        _animation.SetAnimation(BossAnimation.Animations.Attack);
         for (int i = 0; i < 3; i++)
         {
             pos = Random.Range(0, 2)==1 ? 1.6f : -1.6f;
@@ -172,22 +176,6 @@ public class TestBoss : MonoBehaviour
             await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
 
         }
-        // for (int i = 0; i < 30; i++)
-        // {
-        //     tick += 1/(360f/75);
-        //     bulletList.Add(Instantiate(Bullet).GetComponent<Bullet>());
-        //     bulletList.Last().Init(transform.position+new Vector3(MathF.Cos(tick)*1.5f, MathF.Sin(tick)*1.5f),_player.transform.position,20,4);
-        //     await UniTask.Yield(PlayerLoopTiming.LastFixedUpdate);
-        // }
-        // WaitForSec(2.2f).Forget();
-        // await UniTask.WaitUntil(() => waitTime);
-        // foreach (var _bullet in bulletList)
-        // {
-        //     _bullet.GetFire(_player.transform.position);
-        //     WaitForSec(0.005f).Forget();
-        //     await UniTask.WaitUntil(() => waitTime);
-        // }
-        //bulletList.Clear();
         Instantiate(SprayItem, new Vector3(Random.Range(-6f, 6f), -3.3f), Quaternion.identity);
         endRepeatFire = true;
         isBossPattern = false;
@@ -203,6 +191,7 @@ public class TestBoss : MonoBehaviour
         }
         WaitForSec(3.2f).Forget();
         await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
+        _animation.SetAnimation(BossAnimation.Animations.Attack2);
         for (int i = 0; i < 4; i++)
         {
             var temp = Instantiate(Laser, new Vector3(-1.6f-i*2f,4.25f), quaternion.identity);
@@ -212,6 +201,7 @@ public class TestBoss : MonoBehaviour
         }
         WaitForSec(3.5f).Forget();
         await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
+        _animation.SetAnimation(BossAnimation.Animations.Attack);
         for (int i = 0; i < 4; i++)
         {
             var temp = Instantiate(Laser, new Vector3(1.6f+i*2f,4.25f), quaternion.identity);
@@ -226,6 +216,7 @@ public class TestBoss : MonoBehaviour
                 (2.5f * Time.deltaTime);
             await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: cancel.Token);
         }
+        _animation.SetAnimation(BossAnimation.Animations.Attack2);
         float time = 5;
         while (time >= 0)
         {
@@ -259,7 +250,7 @@ public class TestBoss : MonoBehaviour
                 (2.5f * Time.deltaTime);
             await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: cancel.Token);
         }
-
+        _animation.SetAnimation(BossAnimation.Animations.Attack2);
         for (int i = 0; i < 3; i++)
         {
             WaitForSec(1.5f).Forget();
@@ -274,6 +265,7 @@ public class TestBoss : MonoBehaviour
         WaitForSec(2f).Forget();
         await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         int random = Random.Range(5, 9);
+        _animation.SetAnimation(BossAnimation.Animations.Attack);
         for (int i = 0; i < random; i++)
         {
             var pos = new Vector3(Random.Range(-8.0f, 8.0f), Random.Range(-5.0f, -4.0f));
@@ -296,6 +288,7 @@ public class TestBoss : MonoBehaviour
         WaitForSec(3f).Forget();
         await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         //TODO : 화면 어두워지는 셰이더 적용 할 것
+        _animation.SetAnimation(BossAnimation.Animations.Attack);
         for (int i = 0; i < 3; i++)
         {
             WaitForSec(1.5f).Forget();
@@ -309,7 +302,7 @@ public class TestBoss : MonoBehaviour
         }
         WaitForSec(3f).Forget();
         await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
-        
+        _animation.SetAnimation(BossAnimation.Animations.Attack2);
         for (int i = 0; i < 3; i++)
         {
             //X레이저
@@ -339,6 +332,7 @@ public class TestBoss : MonoBehaviour
         }
         WaitForSec(1.5f).Forget();
         await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
+        _animation.SetAnimation(BossAnimation.Animations.Attack);
         float time = 5;
         while (time >= 0)
         {
