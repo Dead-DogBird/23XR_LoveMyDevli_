@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Spine.Unity.Examples;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,10 @@ using UnityEngine;
 
 public class PlayerAct : MonoBehaviour
 {
+    //ÇÁ¸®Â¡ 
+    public static bool freeze = true; 
+
+
     [SerializeField] private GameObject spray;
     [SerializeField] private Transform mousePointer;
     [SerializeField] private bool isBossStage=false;
@@ -44,33 +49,36 @@ public class PlayerAct : MonoBehaviour
 
     void Update()
     {
-        if (_playerContrl.Userinput.LeftMouseState)
-            Spray();
-        else if (!isWaitForfillGauge)
+        if (freeze == false)
         {
-            FillGaugeTask().Forget();
-        }
-        if(Input.GetMouseButtonUp(0))
-        {
-            isFirst = true;
-            isWaitForfillGauge = false;
-            if(nowSpray)
+            if (_playerContrl.Userinput.LeftMouseState)
+                Spray();
+            else if (!isWaitForfillGauge)
             {
-                nowSpray.transform.parent = null;
-                nowSpray = null; 
+                FillGaugeTask().Forget();
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                isFirst = true;
+                isWaitForfillGauge = false;
+                if (nowSpray)
+                {
+                    nowSpray.transform.parent = null;
+                    nowSpray = null;
+                    _mouseCollider.enabled = false;
+                }
+            }
+
+            if (nowSpray)
+            {
+                _playerEffect.SprayEffect.SetActive(true);
+                _mouseCollider.enabled = true;
+            }
+            else
+            {
+                _playerEffect.SprayEffect.SetActive(false);
                 _mouseCollider.enabled = false;
             }
-        }
-
-        if (nowSpray)
-        {
-            _playerEffect.SprayEffect.SetActive(true);
-            _mouseCollider.enabled = true;
-        }
-        else
-        {
-            _playerEffect.SprayEffect.SetActive(false);
-            _mouseCollider.enabled = false;
         }
     }
     void Spray()
@@ -131,5 +139,10 @@ public class PlayerAct : MonoBehaviour
         sprayGauge += maxGauge * (filled / 100);
         if (sprayGauge > maxGauge)
             sprayGauge = maxGauge;
+    }
+
+    public static void unlockspray()
+    {
+        freeze = false; 
     }
 }

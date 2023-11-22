@@ -41,13 +41,20 @@ public class PlayerMove : MonoBehaviour
     private int jumpCount = 0;
 
     private bool isIgnore=false;
+
     //더블탭 대쉬
     public bool Blinkmode = true;
     private float FirstTimeChecker;
-    private float Betweentime = 0.5f;
+    private float Betweentime = 0.3f;
     private bool isTimeCheck = true;
-    private int click = 0;
+    private int lclick = 0;
+    private int rclick = 0;
+
+    //프리징 상태
     
+    public static bool freeze = true; 
+
+
     private float _playerOriSpeed;
     private float oriGravity;
     private bool isBlink;
@@ -70,6 +77,10 @@ public class PlayerMove : MonoBehaviour
         GameManager.Instance.setPlayer(gameObject);
         platformCollider.onColliderEnter += PlatformEnter;
         platformCollider.onColliderExit += PlatformExit;
+
+
+
+
     }
 
     private void OnEnable()
@@ -78,26 +89,48 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        if (isKnockBack) return;
-        Jump();
-        if (Blinkmode)
+
+        if (freeze == false)
         {
-            if (_playerControll.Userinput.SkillKey && !isBlink)
+            if (isKnockBack) return;
+            Jump();
+            if (Blinkmode)
             {
-                Blink(_playerControll.Userinput.AxisState).Forget();
+                if (_playerControll.Userinput.SkillKey && !isBlink)
+                {
+                    Blink(_playerControll.Userinput.AxisState).Forget();
+                }
             }
-        }
-        // 키보드 A,D 더블탭 대쉬
-        if (Blinkmode == false&&!isBlink)
-        {
-            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.A))
+            // 키보드 A,D 더블탭 대쉬
+            if (Blinkmode == false && !isBlink)
             {
-                click += 1;
-            }
-            if (click == 1 && isTimeCheck)
-            {
-                FirstTimeChecker = Time.time;
-                StartCoroutine(DoubleClicked());
+                if (Input.GetKeyDown(KeyCode.D))
+                {
+                    rclick += 1;
+                }
+                if (rclick == 1 && isTimeCheck)
+                {
+                    FirstTimeChecker = Time.time;
+                    StartCoroutine(DoubleClicked());
+                    if (Input.GetKeyDown(KeyCode.A))
+                    {
+                        rclick -= 1;
+                    }
+
+                }
+                if (Input.GetKeyDown(KeyCode.A))
+                {
+                    lclick += 1;
+                }
+                if (lclick == 1 && isTimeCheck)
+                {
+                    if (Input.GetKeyDown(KeyCode.D))
+                    {
+                        lclick -= 1;
+                    }
+                    FirstTimeChecker = Time.time;
+                    StartCoroutine(DoubleClicked());
+                }
             }
         }
 
@@ -112,14 +145,20 @@ public class PlayerMove : MonoBehaviour
         isTimeCheck = false;
         while (Time.time < FirstTimeChecker + Betweentime)
         {
-            if (click == 2)
+            if (rclick == 2)
+            {
+                Blink(_playerControll.Userinput.AxisState).Forget();
+                break;
+            }
+            if(lclick == 2)
             {
                 Blink(_playerControll.Userinput.AxisState).Forget();
                 break;
             }
             yield return new WaitForEndOfFrame();
         }
-        click = 0;
+        rclick = 0;
+        lclick = 0;
         isTimeCheck = true;
     }
 
@@ -364,6 +403,11 @@ public class PlayerMove : MonoBehaviour
                 GameOverTask().Forget();
             }
         }
+    }
+
+    public static void unlockfreeze()
+    {
+        freeze = false; 
     }
 
 }

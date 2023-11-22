@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement; 
+
+
 
 public class PlayerContrl : MonoBehaviour
 {
+    private string Scenename; 
+
+
     public struct UserInput
     {
         float _nowAxisState;
@@ -28,10 +34,52 @@ public class PlayerContrl : MonoBehaviour
     public UserInput Userinput;
     void Start()
     {
-
+        Scenename = SceneManager.GetActiveScene().name;
     }
     void Update()
     {
-        Userinput.InputUpdate();
+        if(Scenename == "Stage1")
+        {
+            if(TypingManager.instance.inputcount >= 9)
+            {
+                Userinput.InputUpdate();
+                PlayerMove.unlockfreeze();            
+            }
+            if(TypingManager.instance.inputcount >= 18)
+            {
+                PlayerAct.unlockspray();
+            }           
+        }
+
+        if(Scenename == "Stage2")
+        {
+            if(TypingManager.instance.inputcount >= 5)
+            {
+                Userinput.InputUpdate();
+                PlayerMove.unlockfreeze();
+                PlayerAct.unlockspray();
+            }
+        }
+
+        if (Scenename == "Stage3")
+        {
+            if (TypingManager.instance.inputcount >= 18)
+            {
+                Userinput.InputUpdate();
+                PlayerMove.unlockfreeze();
+                PlayerAct.unlockspray();
+            }
+        }
+
+        if (Scenename == "stage4")
+        {
+            if (TypingManager.instance.inputcount >= 16)
+            {
+                Userinput.InputUpdate();
+                PlayerMove.unlockfreeze();
+                PlayerAct.unlockspray();
+            }
+        }
+
     }
 }
