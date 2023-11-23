@@ -403,6 +403,13 @@ public class PlayerMove : MonoBehaviour
                 GameOverTask().Forget();
             }
         }
+
+        if (other.CompareTag("FallDownCollider"))
+        {
+            BossStageCamera.Instance.Shake(0.12f,0.12f,0,1f,100);
+            GetKnockBack(other.ClosestPoint(transform.position), 20,true);
+            GameOverTask().Forget();
+        }
     }
 
     public static void unlockfreeze()

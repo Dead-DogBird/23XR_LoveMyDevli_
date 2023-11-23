@@ -85,9 +85,9 @@ public class TestBoss : MonoBehaviour
         for (int i=0; i < 6; i++)
         {
             Instantiate(Bullet).GetComponent<Bullet>()
-                .Init(new Vector3(-8.5f + (i * 1.5f), -5), new Vector3(-8.5f + (i * 1.5f), 20), 15, 4).GetFire(new Vector3(-8.5f + (i * 1.5f), 20));
+                .Init(new Vector3(-8.5f + (i * 1.5f), -5+YposCorrection), new Vector3(-8.5f + (i * 1.5f), 20+YposCorrection), 15, 4).GetFire(new Vector3(-8.5f + (i * 1.5f), 20));
             Instantiate(Bullet).GetComponent<Bullet>()
-                .Init(new Vector3(8.5f - (i * 1.5f), -5), new Vector3(8.5f - (i * 1.5f), 20), 15, 4).GetFire(new Vector3(8.5f - (i * 1.5f), 20));
+                .Init(new Vector3(8.5f - (i * 1.5f), -5+YposCorrection), new Vector3(8.5f - (i * 1.5f), 20+YposCorrection), 15, 4).GetFire(new Vector3(8.5f - (i * 1.5f), 20));
             
             WaitForSec(1.5f).Forget();
             await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);

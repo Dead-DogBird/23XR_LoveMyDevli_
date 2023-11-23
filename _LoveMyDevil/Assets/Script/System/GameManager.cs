@@ -25,6 +25,14 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] Stage CurStage;
     public GameObject _player { get; private set; }
 
+    public bool GetProgress
+    {
+        get
+        {
+            return nowPoints >= allPoints;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
