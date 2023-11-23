@@ -8,7 +8,7 @@ public class BossStageCamera : MonoSingleton<BossStageCamera>
     private GameObject _player;
     private Camera _camera;
     [SerializeField] private float smooth = 5;
-    
+    [SerializeField] float minY = -1.6f;
     public float shake_x = 0;
     public float shake_y = 0;
     public float shake_dire = 0;
@@ -47,8 +47,8 @@ public class BossStageCamera : MonoSingleton<BossStageCamera>
         var player_position = new Vector3(0,_player.transform.position.y+Ycorrection);
         if (player_position.y > 2.1f)
             player_position.y = 2.1f;
-        if(player_position.y<-1.02f)
-            player_position.y = -1.02f;
+        if(player_position.y<minY)
+            player_position.y = minY;
         //player_position = Vector3.Lerp(player_position,Camera.main.ScreenToWorldPoint(Input.mousePosition),0.2f)-new Vector3(0,0,10);
         position += (Vector2)((player_position - transform.position) / smooth);
         ShakeUpdate();

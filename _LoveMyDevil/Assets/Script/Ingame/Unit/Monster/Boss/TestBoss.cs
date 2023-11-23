@@ -19,6 +19,7 @@ public class TestBoss : MonoBehaviour
     [SerializeField] private GameObject FireWorkObj;
     [SerializeField] private GameObject Laser;
     [SerializeField] private GameObject SprayItem;
+    [SerializeField] private float YposCorrection =0;
     public float SkillDamage;
 
     private PlayerMove _player;
@@ -73,7 +74,6 @@ public class TestBoss : MonoBehaviour
        // BossStagePlatformController.Instance.MovePlatform(5, 0,2.5f,3);
         isBossPattern = false;
     }
-    //1.사탄빔
     async UniTaskVoid BossPattern1()
     {
         isBossPattern = true;
@@ -104,8 +104,8 @@ public class TestBoss : MonoBehaviour
            for(int j=0;j<3;j++)
            {
                Instantiate(Bullet).GetComponent<Bullet>()
-                .Init(new Vector3(pos, -3.75f+j*0.2f), new Vector3(pos*-1, -3.75f), 15, 4).
-                GetFire(new Vector3(pos*-1 , -3.75f+j*0.2f));
+                .Init(new Vector3(pos, -3.75f+j*0.2f+YposCorrection), new Vector3(pos*-1, -3.75f+YposCorrection), 15, 4).
+                GetFire(new Vector3(pos*-1 , -3.75f+j*0.2f+YposCorrection));
            }
            WaitForSec(1.5f).Forget();
             await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
@@ -145,7 +145,7 @@ public class TestBoss : MonoBehaviour
         //     WaitForSec(1f).Forget();
         //     await UniTask.WaitUntil(() => waitTime);
         // }
-        Instantiate(SprayItem, new Vector3(Random.Range(-1.16f, 1.16f), -3.3f), Quaternion.identity);
+        Instantiate(SprayItem, new Vector3(Random.Range(-1.16f, 1.16f), -3.3f+YposCorrection), Quaternion.identity);
         isBossPattern = false;
     }
     List<Bullet> bulletList=new List<Bullet>();
@@ -168,15 +168,15 @@ public class TestBoss : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             pos = Random.Range(0, 2)==1 ? 1.6f : -1.6f;
-            var temp = Instantiate(Laser, new Vector3(pos,4.25f), quaternion.identity);
+            var temp = Instantiate(Laser, new Vector3(pos,4.25f+YposCorrection), quaternion.identity);
             temp.transform.rotation = Quaternion.Euler(0, 0,
-                CustomAngle.PointDirection(temp.transform.position, temp.transform.position+new Vector3(0,-4.25f)));
+                CustomAngle.PointDirection(temp.transform.position, temp.transform.position+new Vector3(0,-4.25f+YposCorrection)));
             Destroy(temp, 1.6f);
             WaitForSec(3.5f).Forget();
             await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
 
         }
-        Instantiate(SprayItem, new Vector3(Random.Range(-6f, 6f), -3.3f), Quaternion.identity);
+        Instantiate(SprayItem, new Vector3(Random.Range(-6f, 6f), -3.3f+YposCorrection), Quaternion.identity);
         endRepeatFire = true;
         isBossPattern = false;
     }
@@ -194,9 +194,9 @@ public class TestBoss : MonoBehaviour
         _animation.SetAnimation(BossAnimation.Animations.Attack2);
         for (int i = 0; i < 4; i++)
         {
-            var temp = Instantiate(Laser, new Vector3(-1.6f-i*2f,4.25f), quaternion.identity);
+            var temp = Instantiate(Laser, new Vector3(-1.6f-i*2f,4.25f+YposCorrection), quaternion.identity);
             temp.transform.rotation = Quaternion.Euler(0, 0,
-                CustomAngle.PointDirection(temp.transform.position, temp.transform.position+new Vector3(0,-4.25f)));
+                CustomAngle.PointDirection(temp.transform.position, temp.transform.position+new Vector3(0,-4.25f+YposCorrection)));
             Destroy(temp, 1.6f);
         }
         WaitForSec(3.5f).Forget();
@@ -204,9 +204,9 @@ public class TestBoss : MonoBehaviour
         _animation.SetAnimation(BossAnimation.Animations.Attack);
         for (int i = 0; i < 4; i++)
         {
-            var temp = Instantiate(Laser, new Vector3(1.6f+i*2f,4.25f), quaternion.identity);
+            var temp = Instantiate(Laser, new Vector3(1.6f+i*2f,4.25f+YposCorrection), quaternion.identity);
             temp.transform.rotation = Quaternion.Euler(0, 0,
-                CustomAngle.PointDirection(temp.transform.position, temp.transform.position+new Vector3(0,-4.25f)));
+                CustomAngle.PointDirection(temp.transform.position, temp.transform.position+new Vector3(0,-4.25f+YposCorrection)));
             Destroy(temp, 1.6f);
         }
         while (MathF.Abs(transform.position.y - (20)) >= 0.08f)
@@ -277,7 +277,7 @@ public class TestBoss : MonoBehaviour
         }
         WaitForSec(3f).Forget();
         await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
-        Instantiate(SprayItem, new Vector3(Random.Range(-6f, 6f), -3.3f), Quaternion.identity);
+        Instantiate(SprayItem, new Vector3(Random.Range(-6f, 6f), -3.3f+YposCorrection), Quaternion.identity);
         isBossPattern = false;
     }
    
@@ -346,7 +346,7 @@ public class TestBoss : MonoBehaviour
             }
             await UniTask.Yield(PlayerLoopTiming.LastFixedUpdate, cancellationToken: cancel.Token);
         }
-        Instantiate(SprayItem, new Vector3(Random.Range(-6f, 6f), -3.3f), Quaternion.identity);
+        Instantiate(SprayItem, new Vector3(Random.Range(-6f, 6f), -3.3f+YposCorrection), Quaternion.identity);
         isBossPattern = false;
     }
     protected void OnTriggerEnter2D(Collider2D other)

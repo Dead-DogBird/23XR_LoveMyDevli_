@@ -39,6 +39,7 @@ public class PlayerAct : MonoBehaviour
     {
         _playerContrl = GetComponent<PlayerContrl>();
         _mouseCollider = mousePointer.GetComponent<CircleCollider2D>();
+        _mouseCollider.enabled = false;
         _playerEffect = GetComponent<Player_Effect>();
         maxGauge = _sprayGauge;
         if (isBossStage)

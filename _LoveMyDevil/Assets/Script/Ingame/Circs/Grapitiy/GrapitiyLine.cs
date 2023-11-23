@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class GrapitiyLine : MonoBehaviour
@@ -14,6 +15,7 @@ public class GrapitiyLine : MonoBehaviour
     private int _acitvePointsCount = 0;
     private int _PointCount = 0;
     private SpriteRenderer _spriteRenderer;
+    [SerializeField] private GameObject completeEffect;
     void Start()
     {
         GameManager.Instance.SetPoint();
@@ -59,13 +61,9 @@ public class GrapitiyLine : MonoBehaviour
             {
                 images = 3; 
             }
-
-            
-           
-
-
             foreach (var var_ in _grapitiyPoints)
             {
+                Instantiate(completeEffect,GetComponent<BoxCollider2D>().bounds.center,quaternion.identity);
                 var_.gameObject.SetActive(false);
                 Debug.Log(images);
             }
