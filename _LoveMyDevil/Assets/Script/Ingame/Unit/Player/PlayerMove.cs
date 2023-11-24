@@ -33,7 +33,9 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] float blinkDuration = 0.5f;
     [Tooltip("점멸 딜레이")]
     [SerializeField] private float BlinkDelay = 1;
-
+    
+    [Header("플레이어 넉백 거리 (기본값 1)")]
+    [SerializeField] private float CustomKnockBackPos = 1;
 
     [SerializeField] private ColliderCallbackController platformCollider;
     //기타 트리거들
@@ -77,7 +79,7 @@ public class PlayerMove : MonoBehaviour
         GameManager.Instance.setPlayer(gameObject);
         platformCollider.onColliderEnter += PlatformEnter;
         platformCollider.onColliderExit += PlatformExit;
-
+        Blinkmode = PlayerPrefs.GetInt("KeyboardSetting")==1;
 
 
 
@@ -268,7 +270,7 @@ public class PlayerMove : MonoBehaviour
         IgnoreTask().Forget();
         Debug.Log("넉백");
        // _playerRigidbody.AddForce(CustomAngle.VectorRotation(CustomAngle.PointDirection(transform.position,pos))*knokbackfos,ForceMode2D.Impulse);
-        _playerRigidbody.velocity = (CustomAngle.VectorRotation(CustomAngle.PointDirection(transform.position, new Vector2(pos.x,transform.position.y-0.5f))+180) * knokbackfos);
+        _playerRigidbody.velocity = (CustomAngle.VectorRotation(CustomAngle.PointDirection(transform.position, new Vector2(pos.x,transform.position.y-0.5f))+180) * knokbackfos*CustomKnockBackPos);
         if(!isDie)_playerAnimation.SetAnimation(PlayerAnimation.Animations.hit);
         
         CinemachineImpulseSource? source = GetComponent<CinemachineImpulseSource>();

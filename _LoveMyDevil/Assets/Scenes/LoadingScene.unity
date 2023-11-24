@@ -443,6 +443,14 @@ MonoBehaviour:
     - {fileID: 32900000, guid: 971509459692eab4d89d4891182eb1e3, type: 3}
     - {fileID: 32900000, guid: 78c6826c8f9f9d0408937c86c6e7de63, type: 3}
     - {fileID: 32900000, guid: 49add69e0bbf6ce4da1c8a67b8306e6d, type: 3}
+  - video:
+    - {fileID: 32900000, guid: 8923c3bb7fc52e24fbcc135e47a74b7f, type: 3}
+    - {fileID: 32900000, guid: 24c3c672462d42a409b6e796ac0c250d, type: 3}
+    - {fileID: 32900000, guid: fa5a6dc800f244b4d92289616a242787, type: 3}
+    - {fileID: 32900000, guid: 14e9307d2a84b8e4e8bdc4ca4e275b83, type: 3}
+    - {fileID: 32900000, guid: 0735fc3883039644ba3a515a12645c61, type: 3}
+    - {fileID: 32900000, guid: 9b98bad5512a4d54cbfc106b8ece0582, type: 3}
+    - {fileID: 32900000, guid: 318127fde627aa747811af87f70eef98, type: 3}
   CutainAnimation: {fileID: 1294702295}
 --- !u!1 &824319624
 GameObject:

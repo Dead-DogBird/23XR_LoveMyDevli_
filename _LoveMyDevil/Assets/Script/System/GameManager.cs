@@ -82,6 +82,9 @@ public class GameManager : MonoSingleton<GameManager>
             case Stage.stage3:
                 LoadingSceneManager.LoadScene("Stage4",3);
                 break;
+            case Stage.stage4:
+                LoadingSceneManager.LoadScene("TitleScene",4);
+                break;
         }
 
     }

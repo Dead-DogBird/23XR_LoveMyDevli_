@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private Image SettingCanvasBG;
     [SerializeField] private Canvas SettingCanvas;
-    [SerializeField] private Image Keybords;
-    [SerializeField] private Sprite[] KeyBordSet;
+    [SerializeField] private Image Keyboards;
+    [SerializeField] private Sprite[] KeyBoardSet;
     private bool isSetting = false;
     private bool isEnterGame = false;
 
@@ -57,12 +58,13 @@ public class MainMenuManager : MonoBehaviour
         EnterGameTask().Forget();
     }
 
-    public void KeybordSet(bool isUp)
+    private bool isBlinkMode;
+    public void KeyboardSet(bool isUp)
     {
         if (isUp) KeybordSetting = 1;
         else KeybordSetting = 0;
-        Keybords.sprite = KeyBordSet[KeybordSetting];
-
+        Keyboards.sprite = KeyBoardSet[KeybordSetting];
+        PlayerPrefs.SetInt("KeyboardSetting",KeybordSetting);
     }
     async UniTaskVoid EnterGameTask()
     {

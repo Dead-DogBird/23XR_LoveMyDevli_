@@ -42,7 +42,7 @@ public class BossAnimation : MonoBehaviour
                 CallBackAnimation().Forget();
                 break;
             case Animations.Attack2:
-                animationName = "animation3";
+                animationName = "animation2";
                 CallBackAnimation().Forget();
                 break;
         }
