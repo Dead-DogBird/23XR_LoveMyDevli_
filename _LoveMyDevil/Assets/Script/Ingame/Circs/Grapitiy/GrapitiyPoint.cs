@@ -6,7 +6,7 @@ using UnityEngine;
 public class GrapitiyPoint : MonoBehaviour
 {
 
-
+    public static int pointtime = 0; 
 
     private GrapitiyLine _grapitiyLine;
 
@@ -58,6 +58,8 @@ public class GrapitiyPoint : MonoBehaviour
 
     void DoActive()
     {
+
+        GameManager.Instance.graffitiactive1 += 1;
         _grapitiyLine.GetPoint();
         GetComponent<CircleCollider2D>().enabled=false;
         _spriteRenderer.enabled = true;

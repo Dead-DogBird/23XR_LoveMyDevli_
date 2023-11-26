@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
+using FMOD.Studio;
+using FMODUnity;
 
 
 public class TypingManager : MonoBehaviour
 {
-  
+    [FMODUnity.EventRef]
+    public string DialEffect;
+
+    private FMOD.Studio.EventInstance DialInstance;
+
+
     private int SpaceClicked = 1;
     public int inputcount = 0;
     public static TypingManager instance;
@@ -28,8 +35,16 @@ public class TypingManager : MonoBehaviour
 
     float timer;
 
- 
 
+    private void Start()
+    {
+        DialInstance = FMODUnity.RuntimeManager.CreateInstance(DialEffect);
+
+
+        
+
+        DialInstance.set3DAttributes(RuntimeUtils.To3DAttributes(transform.position));
+    }
 
 
     private void Update()
@@ -53,7 +68,7 @@ public class TypingManager : MonoBehaviour
                 }
             }
         
-
+           
         
 
 
@@ -72,6 +87,7 @@ public class TypingManager : MonoBehaviour
 
     public void Typing(string[] dialogs, TextMeshProUGUI textObj)
     {
+        //DialInstance.start();
         
         inputcount += 1;
         Debug.Log(inputcount);
@@ -131,8 +147,10 @@ public class TypingManager : MonoBehaviour
 
         while (currentChar < charLength)
         {
+            
             if (timer >= 0)
             {
+                
                 yield return null;
                 timer -= Time.deltaTime;
             }
@@ -144,7 +162,10 @@ public class TypingManager : MonoBehaviour
             }
         }
         if (currentChar >= charLength)
-        {            
+        {
+            
+            DialInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+
             isTypingEnd = true;
             dialogNumber++;
             yield break;

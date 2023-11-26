@@ -4,9 +4,23 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using FMODUnity;
+using FMOD.Studio;
+using static UnityEditor.Profiling.RawFrameDataView;
+using static UnityEngine.Rendering.DebugUI;
 
 public class MainMenuManager : MonoBehaviour
 {
+    [FMODUnity.EventRef]
+    public string buttonClickEvent;
+
+    [FMODUnity.EventRef]
+    public string TitleBgmCtrl; 
+
+    private FMOD.Studio.EventInstance eventInstance;
+
+    private FMOD.Studio.EventInstance BgmInstance; 
+
     [SerializeField] private Image SettingCanvasBG;
     [SerializeField] private Canvas SettingCanvas;
     [SerializeField] private Image Keyboards;
@@ -16,8 +30,12 @@ public class MainMenuManager : MonoBehaviour
 
     private int KeybordSetting;
     private Vector3 Onpos = new Vector2(201,-260);
-    void Start()
+   public void Start()
     {
+        eventInstance = FMODUnity.RuntimeManager.CreateInstance(buttonClickEvent);
+        BgmInstance = FMODUnity.RuntimeManager.CreateInstance(TitleBgmCtrl);
+
+        BgmInstance.start();
     }
 
     void Update()
@@ -31,12 +49,14 @@ public class MainMenuManager : MonoBehaviour
                     (Time.unscaledDeltaTime * 7));
                 SettingCanvasBG.color += (new Color(0, 0, 0, 0.8f) - SettingCanvasBG.color) *
                                          (Time.unscaledDeltaTime * 5);
+                BgmInstance.setParameterByName("TitleWaveChange", 0.5f);
             }
             else
             {
                 SettingCanvas.transform.localPosition += (new Vector3(0, -1800)) * (Time.unscaledDeltaTime * 7);
                 SettingCanvasBG.color += (Color.clear - SettingCanvasBG.color) *
                                          (Time.unscaledDeltaTime * 5);
+                BgmInstance.setParameterByName("TitleWaveChange", 0f);
             }
             
         }
@@ -48,12 +68,17 @@ public class MainMenuManager : MonoBehaviour
     }
 
     public void SettingButton(bool isOn)
-    {
-        isSetting = isOn;
+    {       
+        eventInstance.setParameterByName("Buttons", 1.0f);
+        eventInstance.start();
+        isSetting = isOn;      
     }
 
     public void GameStart()
     {
+        BgmInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        eventInstance.setParameterByName("Buttons", 2.0f);
+        eventInstance.start();
         isEnterGame = true;
         EnterGameTask().Forget();
     }
@@ -61,6 +86,8 @@ public class MainMenuManager : MonoBehaviour
     private bool isBlinkMode;
     public void KeyboardSet(bool isUp)
     {
+        eventInstance.setParameterByName("Buttons", 3.0f);
+        eventInstance.start();
         if (isUp) KeybordSetting = 1;
         else KeybordSetting = 0;
         Keyboards.sprite = KeyBoardSet[KeybordSetting];
@@ -73,4 +100,13 @@ public class MainMenuManager : MonoBehaviour
         //·Îµù¾À
         LoadingSceneManager.LoadScene("Stage1",0);
     }
+
+    public void OnMouseEnter()
+    {
+        eventInstance.setParameterByName("Buttons", 0.0f);
+        eventInstance.start();
+    }
+
+
+
 }

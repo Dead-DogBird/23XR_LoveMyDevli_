@@ -5,9 +5,17 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
+using FMOD.Studio;
+using FMODUnity;
+using static UnityEngine.UI.Button;
+using UnityEngine.SceneManagement;
 
 public class UImanager : MonoSingleton<UImanager>
 {
+
+
+
+
     [SerializeField] private Image sprayGauge;
     [SerializeField] private Text sprayGaugeText;
 
@@ -21,6 +29,8 @@ public class UImanager : MonoSingleton<UImanager>
     // Start is called before the first frame update
     void Start()
     {
+       
+    
         _camera = Camera.main;
         GetPlayerTask().Forget();
         if(isBossStage)
@@ -29,7 +39,7 @@ public class UImanager : MonoSingleton<UImanager>
     
     // Update is called once per frame
     void Update()
-    {
+    {      
         if (isplayer)
         {
             sprayGaugeBg.transform.position =

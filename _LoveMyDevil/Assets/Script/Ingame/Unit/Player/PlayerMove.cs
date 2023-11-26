@@ -4,11 +4,22 @@ using System.Collections.Generic;
 using System.Threading;
 using Cinemachine;
 using Cysharp.Threading.Tasks;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour
 {
+    [FMODUnity.EventRef]
+    public string SFXCtrl;
+
+   
+
+    private FMOD.Studio.EventInstance SFXInstance;
+    private FMOD.Studio.EventInstance WalkInstance;
+
+
     // 컴포넌트들
     public Rigidbody2D _playerRigidbody { get; private set; }
     private BoxCollider2D _boxCollider2D;
@@ -82,7 +93,10 @@ public class PlayerMove : MonoBehaviour
         Blinkmode = PlayerPrefs.GetInt("KeyboardSetting")==1;
 
 
+        SFXInstance = FMODUnity.RuntimeManager.CreateInstance(SFXCtrl);
 
+        
+        
     }
 
     private void OnEnable()
@@ -134,7 +148,14 @@ public class PlayerMove : MonoBehaviour
                     StartCoroutine(DoubleClicked());
                 }
             }
+
+            
+
+           
         }
+
+        
+
 
         if (XcameraCtrl.PlayerDeath == true)
         {
@@ -195,12 +216,17 @@ public class PlayerMove : MonoBehaviour
         if (jumpCount >= MAXJUMP) return;
         if (!_playerControll.Userinput.SpaceState) return;
         _isjumping = true;
+        SFXInstance.setParameterByName("PlayerState", 0.0f);
+        SFXInstance.setVolume(0.3f);
+        SFXInstance.start();
         jumpCount++;
         _playerAnimation.SetAnimation((_playerControll.Userinput.AxisState>=0)
             ?PlayerAnimation.Animations.leftjump:PlayerAnimation.Animations.rightjump,false);
         if (jumpCount == 2)
         {
-            
+            SFXInstance.setParameterByName("PlayerState", 1.0f);
+            SFXInstance.setVolume(0.3f);
+            SFXInstance.start();
             GetComponent<Player_Effect>().GetDash(0.7f,_playerControll.Userinput.AxisState>0);
             GetComponent<Player_Effect>().getEffect(Player_Effect.Effects.DoubleJump);
             _playerAnimation.SetAnimation(PlayerAnimation.Animations.doublejump,false);
@@ -218,6 +244,7 @@ public class PlayerMove : MonoBehaviour
     private bool isCollisionWall;
     async UniTaskVoid Blink(float getAxis)
     {
+        SFXInstance.setVolume(0.6f);
         isBlink = true;
         _playerOriSpeed = speed;
         //GetComponent<Player_Effect>().getEffect(getAxis>0?Player_Effect.Effects.LeftDash:Player_Effect.Effects.RightDash);
@@ -226,6 +253,9 @@ public class PlayerMove : MonoBehaviour
         _playerRigidbody.gravityScale = 0;
         GetComponent<Player_Effect>().GetDash(blinkDuration,getAxis>0);
         speed = 0;
+
+        SFXInstance.setParameterByName("PlayerState", 3.0f);
+        SFXInstance.start();
 
         float blinktimer = blinkDuration;
         float blinkDelay = BlinkDelay;
@@ -268,6 +298,13 @@ public class PlayerMove : MonoBehaviour
     {
         if (isIgnore) return;
         IgnoreTask().Forget();
+
+        SFXInstance.setParameterByName("PlayerState", 2.0f);
+         SFXInstance.setVolume(0.6f);
+        SFXInstance.start();
+       
+        
+
         Debug.Log("넉백");
        // _playerRigidbody.AddForce(CustomAngle.VectorRotation(CustomAngle.PointDirection(transform.position,pos))*knokbackfos,ForceMode2D.Impulse);
         _playerRigidbody.velocity = (CustomAngle.VectorRotation(CustomAngle.PointDirection(transform.position, new Vector2(pos.x,transform.position.y-0.5f))+180) * knokbackfos*CustomKnockBackPos);
@@ -350,6 +387,9 @@ public class PlayerMove : MonoBehaviour
              other.gameObject.CompareTag("DropPlatform") ||
              other.gameObject.CompareTag("Platform")))
         {
+          
+           
+
             _isjumping = false;
             jumpCount = 0;
             _playerAnimation.SetAnimation(PlayerAnimation.Animations.idle,true);
@@ -373,6 +413,7 @@ public class PlayerMove : MonoBehaviour
              other.gameObject.CompareTag("ColoredPlatform") ||
              other.gameObject.CompareTag("DropPlatform")))
         {
+           
             _isjumping = true;
             jumpCount = 1;
         }

@@ -4,9 +4,13 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Serialization;
+using FMODUnity;
+using FMOD.Studio;
+
 
 public class PoolingManager : MonoBehaviour
 {
+
     private GameManager _gameManager;
     private Dictionary<Type, object> poolingLists = new();
 
@@ -16,7 +20,7 @@ public class PoolingManager : MonoBehaviour
     }
     private void Start()
     {
-
+        
     }
 
     // 새로운 제네릭 타입의 풀을 추가 (기존에 있으면 기존 리스트를 반환)

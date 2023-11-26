@@ -5,9 +5,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO.Pipes;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
+
 
 public class PlayerAct : MonoBehaviour
 {
+    [FMODUnity.EventRef]
+    public string LowSpraySfx;
+
+    private FMOD.Studio.EventInstance SFXInstance;
+
+    bool lowspray = false; 
+
     //ÇÁ¸®Â¡ 
     public static bool freeze = true; 
 
@@ -37,6 +47,10 @@ public class PlayerAct : MonoBehaviour
     private Player_Effect _playerEffect;
     void Start()
     {
+        SFXInstance = FMODUnity.RuntimeManager.CreateInstance(LowSpraySfx);
+        
+
+
         _playerContrl = GetComponent<PlayerContrl>();
         _mouseCollider = mousePointer.GetComponent<CircleCollider2D>();
         _mouseCollider.enabled = false;
@@ -53,7 +67,8 @@ public class PlayerAct : MonoBehaviour
         if (freeze == false)
         {
             if (_playerContrl.Userinput.LeftMouseState)
-                Spray();
+                Spray(); 
+            
             else if (!isWaitForfillGauge)
             {
                 FillGaugeTask().Forget();
@@ -80,10 +95,15 @@ public class PlayerAct : MonoBehaviour
                 _playerEffect.SprayEffect.SetActive(false);
                 _mouseCollider.enabled = false;
             }
+
+            if (lowspray == false)
+            {
+                lowSprayGauge();
+            }
         }
     }
     void Spray()
-    {
+    {     
         if (sprayGauge > 0)
         {
             if (isFirst)
@@ -93,9 +113,10 @@ public class PlayerAct : MonoBehaviour
                 nowSpray.transform.position = mousePointer.transform.position;
                 
             }
-
             isWaitForfillGauge = false;
             sprayGauge -= 0.2f;
+
+          
         }
         else
         {
@@ -146,4 +167,22 @@ public class PlayerAct : MonoBehaviour
     {
         freeze = false; 
     }
+
+    void lowSprayGauge()
+    {
+        if (sprayGauge <= 50)
+        {
+            lowspray = true;
+            StartCoroutine(spraysoundout());
+        }
+    }
+
+    IEnumerator spraysoundout()
+    {
+        SFXInstance.setVolume(0.7f);
+        SFXInstance.start();
+        yield return new WaitForSeconds(3);
+        lowspray = false; 
+    }
+
 }
