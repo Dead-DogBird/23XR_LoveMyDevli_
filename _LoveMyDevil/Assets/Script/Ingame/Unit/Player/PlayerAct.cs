@@ -47,10 +47,6 @@ public class PlayerAct : MonoBehaviour
     private Player_Effect _playerEffect;
     void Start()
     {
-        SFXInstance = FMODUnity.RuntimeManager.CreateInstance(LowSpraySfx);
-        
-
-
         _playerContrl = GetComponent<PlayerContrl>();
         _mouseCollider = mousePointer.GetComponent<CircleCollider2D>();
         _mouseCollider.enabled = false;
@@ -60,6 +56,7 @@ public class PlayerAct : MonoBehaviour
             _sprayGauge = 0;
         _playerEffect.SprayEffect.transform.parent = mousePointer;
         _playerEffect.SprayEffect.transform.localPosition = new Vector3(0, 0, 0);
+        SFXInstance = FMODUnity.RuntimeManager.CreateInstance(LowSpraySfx);
     }
 
     void Update()
