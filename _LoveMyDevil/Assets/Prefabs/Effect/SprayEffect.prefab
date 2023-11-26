@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4200293964844067885
 Transform:
   m_ObjectHideFlags: 0
@@ -47,11 +47,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1805713291604386536, guid: e092e75222073a44697a32a27ea17de7, type: 3}
       propertyPath: m_MaskInteraction
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2858175091144852258, guid: e092e75222073a44697a32a27ea17de7, type: 3}
       propertyPath: m_MaskInteraction
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5102465986813578647, guid: e092e75222073a44697a32a27ea17de7, type: 3}
       propertyPath: InitialModule.rotation3D
@@ -67,11 +67,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6425115199139695998, guid: e092e75222073a44697a32a27ea17de7, type: 3}
       propertyPath: m_MaskInteraction
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6752371935893291047, guid: e092e75222073a44697a32a27ea17de7, type: 3}
       propertyPath: m_MaskInteraction
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7565747826142599030, guid: e092e75222073a44697a32a27ea17de7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4200293964844067885}
     m_Modifications:
+    - target: {fileID: 906933639635600140, guid: 231a803d81c01d8488e2ce84b20d25f8, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1519526181766667772, guid: 231a803d81c01d8488e2ce84b20d25f8, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 1
@@ -146,6 +150,18 @@ PrefabInstance:
     - target: {fileID: 2733884094145703552, guid: 231a803d81c01d8488e2ce84b20d25f8, type: 3}
       propertyPath: InitialModule.startSizeY.scalar
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236105583428934931, guid: 231a803d81c01d8488e2ce84b20d25f8, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451223309524359176, guid: 231a803d81c01d8488e2ce84b20d25f8, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312011744536251131, guid: 231a803d81c01d8488e2ce84b20d25f8, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5763867213167525539, guid: 231a803d81c01d8488e2ce84b20d25f8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -198,6 +214,10 @@ PrefabInstance:
     - target: {fileID: 7946706789631124312, guid: 231a803d81c01d8488e2ce84b20d25f8, type: 3}
       propertyPath: m_Name
       value: spray03
+      objectReference: {fileID: 0}
+    - target: {fileID: 8571385588157958475, guid: 231a803d81c01d8488e2ce84b20d25f8, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

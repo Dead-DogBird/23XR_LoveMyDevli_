@@ -264,6 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d826ad70ae3d04e40b0e79103d1ae58d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LowSpraySfx: 
   spray: {fileID: 7002691055552402137, guid: 0f4acbadfe180fd448c3f8e42bdd347a, type: 3}
   mousePointer: {fileID: 3874945464380854692}
   isBossStage: 0
@@ -292,6 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0932b9f535397e544be3c74ba467fbf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SFXCtrl: 
   speed: 5.3
   jumpForce: 550
   ignoreTime: 0.5
@@ -299,6 +301,7 @@ MonoBehaviour:
   Getspray: 30
   blinkDuration: 0.7
   BlinkDelay: 0.3
+  CustomKnockBackPos: 1
   platformCollider: {fileID: 4317552679213134618}
   Blinkmode: 0
 --- !u!114 &4938931592348431392
@@ -655,6 +658,7 @@ GameObject:
   - component: {fileID: 3874945464380854692}
   - component: {fileID: 6110480686591727363}
   - component: {fileID: 5366716644514411264}
+  - component: {fileID: 5933055221362656303}
   m_Layer: 0
   m_Name: TagMouse
   m_TagString: MouseCollider
@@ -727,6 +731,33 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.08
+--- !u!50 &5933055221362656303
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7891499809125531709}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &7406373476372705796
 PrefabInstance:
   m_ObjectHideFlags: 0

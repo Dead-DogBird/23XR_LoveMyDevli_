@@ -90,9 +90,7 @@ public class PlayerMove : MonoBehaviour
         GameManager.Instance.setPlayer(gameObject);
         platformCollider.onColliderEnter += PlatformEnter;
         platformCollider.onColliderExit += PlatformExit;
-        Blinkmode = PlayerPrefs.GetInt("KeyboardSetting")==1;
-
-
+        Blinkmode = true;
         SFXInstance = FMODUnity.RuntimeManager.CreateInstance(SFXCtrl);
 
         
@@ -446,7 +444,6 @@ public class PlayerMove : MonoBehaviour
                 GameOverTask().Forget();
             }
         }
-
         if (other.CompareTag("FallDownCollider"))
         {
             BossStageCamera.Instance.Shake(0.12f,0.12f,0,1f,100);

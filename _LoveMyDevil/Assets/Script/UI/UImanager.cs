@@ -22,6 +22,7 @@ public class UImanager : MonoSingleton<UImanager>
     [SerializeField] private Text StageProgress;
     [SerializeField] private Image StageProgressImg;
     [SerializeField] private Image sprayGaugeBg;
+    [SerializeField] private Image FadeImg;
     private Camera _camera;
     private bool isplayer;
     public bool isBossStage;
@@ -29,15 +30,14 @@ public class UImanager : MonoSingleton<UImanager>
     // Start is called before the first frame update
     void Start()
     {
-       
-    
+
+        FadeImg.color = Color.black;
         _camera = Camera.main;
         GetPlayerTask().Forget();
         if(isBossStage)
             SprayGaugeTask().Forget();
+        Fade(true).Forget();
     }
-    
-    // Update is called once per frame
     void Update()
     {      
         if (isplayer)
@@ -92,5 +92,27 @@ public class UImanager : MonoSingleton<UImanager>
             await UniTask.Delay(TimeSpan.FromSeconds(0.1f));
         }
         sprayGaugeBg.gameObject.SetActive(false);
+    }
+
+    public async UniTaskVoid Fade(bool isIn)
+    {
+        if (isIn)
+        {
+            while (FadeImg.color.a > 0.01f)
+            {
+                FadeImg.color += (Color.clear - FadeImg.color) * Time.deltaTime;
+                await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+            }
+            FadeImg.color = Color.clear;
+        }
+        else
+        {
+            while (FadeImg.color.a < 0.99f)
+            {
+                FadeImg.color += (Color.black - FadeImg.color) * Time.deltaTime;
+                await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+            }
+            FadeImg.color = Color.black;
+        }
     }
 }

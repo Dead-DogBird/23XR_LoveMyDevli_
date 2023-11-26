@@ -6,7 +6,7 @@ using UnityEngine;
 public class mouseholder : MonoBehaviour
 {
     private Vector3 pos;
-    [SerializeField, Range(0.0f, 10.0f)]
+    [SerializeField, Range(0.0f, 50.0f)]
     private float leverRange;  
     [SerializeField] private GameObject player;
     

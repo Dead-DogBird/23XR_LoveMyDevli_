@@ -58,8 +58,7 @@ public class GrapitiyPoint : MonoBehaviour
 
     void DoActive()
     {
-
-        GameManager.Instance.graffitiactive1 += 1;
+        
         _grapitiyLine.GetPoint();
         GetComponent<CircleCollider2D>().enabled=false;
         _spriteRenderer.enabled = true;

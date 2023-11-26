@@ -24,6 +24,7 @@ TagManager:
   - GhostCheckCollider
   - BossAttack
   - FallDownCollider
+  - KeeperOver
   layers:
   - Default
   - TransparentFX

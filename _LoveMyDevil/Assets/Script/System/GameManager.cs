@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
     public int graffitiactive1 = 0;
-
+    public event EventHandler OnMakeOverGraffiti;
     
     public float progress;
     internal PoolingManager _poolingManager;
@@ -65,21 +66,32 @@ public class GameManager : MonoSingleton<GameManager>
         nowPoints++;
         graffitiactive1 += 1;
         UImanager.Instance.SetStageProgress(nowPoints / allPoints);
+        if(CurStage==Stage.stage2&&nowPoints / allPoints*100>90f)
+            DialogManagerv.Instance.SetID(3);
         if (nowPoints >= allPoints)
             GetNextStage().Forget();
     }
 
     async UniTaskVoid GetNextStage()
     {
+        await UniTask.Delay(TimeSpan.FromSeconds(1f));
+        OnMakeOverGraffiti?.Invoke(this, EventArgs.Empty);
         if (CurStage == Stage.stage1) return;
         _player.GetComponent<Rigidbody2D>().simulated = false;
-        await UniTask.Delay(TimeSpan.FromSeconds(1.6f));
+        
+        
         switch (CurStage)
         {
             case Stage.stage2:
+                await UniTask.Delay(TimeSpan.FromSeconds(3f));
+                UImanager.Instance.Fade(false);
+                await UniTask.Delay(TimeSpan.FromSeconds(3f));
                 LoadingSceneManager.LoadScene("Stage3",2);
                 break;
             case Stage.stage3:
+                await UniTask.Delay(TimeSpan.FromSeconds(10f));
+                UImanager.Instance.Fade(false);
+                await UniTask.Delay(TimeSpan.FromSeconds(3f));
                 LoadingSceneManager.LoadScene("Stage4",3);
                 break;
             case Stage.stage4:

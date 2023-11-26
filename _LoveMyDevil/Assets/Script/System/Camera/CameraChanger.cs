@@ -12,6 +12,7 @@ public class CameraChanger : MonoBehaviour
     {
         Cameras[activeCameraID].SetActive(true);
         Cameras[(Cameras.Length-1)-activeCameraID].SetActive(false);
+        GameManager.Instance.OnMakeOverGraffiti += (o, args) => GetMakeOverGraffiti();
     }
 
     // Update is called once per frame
@@ -25,8 +26,26 @@ public class CameraChanger : MonoBehaviour
         if (activeCameraID != CameraID)
         {
             activeCameraID = CameraID;
-            Cameras[CameraID].SetActive(true);
-            Cameras[(Cameras.Length-1)-CameraID].SetActive(false);
+
+            switch (activeCameraID)
+            {
+                case 0:
+                    Cameras[0].SetActive(true);
+                    Cameras[1].SetActive(false);
+                    break;
+                case 1:
+                    Cameras[1].SetActive(true);
+                    Cameras[0].SetActive(false);
+                    break;
+            }
+            
         }
+    }
+
+    void GetMakeOverGraffiti()
+    {
+        Cameras[0].SetActive(false);
+        Cameras[1].SetActive(false);
+        Cameras[2].SetActive(true);
     }
 }

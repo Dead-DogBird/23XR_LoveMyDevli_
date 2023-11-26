@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -11,7 +12,7 @@ public class GrapitiyLine : MonoBehaviour
     public static int images = 0; 
 
     private List<GrapitiyPoint> _grapitiyPoints = new List<GrapitiyPoint>();
-
+    public event Action GetNarration; 
     private int _acitvePointsCount = 0;
     private int _PointCount = 0;
     private SpriteRenderer _spriteRenderer;
@@ -38,13 +39,12 @@ public class GrapitiyLine : MonoBehaviour
     public void GetPoint()
     {
         _acitvePointsCount++;
-
+        
         if (_acitvePointsCount == _PointCount)
         {
             GameManager.Instance.GetPoint();
             _spriteRenderer.enabled = true;
-
-
+            GetNarration?.Invoke();
             // 2스테이지 다이얼로그 
             // 네임밸류 검사돌려서 발생다이얼로그 변경 
             if(nowname == "1_line_graffiti")

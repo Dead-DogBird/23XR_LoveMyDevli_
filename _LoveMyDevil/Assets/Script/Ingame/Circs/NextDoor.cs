@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -21,8 +22,14 @@ public class NextDoor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("enter Player");
-        Debug.Log(GameManager.Instance.GetProgress);
+        NextStage(other).Forget();
+    }
+
+    async UniTaskVoid NextStage(Collider2D other)
+    {
+        UImanager.Instance.Fade(false);
+        await UniTask.Delay(TimeSpan.FromSeconds(3f));
+        
         if (other.gameObject.CompareTag("Player") && GameManager.Instance.GetProgress)
         {
             LoadingSceneManager.LoadScene("Stage2",1);

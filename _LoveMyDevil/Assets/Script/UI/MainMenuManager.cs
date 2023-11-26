@@ -36,6 +36,8 @@ public class MainMenuManager : MonoBehaviour
         BgmInstance = FMODUnity.RuntimeManager.CreateInstance(TitleBgmCtrl);
 
         BgmInstance.start();
+        Keyboards.sprite = KeyBoardSet[PlayerPrefs.GetInt("KeyboardSetting")];
+        
     }
 
     void Update()

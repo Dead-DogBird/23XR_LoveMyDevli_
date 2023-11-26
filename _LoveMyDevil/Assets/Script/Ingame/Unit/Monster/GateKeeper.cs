@@ -31,31 +31,33 @@ public class GateKeeper : MonoBehaviour
     
     public AnimationClip[] animationClips; // 애니메이션 클립 배열
     private Animator animator;
+    private bool nowClimb = false;
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        StartCoroutine(readygo());
         animator = GetComponent<Animator>();
         Attackarea = new Vector2(10, 1.5f);
         oridelay = jumpDelay;
+        Jump();
     }
 
     IEnumerator readygo()
     {
-        yield return new WaitForSeconds(6);
-        Invoke("Jump", 2);
         StopCoroutine(readygo());
+        return null;
     }
 
 
 
     void Update()
     {
-       ColliderCheckCallback();
+        if(!isDie)
+            ColliderCheckCallback();
     }
 
     void Jump()
     {
+        nowClimb = false;
         _rigidbody.gravityScale = _gravity;
         PlayAnimation((focus==1?2:0));
         _rigidbody.AddForce(D9Extension.DegreeToVector2(Degree + (focus==-1?90:0))*JumpForce);
@@ -64,7 +66,7 @@ public class GateKeeper : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.CompareTag("Wall"))
+        if(other.gameObject.CompareTag("Wall")&&!nowClimb)
         {
             ClimbWall().Forget();
         }
@@ -78,6 +80,7 @@ public class GateKeeper : MonoBehaviour
     }
     async UniTaskVoid ClimbWall()
     {
+        nowClimb = true;
         PlayAnimation((focus == 1 ? 3 : 1));
         focus *= -1;
         _rigidbody.gravityScale = 0;
@@ -98,12 +101,15 @@ public class GateKeeper : MonoBehaviour
         Collider2D[] hit = Physics2D.OverlapBoxAll(transform.position, Attackarea, 0);
         foreach(Collider2D i in hit) 
         {
-            if (i.CompareTag("Platform") || i.CompareTag ("ColoredPlatform") || i.CompareTag("DropPlatform")
-                
-            ) 
+            if (i.CompareTag("Platform") || i.CompareTag ("ColoredPlatform") || i.CompareTag("DropPlatform")) 
             {
                 Destroy(i.gameObject);
-            }                   
+            }
+
+            if (i.CompareTag("KeeperOver"))
+            {
+                KeeperOver();
+            }
         }
     }
     //0. LeftJump, 1. LeftLanding, 2. RightJump, 3. RightLanding
@@ -117,5 +123,12 @@ public class GateKeeper : MonoBehaviour
         {
             Debug.LogWarning("Invalid animation index.");
         }
+    }
+
+    void KeeperOver()
+    {
+        _rigidbody.velocity = new Vector2(0, 0);
+        _rigidbody.gravityScale = 3;
+        isDie = true;
     }
 }

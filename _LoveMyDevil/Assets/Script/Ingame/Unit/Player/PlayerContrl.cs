@@ -25,16 +25,18 @@ public class PlayerContrl : MonoBehaviour
         public void InputUpdate()
         {
             _nowAxisState = Input.GetAxisRaw("Horizontal");
-            _nowSpace = Input.GetKeyDown(KeyCode.W);
+            _nowSpace = Input.GetKeyDown(mode?KeyCode.W:KeyCode.Space);
             _leftMouseButton = Input.GetMouseButton(0);
             _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             _skillKey = Input.GetKeyDown(KeyCode.LeftShift);
         }
     }
     public UserInput Userinput;
+    static bool mode;
     void Start()
     {
         Scenename = SceneManager.GetActiveScene().name;
+        mode = PlayerPrefs.GetInt("KeyboardSetting")==0;
     }
     void Update()
     {
