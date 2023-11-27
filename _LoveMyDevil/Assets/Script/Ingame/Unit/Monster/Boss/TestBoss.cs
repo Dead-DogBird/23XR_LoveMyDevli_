@@ -45,6 +45,7 @@ public class TestBoss : MonoBehaviour
         EnterDelay().Forget();
         _animation = GetComponent<BossAnimation>();
         _animation.cancelToken = cancel;
+        GameManager.Instance.OnMakeOverGraffiti += (o, args) => GraffitiMakeOver();
     }
     private void OnEnable()
     {
@@ -379,6 +380,11 @@ public class TestBoss : MonoBehaviour
     private CancellationTokenSource cancel = new CancellationTokenSource();
 
     private void LoadedsceneEvent(Scene scene, LoadSceneMode mode)
+    {
+        cancel.Cancel();
+    }
+
+    void GraffitiMakeOver()
     {
         cancel.Cancel();
     }

@@ -100,6 +100,9 @@ public class GameManager : MonoSingleton<GameManager>
                 break;
             case Stage.stage4:
                 clear = 1;
+                await UniTask.Delay(TimeSpan.FromSeconds(3f));
+                UImanager.Instance.Fade(false);
+                await UniTask.Delay(TimeSpan.FromSeconds(3f));
                 LoadingSceneManager.LoadScene("TitleScene",4);
                 break;
         }
