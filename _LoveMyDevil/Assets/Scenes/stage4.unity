@@ -1625,7 +1625,7 @@ MonoBehaviour:
     \uC608\uC058\uAC8C \uAFB8\uBA70\uB1A8\uC5B4\uC694!"
   - "\uC798\uD588\uC8E0? "
   - ......
-  - "(\uC5C4)"
+  - "\uB124 \uD558\uCC2E\uC740 \uC7A5\uB09C\uAC10\uB3C4 \uBE8F\uC5B4\uC8FC\uACA0\uB2E4. "
   - "\uC0AC\uACE0\uCE58\uC9C0 \uB9D0\uB77C\uACE0 \uBA87\uBC88\uC774\uB098 \uAC15\uC870\uD588\uAC70\uB298. "
   - "\uC9C0\uC625\uC740 \uC57D\uC721\uAC15\uC2DD\uC758 \uC138\uACC4\uC778\uAC74 \uC798
     \uC54C\uACE0 \uC788\uACA0\uC9C0."
@@ -2033,7 +2033,7 @@ Transform:
   m_GameObject: {fileID: 248951250}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.90659, y: -4.994722, z: 4.063991}
+  m_LocalPosition: {x: -3.9049053, y: -4.9885445, z: 4.063991}
   m_LocalScale: {x: 1.02, y: 1.02, z: 0.6292234}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3439,6 +3439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cba2c42e16706c41b85a99151a83a05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SFXCtrl: event:/Mobs/Satan/SatanpaternLaser
   Bullet: {fileID: 4740092779023773941, guid: 5e1005c76c328c5438b5a25a816c2269, type: 3}
   RepeatFireObj: {fileID: 8707215912398543254, guid: d7897599f5ed5d24f957140f75bff59a, type: 3}
   FireWorkObj: {fileID: 8707215912398543254, guid: c682a2f64f52ce2419e14a5edb6c3903, type: 3}
@@ -6817,7 +6818,7 @@ Transform:
   m_GameObject: {fileID: 1210435843}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.537191, y: -5.0045447, z: 4.063991}
+  m_LocalPosition: {x: -6.5355067, y: -4.9983673, z: 4.063991}
   m_LocalScale: {x: 1.02, y: 1.02, z: 0.6292234}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -11448,7 +11449,7 @@ Transform:
   m_GameObject: {fileID: 1882217107}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.132038, y: -4.9946327, z: 4.063991}
+  m_LocalPosition: {x: 6.1337223, y: -4.9884553, z: 4.063991}
   m_LocalScale: {x: 1.02, y: 1.02, z: 0.6292234}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -11714,7 +11715,7 @@ Transform:
   m_GameObject: {fileID: 1908524440}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.7526393, y: -4.9928784, z: 4.063991}
+  m_LocalPosition: {x: 3.754324, y: -4.986701, z: 4.063991}
   m_LocalScale: {x: 1.02, y: 1.02, z: 0.6292234}
   m_ConstrainProportionsScale: 1
   m_Children: []

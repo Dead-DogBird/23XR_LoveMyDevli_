@@ -6,17 +6,28 @@ using TMPro;
 using Unity.VisualScripting;
 using System.Security.Cryptography;
 
-public class texter3 : MonoBehaviour
+public class texter3 : MonoSingleton<texter3>
 {
+    public bool playercantmove = true;
+
+
+    public bool maidcol = false;
+
+
+    bool maidtextstart = false;
 
     int checker;
 
     public Image lucypanel;
     public Image normalpanel;
 
+    public TextMeshProUGUI normalname;
+
+
+
     [Header("Dialogs")]
     public string[] textstring;
-
+    public string[] textstring2;
     public TextMeshProUGUI textObj;
 
     // Update is called once per frame
@@ -74,6 +85,26 @@ public class texter3 : MonoBehaviour
             normalpanel.rectTransform.anchoredPosition = new Vector2(0, 700);
             lucypanel.rectTransform.anchoredPosition = new Vector2(0, 700);
         }
+
+        if (maidcol == true)
+        {
+            if (maidtextstart == false)
+            {
+                maidtext();
+            }
+
+
+        }
+
+        if(checker == 24)
+        {
+            normalpanel.rectTransform.anchoredPosition = new Vector2(0, 700);
+            textObj.rectTransform.anchoredPosition = new Vector2(0, 700);
+            playercantmove = false;
+            PlayerMove.freeze = false;
+            PlayerMove.speed = 5.3f;
+        }
+
     }
 
 
@@ -83,6 +114,30 @@ public class texter3 : MonoBehaviour
 
         StartCoroutine(StartText());
         //TypingManager.instance.Typing(lucystring, textObj);
+    }
+
+    void maidtext()
+    {
+        maidtextstart = true;
+        StartCoroutine(maidscript());
+
+    }
+
+    IEnumerator maidscript()
+    {
+        PlayerMove.freeze = true;
+        PlayerMove.speed = 0;
+
+        yield return new WaitForSeconds(0.5f);
+
+        if (TypingManager.instance.inputcount == 18)
+        {
+
+            normalpanel.rectTransform.anchoredPosition = new Vector2(0, 227);
+            normalname.text = "∏ﬁ¿ÃµÂ";
+            textObj.rectTransform.anchoredPosition = new Vector2(0, 227);
+            TypingManager.instance.Typing(textstring2, textObj);
+        }
     }
 
 

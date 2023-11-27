@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using FMOD.Studio;
 using FMODUnity;
+using UnityEngine.SceneManagement;
+
 
 public class madeMonster : MonoBehaviour
 {
+    string mapname;
+
     [FMODUnity.EventRef]
     public string SFXCtrl;
 
@@ -35,6 +39,10 @@ public class madeMonster : MonoBehaviour
 
 
         SFXInstance = FMODUnity.RuntimeManager.CreateInstance(SFXCtrl);
+
+        mapname = SceneManager.GetActiveScene().name;
+        
+
     }
 
     void Update()
@@ -132,7 +140,22 @@ private void OnTriggerExitTargetCollider(Collider2D other)
     {
         if(other.CompareTag("Player"))
         {
-            //TODO : 다이얼로그 출력
+            if (mapname == "Stage2")
+            {
+                 texter2.Instance.maidcol = true;
+                speed = 0;
+            }
+
+            if (mapname == "Stage3")
+            {
+                texter3.Instance.maidcol = true;
+                speed = 0;
+            }
+            _body.transform.localScale = new Vector3(1, 1, 1);
         }
+        
     }
+
+
+    
 }

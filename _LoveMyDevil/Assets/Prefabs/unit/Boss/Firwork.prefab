@@ -133,4 +133,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7ac3c6fc550da40bd9596fe7c97a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SFXCtrl: event:/Mobs/Satan/SatanpaternLaser
   bullet: {fileID: 4740092779023773941, guid: 5e1005c76c328c5438b5a25a816c2269, type: 3}

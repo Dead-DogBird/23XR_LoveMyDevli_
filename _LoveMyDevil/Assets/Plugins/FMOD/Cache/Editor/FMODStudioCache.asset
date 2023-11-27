@@ -55,6 +55,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 22588
+--- !u!114 &-8664996241307500438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SatanpaternLaser/SatanSfx
+  m_EditorClassIdentifier: 
+  Name: SatanSfx
+  StudioPath: 
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 514506437
+    data2: 1077680512
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Value A
+  - Value B
+  - Value C
+  - Value D
+  Exists: 1
 --- !u!114 &-7947108018622008461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,7 +392,7 @@ MonoBehaviour:
   Path: ../../../SoundPack/LovingMyDevilSoundPack/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638367161371169827
+  lastModified: 638367268212492762
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -464,10 +492,10 @@ MonoBehaviour:
   Path: ../../../SoundPack/LovingMyDevilSoundPack/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638367161371179866
+  lastModified: 638367268212497794
   FileSizes:
   - Name: Desktop
-    Value: 2342
+    Value: 2392
   Exists: 1
 --- !u!114 &-655332256629877537
 MonoBehaviour:
@@ -570,7 +598,7 @@ MonoBehaviour:
   - {fileID: -1330768623359212246}
   StringsBanks:
   - {fileID: -693265237350890436}
-  cacheTime: 638367161380531792
+  cacheTime: 638367308948173243
   cacheVersion: 131608
 --- !u!114 &35816834349784178
 MonoBehaviour:
@@ -736,7 +764,7 @@ MonoBehaviour:
   Name: PlayerState
   StudioPath: 
   Min: 0
-  Max: 3
+  Max: 4
   Default: 0
   ID:
     data1: 2366293132
@@ -748,6 +776,7 @@ MonoBehaviour:
   - Value B
   - Value C
   - Value D
+  - Value E
   Exists: 1
 --- !u!114 &2068118322311306919
 MonoBehaviour:
@@ -892,10 +921,11 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: -8664996241307500438}
   MinDistance: 1
   MaxDistance: 20
-  Length: 633
+  Length: 923
 --- !u!114 &5685186326517779224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -993,10 +1023,10 @@ MonoBehaviour:
   Path: ../../../SoundPack/LovingMyDevilSoundPack/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638367148884113434
+  lastModified: 638367308948173243
   FileSizes:
   - Name: Desktop
-    Value: 452960
+    Value: 488992
   Exists: 1
 --- !u!114 &8875351730795916035
 MonoBehaviour:

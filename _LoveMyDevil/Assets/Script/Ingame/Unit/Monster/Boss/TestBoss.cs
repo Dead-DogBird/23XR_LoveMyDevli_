@@ -9,9 +9,17 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
+using FMODUnity;
+using FMOD.Studio;
+
+
 
 public class TestBoss : MonoBehaviour
 {
+    [FMODUnity.EventRef]
+    public string SFXCtrl;
+
+    private FMOD.Studio.EventInstance SFXInstance;
 
     //ToDo:
     [SerializeField] private GameObject Bullet;
@@ -46,6 +54,9 @@ public class TestBoss : MonoBehaviour
         _animation = GetComponent<BossAnimation>();
         _animation.cancelToken = cancel;
         GameManager.Instance.OnMakeOverGraffiti += (o, args) => GraffitiMakeOver();
+
+        SFXInstance = FMODUnity.RuntimeManager.CreateInstance(SFXCtrl);
+        
     }
     private void OnEnable()
     {
@@ -82,9 +93,14 @@ public class TestBoss : MonoBehaviour
         WaitForSec(2.5f).Forget();
         await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         _animation.SetAnimation(BossAnimation.Animations.Attack);
+        SFXInstance.setParameterByName("SatanSfx", 3);
         //불똥 올라오는 패턴
         for (int i=0; i < 6; i++)
         {
+            //          
+            SFXInstance.start();
+            //
+
             Instantiate(Bullet).GetComponent<Bullet>()
                 .Init(new Vector3(-8.5f + (i * 1.5f), -5+YposCorrection), new Vector3(-8.5f + (i * 1.5f), 20+YposCorrection), 15, 4).GetFire(new Vector3(-8.5f + (i * 1.5f), 20));
             Instantiate(Bullet).GetComponent<Bullet>()
@@ -102,9 +118,12 @@ public class TestBoss : MonoBehaviour
         for (int i=0; i < 4; i++)
         {
             pos = (Random.Range(0, 2) == 1) ? -8.5f : 8.5f;
+
            for(int j=0;j<3;j++)
            {
-               Instantiate(Bullet).GetComponent<Bullet>()
+                SFXInstance.start();
+
+                Instantiate(Bullet).GetComponent<Bullet>()
                 .Init(new Vector3(pos, -3.75f+j*0.2f+YposCorrection), new Vector3(pos*-1, -3.75f+YposCorrection), 15, 4).
                 GetFire(new Vector3(pos*-1 , -3.75f+j*0.2f+YposCorrection));
            }
@@ -116,8 +135,14 @@ public class TestBoss : MonoBehaviour
         //레이저 패턴
         WaitForSec(1.5f).Forget();
         await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
+
+        SFXInstance.setParameterByName("SatanSfx", 0);
         for (int i = 0; i < 10; i++)
         {
+           
+            SFXInstance.start();
+
+
             var temp = Instantiate(Laser, new Vector3(-8.5f+i*2.5f,20), quaternion.identity);
             temp.transform.rotation = Quaternion.Euler(0, 0,
                 CustomAngle.PointDirection(temp.transform.position, temp.transform.position-new Vector3(0,10)));
@@ -147,6 +172,7 @@ public class TestBoss : MonoBehaviour
         _animation.SetAnimation(BossAnimation.Animations.Attack);
         for (int i = 0; i < 3; i++)
         {
+            SFXInstance.start();
             pos = Random.Range(0, 2)==1 ? 1.6f : -1.6f;
             var temp = Instantiate(Laser, new Vector3(pos,4.25f+YposCorrection), quaternion.identity);
             temp.transform.rotation = Quaternion.Euler(0, 0,
@@ -174,6 +200,9 @@ public class TestBoss : MonoBehaviour
         _animation.SetAnimation(BossAnimation.Animations.Attack2);
         for (int i = 0; i < 4; i++)
         {
+            SFXInstance.start();
+
+
             var temp = Instantiate(Laser, new Vector3(-1.6f-i*2f,4.25f+YposCorrection), quaternion.identity);
             temp.transform.rotation = Quaternion.Euler(0, 0,
                 CustomAngle.PointDirection(temp.transform.position, temp.transform.position+new Vector3(0,-4.25f+YposCorrection)));
@@ -184,6 +213,9 @@ public class TestBoss : MonoBehaviour
         _animation.SetAnimation(BossAnimation.Animations.Attack);
         for (int i = 0; i < 4; i++)
         {
+            SFXInstance.start();
+
+
             var temp = Instantiate(Laser, new Vector3(1.6f+i*2f,4.25f+YposCorrection), quaternion.identity);
             temp.transform.rotation = Quaternion.Euler(0, 0,
                 CustomAngle.PointDirection(temp.transform.position, temp.transform.position+new Vector3(0,-4.25f+YposCorrection)));
@@ -201,8 +233,13 @@ public class TestBoss : MonoBehaviour
         while (time >= 0)
         {
             time -= Time.deltaTime;
+            SFXInstance.setParameterByName("SatanSfx", 3);
             if (Random.Range(0, 5) > 3)
             {
+                
+
+                SFXInstance.start();
+
                 var temp = Instantiate(Bullet).GetComponent<Bullet>();
                 temp.Init(transform.position+new Vector3(Random.Range(-10.0f,10.0f), 10),_player.transform.position,Random.Range(14.0f,21.0f),10);
                 temp.GetFire(temp.transform.position+new Vector3(Random.Range(-3.0f,3.0f), -20));
@@ -231,8 +268,13 @@ public class TestBoss : MonoBehaviour
             await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: cancel.Token);
         }
         _animation.SetAnimation(BossAnimation.Animations.Attack2);
+         SFXInstance.setParameterByName("SatanSfx", 0);
         for (int i = 0; i < 3; i++)
         {
+            
+
+            SFXInstance.start();
+
             WaitForSec(1.5f).Forget();
             await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
             var temp = Instantiate(Laser, transform.position, quaternion.identity);
@@ -246,8 +288,14 @@ public class TestBoss : MonoBehaviour
         await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         int random = Random.Range(5, 9);
         _animation.SetAnimation(BossAnimation.Animations.Attack);
+        SFXInstance.setParameterByName("SatanSfx", 1);
+
         for (int i = 0; i < random; i++)
         {
+            
+
+            SFXInstance.start();
+
             var pos = new Vector3(Random.Range(-8.0f, 8.0f), Random.Range(-7.0f, -6.0f));
             var temp =  Instantiate(FireWorkObj,pos,
                 Quaternion.identity);
@@ -269,8 +317,13 @@ public class TestBoss : MonoBehaviour
         await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         //TODO : 화면 어두워지는 셰이더 적용 할 것
         _animation.SetAnimation(BossAnimation.Animations.Attack);
+        SFXInstance.setParameterByName("SatanSfx", 0);
         for (int i = 0; i < 3; i++)
         {
+            
+
+            SFXInstance.start();
+
             WaitForSec(1.5f).Forget();
             await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
             var temp = Instantiate(Laser, transform.position, quaternion.identity);
@@ -283,8 +336,13 @@ public class TestBoss : MonoBehaviour
         WaitForSec(3f).Forget();
         await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         _animation.SetAnimation(BossAnimation.Animations.Attack2);
+        SFXInstance.setParameterByName("SatanSfx", 0);
         for (int i = 0; i < 3; i++)
         {
+          
+
+            SFXInstance.start();
+
             //X레이저
             var temp = Instantiate(Laser, new Vector3(-8.5f,_player.transform.position.y), quaternion.identity);
             temp.transform.localScale *= 0.5f;
@@ -318,9 +376,13 @@ public class TestBoss : MonoBehaviour
         randYPos = 0;
         while (time >= 0)
         {
+            SFXInstance.setParameterByName("SatanSfx", 3);
+
             time -= Time.deltaTime;
             if (Random.Range(0, 10) < 3)
             {
+                SFXInstance.start();
+
                 curYPos = Random.Range(-10.0f, 10.0f);
                 if (MathF.Abs(curYPos - randYPos) > 1)
                 {

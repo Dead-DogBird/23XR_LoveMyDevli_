@@ -38,7 +38,7 @@ public class PlayerMove : MonoSingleton<PlayerMove>
     private int BossStageHp = 5;
 
     [Header("플레이어 스탯")]
-    [SerializeField] private float speed = 5f;
+     public static float speed = 5.3f;
     [Tooltip("플레이어 점프력 (보통 1000 해놓음)")]
     [SerializeField] private float jumpForce = 1000;
     [Header("플레이어 무적 시간")]
@@ -438,6 +438,9 @@ public class PlayerMove : MonoSingleton<PlayerMove>
         {
             Destroy(other.gameObject);
             GetComponent<PlayerAct>().GetSpray(Getspray);
+            SFXInstance.setVolume(1);
+            SFXInstance.setParameterByName("PlayerState", 4.0f);
+            SFXInstance.start();
         }
         if (other.CompareTag("CameraCollider"))
         {

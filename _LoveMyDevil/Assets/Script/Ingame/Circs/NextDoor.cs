@@ -29,8 +29,12 @@ public class NextDoor : MonoSingleton<NextDoor>
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        NextStage(other).Forget();
-        
+
+
+        if (GameManager.Instance.GetProgress == true)
+        {
+            NextStage(other).Forget();
+        }
         
     }
 
@@ -51,6 +55,10 @@ public class NextDoor : MonoSingleton<NextDoor>
     {
         Debug.Log("enter Player");
         Debug.Log(GameManager.Instance.GetProgress);
+        
+
+
+        
         if (other.collider.CompareTag("Player") && GameManager.Instance.GetProgress)
         {
             LoadingSceneManager.LoadScene("Stage2",1);
