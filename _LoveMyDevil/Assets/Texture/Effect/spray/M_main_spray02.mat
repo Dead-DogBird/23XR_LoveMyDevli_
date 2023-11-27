@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_main_spray02
-  m_Shader: {fileID: -6465566751694194690, guid: f84d7f2559836914c8e751c76801011d, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: bb26c22f7da7da547a739b4eac76cacf, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -31,12 +31,24 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Main_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 3e1a78b16fcd30e458bf43f375ce5618, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MaskTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_1df5c531ebb947daa0d7526abd189a56_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 5a1fc9d65437d1045b46bc02fba7f7ea, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_acf28a36c87c42e484b89eced4aabb02_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 6dc2534076915724c83dc698f5078f57, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D:
@@ -61,9 +73,11 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 8, g: 8, b: 8, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _Main_Color: {r: 1, g: 1, b: 1, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Vector2: {r: 0.87, g: 0.84, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1796442726840735388
 MonoBehaviour:
