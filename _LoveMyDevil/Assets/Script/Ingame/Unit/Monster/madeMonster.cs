@@ -142,7 +142,7 @@ private void OnTriggerExitTargetCollider(Collider2D other)
         {
             if (mapname == "Stage2")
             {
-                 texter2.Instance.maidcol = true;
+                texter2.Instance.maidcol = true;
                 speed = 0;
             }
 
