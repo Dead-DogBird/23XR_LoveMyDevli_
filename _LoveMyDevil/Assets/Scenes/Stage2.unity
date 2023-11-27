@@ -2541,7 +2541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b93db09f64be6984d811438dbbbe6260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 1
+  ID: 2
 --- !u!1 &502411758
 GameObject:
   m_ObjectHideFlags: 0
@@ -12643,6 +12643,45 @@ MonoBehaviour:
   _mainProfilImage: {fileID: 502895919}
   _narrations:
   - _narrations:
+    - Text: "\uB0B4\uAC00 \uADF8\uB838\uC9C0\uB9CC \uC815\uB9D0 \uC608\uC220\uC774\uC57C
+        \u266A "
+      Name: "\uB8E8\uC2DC "
+      Id: 0
+    - Text: "\uD2F1\uD1A1 \uC601\uC0C1 \uCC0D\uC5B4\uBCFC\uAE4C? "
+      Name: "\uB8E8\uC2DC "
+      Id: 0
+    - Text: "\uC774 \uC9D1\uC0AC, \uB098\uC774\uB4E4\uC5B4\uC11C \uC798 \uBAA8\uB974\uC9C0\uB9CC
+        \uB4E4\uC5B4\uBCF8\uC801 \uC788\uC2B5\uB2C8\uB2E4. "
+      Name: "\uD574\uACE8\uC9D1\uC0AC "
+      Id: 1
+    - Text: "\uC778\uAC04\uB4E4 \uC0AC\uC774\uC5D0\uC11C \uC720\uD589\uD558\uB294
+        \uC9E7\uC740 \uC601\uC0C1\uBB3C\uC744 \uC804\uD30C\uD558\uB294 \uACF3\uC774\uC9C0\uC694? "
+      Name: "\uD574\uACE8\uC9D1\uC0AC "
+      Id: 1
+    - Text: "\uC624~ \uD574\uACE8 \uB531\uB531\uC774 \uC8FC\uC81C\uC5D0 \uC798\uC544\uB124! "
+      Name: "\uB8E8\uC2DC "
+      Id: 0
+    - Text: "\uC9D1\uC0AC, \uC9C0\uAE08 \uB0B4 \uADF8\uB9BC \uC55E\uC5D0\uC11C \uCDA4\uCDB0\uBD10! "
+      Name: "\uB8E8\uC2DC "
+      Id: 0
+    - Text: "\uBA4B\uC788\uB294 \uC601\uC0C1 \uCC0D\uC5B4\uC904\uAC8C! "
+      Name: "\uB8E8\uC2DC "
+      Id: 0
+    - Text: "\uD760\uD760..! \uC774 \uC9D1\uC0AC, \uC774\uB798\uBD48\uB3C4 \uD55C\uB54C
+        \uC545\uB9C8\uB4E4 \uC0AC\uC774\uC5D0\uC11C \uC778\uAE30\uAC00 \uB9CE\uC558\uC2B5\uC8E0. "
+      Name: "\uD574\uACE8\uC9D1\uC0AC "
+      Id: 1
+    - Text: "\uC5F0\uD68C\uC7A5\uC5D0\uC11C \uCDA4 \uC2E0\uCCAD\uC744\uD558\uBA74
+        \uAC70\uC808\uD558\uB294 \uC545\uB9C8\uB4E4\uC774 \uC5C6\uC5C8... "
+      Name: "\uD574\uACE8\uC9D1\uC0AC "
+      Id: 1
+    - Text: "\uC6CC\uC53D\uC2DC~\uC6B0\uB8EC\uD5C8\uC2A4\uC704\uB2C8\uC0F9\uC2A4\uC6CC\uB3C4\uC988~"
+      Name: "\uB8E8\uC2DC "
+      Id: 0
+    - Text: .....
+      Name: "\uD574\uACE8\uC9D1\uC0AC "
+      Id: 1
+  - _narrations:
     - Text: "\uD750\uC5E5.. \uD788\uC789... "
       Name: "\uBA54\uC774\uB4DC "
       Id: 2
@@ -17252,7 +17291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b93db09f64be6984d811438dbbbe6260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 0
+  ID: 1
 --- !u!114 &8758211568606344588
 MonoBehaviour:
   m_ObjectHideFlags: 0
