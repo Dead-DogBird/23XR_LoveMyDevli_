@@ -119,14 +119,21 @@ public class TestBoss : MonoBehaviour
         {
             pos = (Random.Range(0, 2) == 1) ? -8.5f : 8.5f;
 
-           for(int j=0;j<3;j++)
-           {
+         
                 SFXInstance.start();
-
                 Instantiate(Bullet).GetComponent<Bullet>()
-                .Init(new Vector3(pos, -3.75f+j*0.2f+YposCorrection), new Vector3(pos*-1, -3.75f+YposCorrection), 15, 4).
-                GetFire(new Vector3(pos*-1 , -3.75f+j*0.2f+YposCorrection));
-           }
+                .Init(new Vector3(pos, -3.75f+YposCorrection), new Vector3(pos*-1, -3.75f+YposCorrection), 15, 4).
+                GetFire(new Vector3(-pos , -3.75f+YposCorrection));
+                Instantiate(Bullet).GetComponent<Bullet>()
+                    .Init(new Vector3(pos+2, -3.75f+YposCorrection), new Vector3(pos*-1, -3.75f+YposCorrection), 15, 4).
+                    GetFire(new Vector3(-(pos+2) , -3.75f+YposCorrection));
+                Instantiate(Bullet).GetComponent<Bullet>()
+                    .Init(new Vector3((pos*2+2)/2, -3.5f+YposCorrection), new Vector3(pos*-1, -3.75f+YposCorrection), 15, 4).
+                    GetFire(new Vector3(-((pos*2+2)/2) , -3.5f+YposCorrection));
+                Instantiate(Bullet).GetComponent<Bullet>()
+                                .Init(new Vector3((pos*2+2)/2, -4.25f+YposCorrection), new Vector3(pos*-1, -3.75f+YposCorrection), 15, 4).
+                                GetFire(new Vector3(-((pos*2+2)/2), -4.25f+YposCorrection));
+                           
            WaitForSec(1.5f).Forget();
             await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         }
