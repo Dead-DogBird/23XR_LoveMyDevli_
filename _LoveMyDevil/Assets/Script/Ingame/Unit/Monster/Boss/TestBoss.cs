@@ -124,27 +124,6 @@ public class TestBoss : MonoBehaviour
             WaitForSec(0.5f).Forget();
             await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         }
-        
-        // await UniTask.WaitUntil(() => waitTime);
-        // while (MathF.Abs(transform.position.y - (_toYposes[0].transform.position.y + 1)) >= 0.08f)
-        // {
-        //     transform.position +=
-        //         (new Vector3(transform.position.x, _toYposes[0].transform.position.y + 1) - transform.position) *
-        //         (2.5f * Time.deltaTime);
-        //     await UniTask.Yield(PlayerLoopTiming.Update);
-        // }
-        //
-        // for (int i = 0; i < 3; i++)
-        // {
-        //     WaitForSec(1.5f).Forget();
-        //     await UniTask.WaitUntil(() => waitTime);
-        //     var temp = Instantiate(Laser, transform.position, quaternion.identity);
-        //     temp.transform.rotation = Quaternion.Euler(0, 0,
-        //         CustomAngle.PointDirection(transform.position, _player.transform.position));
-        //     Destroy(temp, 1.6f);
-        //     WaitForSec(1f).Forget();
-        //     await UniTask.WaitUntil(() => waitTime);
-        // }
         Instantiate(SprayItem, new Vector3(Random.Range(-1.16f, 1.16f), -3.3f+YposCorrection), Quaternion.identity);
         isBossPattern = false;
     }
@@ -268,7 +247,7 @@ public class TestBoss : MonoBehaviour
         _animation.SetAnimation(BossAnimation.Animations.Attack);
         for (int i = 0; i < random; i++)
         {
-            var pos = new Vector3(Random.Range(-8.0f, 8.0f), Random.Range(-5.0f, -4.0f));
+            var pos = new Vector3(Random.Range(-8.0f, 8.0f), Random.Range(-7.0f, -6.0f));
             var temp =  Instantiate(FireWorkObj,pos,
                 Quaternion.identity);
             temp.GetComponent<FireWork>().Init(pos,Random.Range(10, 15));
@@ -334,14 +313,25 @@ public class TestBoss : MonoBehaviour
         await UniTask.WaitUntil(() => waitTime, cancellationToken: cancel.Token);
         _animation.SetAnimation(BossAnimation.Animations.Attack);
         float time = 5;
+        float randYPos,curYPos;
+        randYPos = 0;
         while (time >= 0)
         {
             time -= Time.deltaTime;
-            if (Random.Range(0, 5) > 3)
+            if (Random.Range(0, 10) < 3)
             {
-                var temp = Instantiate(Bullet).GetComponent<Bullet>();
-                temp.Init(transform.position+new Vector3(10, Random.Range(-10.0f,10.0f)),_player.transform.position,Random.Range(14.0f,21.0f),10);
-                temp.GetFire(temp.transform.position+new Vector3(-20,Random.Range(-3.0f,3.0f)));
+                curYPos = Random.Range(-10.0f, 10.0f);
+                if (MathF.Abs(curYPos - randYPos) > 1)
+                {
+                    var temp = Instantiate(Bullet).GetComponent<Bullet>();
+                    temp.Init(transform.position+new Vector3(10,curYPos),_player.transform.position,Random.Range(14.0f,21.0f),10);
+                    temp.GetFire(temp.transform.position+new Vector3(-20,Random.Range(-3.0f,3.0f)));
+                    randYPos = curYPos;
+                }
+                else
+                {
+                    continue;
+                }
                 
             }
             await UniTask.Yield(PlayerLoopTiming.LastFixedUpdate, cancellationToken: cancel.Token);
@@ -370,8 +360,8 @@ public class TestBoss : MonoBehaviour
     async UniTaskVoid RepeatFire()
     {
         endRepeatFire = false;
-        var temp = Instantiate(RepeatFireObj, new Vector3(-9, -3, 0), Quaternion.identity);
-        var temp2 = Instantiate(RepeatFireObj, new Vector3(9, -3, 0), Quaternion.identity);
+        var temp = Instantiate(RepeatFireObj, new Vector3(-9, -5, 0), Quaternion.identity);
+        var temp2 = Instantiate(RepeatFireObj, new Vector3(9, -5, 0), Quaternion.identity);
 
         float tick = 0;
         while (!endRepeatFire)
