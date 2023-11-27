@@ -767,6 +767,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 292225673047587837}
     m_Modifications:
+    - target: {fileID: 2676437307051880265, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676437307051880265, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676437307051880265, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3151830014467066651, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3151830014467066651, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3977388943660947133, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3977388943660947133, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4200293964844067885, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -807,9 +835,65 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4311288110331084365, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4311288110331084365, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4311288110331084365, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4993615118524078085, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4993615118524078085, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4993615118524078085, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7499446058089269969, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7499446058089269969, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7499446058089269969, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.12
+      objectReference: {fileID: 0}
     - target: {fileID: 7552382473285006644, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
       propertyPath: m_Name
       value: SprayEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638604135133521411, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638604135133521411, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
+      propertyPath: InitialModule.startSizeY.scalar
+      value: 3.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638604135133521411, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8928385766063273809, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8928385766063273809, guid: 6f4f47b4247b1b94798f25b4ec56ca4a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

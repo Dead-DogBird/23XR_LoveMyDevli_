@@ -6555,6 +6555,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1113055926488271408, guid: 72998f8e14f9ae146b302826984bf939, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1113055926488271408, guid: 72998f8e14f9ae146b302826984bf939, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1861373915
+      objectReference: {fileID: 0}
     - target: {fileID: 1163080099079794968, guid: 72998f8e14f9ae146b302826984bf939, type: 3}
       propertyPath: LowSpraySfx
       value: event:/SYSTEM_SFX/LowSpray
@@ -6566,6 +6574,14 @@ PrefabInstance:
     - target: {fileID: 1675574704362687705, guid: 72998f8e14f9ae146b302826984bf939, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301539909766615557, guid: 72998f8e14f9ae146b302826984bf939, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301539909766615557, guid: 72998f8e14f9ae146b302826984bf939, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1861373915
       objectReference: {fileID: 0}
     - target: {fileID: 5922965705640579138, guid: 72998f8e14f9ae146b302826984bf939, type: 3}
       propertyPath: SFXCtrl
