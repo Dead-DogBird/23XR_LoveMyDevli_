@@ -51,6 +51,7 @@ public class DroppedPlatform : MonoBehaviour
     }
     public async UniTaskVoid Dropped()
     {
+        if (isDrop) return;
         float time = dropdelay;
         while (time > 0)
         {

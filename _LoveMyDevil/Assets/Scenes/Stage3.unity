@@ -3753,7 +3753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f73f5a7d75bc549a1746247c4977e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  completeEffect: {fileID: 0}
+  completeEffect: {fileID: 3570283487611236121, guid: 011bc5a9fbdb6e64b9b66f115d245411, type: 3}
 --- !u!212 &385512132
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4178,7 +4178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f73f5a7d75bc549a1746247c4977e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  completeEffect: {fileID: 0}
+  completeEffect: {fileID: 3570283487611236121, guid: 011bc5a9fbdb6e64b9b66f115d245411, type: 3}
 --- !u!212 &405945656
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5924,7 +5924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f73f5a7d75bc549a1746247c4977e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  completeEffect: {fileID: 0}
+  completeEffect: {fileID: 3570283487611236121, guid: 011bc5a9fbdb6e64b9b66f115d245411, type: 3}
 --- !u!212 &556376635
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6254,7 +6254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f73f5a7d75bc549a1746247c4977e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  completeEffect: {fileID: 0}
+  completeEffect: {fileID: 3570283487611236121, guid: 011bc5a9fbdb6e64b9b66f115d245411, type: 3}
 --- !u!212 &643804090
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7449,7 +7449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f73f5a7d75bc549a1746247c4977e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  completeEffect: {fileID: 0}
+  completeEffect: {fileID: 3570283487611236121, guid: 011bc5a9fbdb6e64b9b66f115d245411, type: 3}
 --- !u!212 &752392632
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7841,7 +7841,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
+  m_LookAt: {fileID: 722629157}
   m_Follow: {fileID: 722629157}
   m_Lens:
     FieldOfView: 60
@@ -8543,7 +8543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f73f5a7d75bc549a1746247c4977e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  completeEffect: {fileID: 0}
+  completeEffect: {fileID: 3570283487611236121, guid: 011bc5a9fbdb6e64b9b66f115d245411, type: 3}
 --- !u!212 &871765515
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16140,7 +16140,7 @@ MonoBehaviour:
   graffitiactive1: 0
   clear: 0
   progress: 0
-  CurStage: 0
+  CurStage: 2
 --- !u!4 &1857022641
 Transform:
   m_ObjectHideFlags: 0

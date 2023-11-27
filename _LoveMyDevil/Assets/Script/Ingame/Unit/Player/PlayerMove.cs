@@ -471,7 +471,8 @@ public class PlayerMove : MonoSingleton<PlayerMove>
         {
             DeathInstance.setVolume(2.0f);
             DeathInstance.start();
-            soundstop = true; 
+            soundstop = true;
+            DeathTask().Forget();
         }
 
     }
@@ -481,4 +482,9 @@ public class PlayerMove : MonoSingleton<PlayerMove>
         freeze = false; 
     }
 
+    async UniTaskVoid DeathTask()
+    {
+        await UniTask.Delay(TimeSpan.FromSeconds(2));
+        SceneManager.LoadScene("Stage3");
+    }
 }
