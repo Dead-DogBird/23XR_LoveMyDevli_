@@ -13,6 +13,9 @@ public class Stage1BGM : MonoBehaviour
 
     int checkGraffiti;
 
+     int valuetask; 
+
+
     private FMOD.Studio.EventInstance BGMInstance;
 
 
@@ -24,26 +27,22 @@ public class Stage1BGM : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+  public  void Update()
     {
+
+        valuetask = NextDoor.Instance.value;
+
         checkGraffiti = GameManager.Instance.graffitiactive1; 
-
-        if(checkGraffiti == 1)
-        {
-            BGMInstance.setParameterByName("On or Off", 1.0f);
-        }
-
-
        
-        if(checkGraffiti == 2)
-        {
-            BGMInstance.setParameterByName("On or Off", 2.0f);
-        }
-
-        if(checkGraffiti == 3)
+        if(checkGraffiti == 1)
         {
             BGMInstance.setParameterByName("On or Off", 3.0f);
         }
-      
+
+        if (valuetask == 1)
+        {
+            Debug.Log("d");
+            BGMInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
     }
 }

@@ -4,9 +4,19 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening.Plugins.Options;
 using UnityEngine;
+using FMOD.Studio;
+using FMODUnity;
+
 
 public class GateKeeper : MonoBehaviour
 {
+    [FMODUnity.EventRef]
+    public string SFXCtrl;
+
+    private FMOD.Studio.EventInstance SFXInstance;
+
+
+
     private Rigidbody2D _rigidbody;
 
     Vector2 Attackarea;
@@ -39,6 +49,8 @@ public class GateKeeper : MonoBehaviour
         Attackarea = new Vector2(10, 1.5f);
         oridelay = jumpDelay;
         Jump();
+
+        SFXInstance = FMODUnity.RuntimeManager.CreateInstance(SFXCtrl);
     }
 
     IEnumerator readygo()
@@ -58,6 +70,9 @@ public class GateKeeper : MonoBehaviour
     void Jump()
     {
         nowClimb = false;
+
+        SFXInstance.setParameterByName("keepersound", 1.0f);
+        SFXInstance.start();
         _rigidbody.gravityScale = _gravity;
         PlayAnimation((focus==1?2:0));
         _rigidbody.AddForce(D9Extension.DegreeToVector2(Degree + (focus==-1?90:0))*JumpForce);

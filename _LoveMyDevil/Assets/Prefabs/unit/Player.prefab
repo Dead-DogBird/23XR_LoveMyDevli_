@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d826ad70ae3d04e40b0e79103d1ae58d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LowSpraySfx: 
+  LowSpraySfx: event:/SYSTEM_SFX/LowSpray
   spray: {fileID: 7002691055552402137, guid: 0f4acbadfe180fd448c3f8e42bdd347a, type: 3}
   mousePointer: {fileID: 3874945464380854692}
   isBossStage: 0
@@ -293,7 +293,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0932b9f535397e544be3c74ba467fbf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SFXCtrl: 
+  SFXCtrl: event:/Player_Sfx/Player_Sfx1
+  DeathSFXCtrl: event:/SYSTEM_SFX/GameOver
   speed: 5.3
   jumpForce: 550
   ignoreTime: 0.5

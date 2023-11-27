@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{dadff241-cd9a-4705-864b-00c3c83b33be}">
+		<property name="name">
+			<value>Maid_pa</value>
+		</property>
+		<relationship name="folder">
+			<destination>{82bcee70-c84c-4054-8d44-e28598a03854}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{305e4588-774e-4349-847e-d566f9a0f682}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{305e4588-774e-4349-847e-d566f9a0f682}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>3</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Value A</value>
+			<value>Value B</value>
+			<value>Value C</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

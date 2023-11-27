@@ -254,6 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4229d50ac61f59c4b8103f10b11af481, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SFXCtrl: event:/Mobs/Maid/Maid_State
   targetCallbackCollider: {fileID: 8805089153718893130}
   _body: {fileID: 314167640193750950}
   speed: 2

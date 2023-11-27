@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{8c92b39b-9b46-4a4a-a147-349dd843df38}">
+		<property name="assetPath">
+			<value>Mob/GateKeeper/Keeper_1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.8461451247165532</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{62f0a37e-a725-4d66-a488-d5a76a16330b}</destination>
+		</relationship>
+	</object>
+</objects>

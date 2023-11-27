@@ -1,9 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMOD.Studio;
+using FMODUnity;
+
 
 public class SkullMonster : MonoBehaviour
 {
+    [FMODUnity.EventRef]
+    public string SFXCtrl;
+
+    private FMOD.Studio.EventInstance SFXInstance;
+
+
+
+
     [SerializeField] private ColliderCallbackController MonsterBody;
     [SerializeField] private GameObject RightPos,LeftPos;
     [Header("³Ë¹é °­µµ")] [SerializeField] private float _knockbackFos;
@@ -15,6 +26,8 @@ public class SkullMonster : MonoBehaviour
         MonsterBody.onColliderEnter += OnTriggerEnter2DBody;
         MonsterBody.onCollisionEnter += OnCollisionEnterBody;
         _rigid = MonsterBody.GetComponent<Rigidbody2D>();
+
+        SFXInstance = FMODUnity.RuntimeManager.CreateInstance(SFXCtrl);
     }
     void Update()
     {
@@ -39,6 +52,7 @@ public class SkullMonster : MonoBehaviour
     {
         if (other.transform.CompareTag("Player"))
         {
+            SFXInstance.start();
             other.transform.GetComponent<PlayerMove>().GetKnockBack(MonsterBody.transform.position,_knockbackFos);
         }
     }

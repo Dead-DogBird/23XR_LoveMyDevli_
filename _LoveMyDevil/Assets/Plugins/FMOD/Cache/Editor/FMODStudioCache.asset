@@ -27,6 +27,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-8930711962816937200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Stages/Stage3/CompleteGauge
+  m_EditorClassIdentifier: 
+  Path: event:/Stages/Stage3/CompleteGauge
+  Guid:
+    Data1: 1491560953
+    Data2: 1192858341
+    Data3: -1567439432
+    Data4: -1683895407
+  Banks:
+  - {fileID: -1136721050939542016}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -1179904650104366893}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 22588
 --- !u!114 &-7947108018622008461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53,7 +81,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 750
+  Length: 700
 --- !u!114 &-5733925806537047507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,6 +109,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 700
+--- !u!114 &-4243182607735705852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MovieEffect/soundlowhigh
+  m_EditorClassIdentifier: 
+  Name: soundlowhigh
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 867067839
+    data2: 1085911072
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-3555490159267471582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,11 +179,11 @@ MonoBehaviour:
   - {fileID: 8432240232606965318}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 6078
+  Length: 300
 --- !u!114 &-2272145929489512686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +212,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 125309
+--- !u!114 &-2013363393185802387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Stages/Stage4/SatanTheme
+  m_EditorClassIdentifier: 
+  Path: event:/Stages/Stage4/SatanTheme
+  Guid:
+    Data1: 69116116
+    Data2: 1087839810
+    Data3: 1377526657
+    Data4: -957980869
+  Banks:
+  - {fileID: -1136721050939542016}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 20268
 --- !u!114 &-1773166927760711172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,6 +321,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-1425556579046130479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Mobs/GateKeeper/KeeperSounds
+  m_EditorClassIdentifier: 
+  Path: event:/Mobs/GateKeeper/KeeperSounds
+  Guid:
+    Data1: -881030995
+    Data2: 1213018118
+    Data3: -1702474053
+    Data4: -2013745805
+  Banks:
+  - {fileID: 8432240232606965318}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 3912319381586759198}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
 --- !u!114 &-1330768623359212246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,10 +364,70 @@ MonoBehaviour:
   Path: ../../../SoundPack/LovingMyDevilSoundPack/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638365583979190550
+  lastModified: 638367161371169827
   FileSizes:
   - Name: Desktop
     Value: 1036
+  Exists: 1
+--- !u!114 &-1253510980763119427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SYSTEM_SFX/MovieEffect
+  m_EditorClassIdentifier: 
+  Path: event:/SYSTEM_SFX/MovieEffect
+  Guid:
+    Data1: 2095521463
+    Data2: 1247147843
+    Data3: 2139434388
+    Data4: 1282499772
+  Banks:
+  - {fileID: 8432240232606965318}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -4243182607735705852}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10134
+--- !u!114 &-1179904650104366893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/CompleteGauge/Parameter 3
+  m_EditorClassIdentifier: 
+  Name: Parameter 3
+  StudioPath: 
+  Min: 0
+  Max: 7
+  Default: 0
+  ID:
+    data1: 3050038086
+    data2: 2174996536
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Value A
+  - Value B
+  - Value C
+  - Value D
+  - Value E
+  - Value F
+  - Value G
+  - Value H
   Exists: 1
 --- !u!114 &-1136721050939542016
 MonoBehaviour:
@@ -277,10 +444,10 @@ MonoBehaviour:
   Path: ../../../SoundPack/LovingMyDevilSoundPack/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 638365499469072147
+  lastModified: 638367161380531792
   FileSizes:
   - Name: Desktop
-    Value: 4300256
+    Value: 8210560
   Exists: 1
 --- !u!114 &-693265237350890436
 MonoBehaviour:
@@ -297,10 +464,10 @@ MonoBehaviour:
   Path: ../../../SoundPack/LovingMyDevilSoundPack/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638365583979215681
+  lastModified: 638367161371179866
   FileSizes:
   - Name: Desktop
-    Value: 1852
+    Value: 2342
   Exists: 1
 --- !u!114 &-655332256629877537
 MonoBehaviour:
@@ -325,10 +492,11 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: 7759409875140812150}
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 1500
 --- !u!114 &-353262506985720768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,12 +559,18 @@ MonoBehaviour:
   - {fileID: 5685186326517779224}
   - {fileID: -2272145929489512686}
   - {fileID: 8875351730795916035}
+  - {fileID: -8930711962816937200}
+  - {fileID: -1425556579046130479}
+  - {fileID: -1253510980763119427}
+  - {fileID: -2013363393185802387}
+  - {fileID: 4867759332697141120}
+  - {fileID: 3180296649167124963}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1330768623359212246}
   StringsBanks:
   - {fileID: -693265237350890436}
-  cacheTime: 638365907370642877
+  cacheTime: 638367161380531792
   cacheVersion: 131608
 --- !u!114 &35816834349784178
 MonoBehaviour:
@@ -614,6 +788,59 @@ MonoBehaviour:
   - Value N
   - Value O
   Exists: 1
+--- !u!114 &3180296649167124963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Stages/Stage4/SatanBattleTheme
+  m_EditorClassIdentifier: 
+  Path: event:/Stages/Stage4/SatanBattleTheme
+  Guid:
+    Data1: 216253466
+    Data2: 1115670334
+    Data3: 655800481
+    Data4: -492678415
+  Banks:
+  - {fileID: -1136721050939542016}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 71111
+--- !u!114 &3912319381586759198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/KeeperSounds/keepersound
+  m_EditorClassIdentifier: 
+  Name: keepersound
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1293468476
+    data2: 493449957
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Value A
+  - Value B
+  Exists: 1
 --- !u!114 &4383247010632226290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -642,6 +869,33 @@ MonoBehaviour:
   - Value C
   - Value D
   Exists: 1
+--- !u!114 &4867759332697141120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Mobs/Satan/SatanpaternLaser
+  m_EditorClassIdentifier: 
+  Path: event:/Mobs/Satan/SatanpaternLaser
+  Guid:
+    Data1: 184409298
+    Data2: 1284151514
+    Data3: -817660528
+    Data4: 1323286102
+  Banks:
+  - {fileID: 8432240232606965318}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 633
 --- !u!114 &5685186326517779224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -697,6 +951,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &7759409875140812150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Maid_State/Maid_pa
+  m_EditorClassIdentifier: 
+  Name: Maid_pa
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 2608360617
+    data2: 2260030858
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Value A
+  - Value B
+  - Value C
+  Exists: 1
 --- !u!114 &8432240232606965318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -712,10 +993,10 @@ MonoBehaviour:
   Path: ../../../SoundPack/LovingMyDevilSoundPack/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638365907370642877
+  lastModified: 638367148884113434
   FileSizes:
   - Name: Desktop
-    Value: 316544
+    Value: 452960
   Exists: 1
 --- !u!114 &8875351730795916035
 MonoBehaviour:

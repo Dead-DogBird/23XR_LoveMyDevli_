@@ -9,15 +9,25 @@ using FMODUnity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMove : MonoSingleton<PlayerMove>
 {
+    
+
+    //사망시 BGM 멈춤 
+    public static bool soundstop = false; 
+
+
     [FMODUnity.EventRef]
     public string SFXCtrl;
 
-   
+    [FMODUnity.EventRef]
+    public string DeathSFXCtrl;
 
     private FMOD.Studio.EventInstance SFXInstance;
     private FMOD.Studio.EventInstance WalkInstance;
+
+    private FMOD.Studio.EventInstance DeathInstance;
+
 
 
     // 컴포넌트들
@@ -92,9 +102,9 @@ public class PlayerMove : MonoBehaviour
         platformCollider.onColliderExit += PlatformExit;
         Blinkmode = true;
         SFXInstance = FMODUnity.RuntimeManager.CreateInstance(SFXCtrl);
+        DeathInstance = FMODUnity.RuntimeManager.CreateInstance(DeathSFXCtrl);
 
-        
-        
+
     }
 
     private void OnEnable()
@@ -189,7 +199,11 @@ public class PlayerMove : MonoBehaviour
         speed = 0;
         _boxCollider2D.isTrigger = true;
         _spriteRenderer.color = Color.red;
+        
     }
+
+  
+
 
 
     private void FixedUpdate()
@@ -215,7 +229,7 @@ public class PlayerMove : MonoBehaviour
         if (!_playerControll.Userinput.SpaceState) return;
         _isjumping = true;
         SFXInstance.setParameterByName("PlayerState", 0.0f);
-        SFXInstance.setVolume(0.3f);
+        SFXInstance.setVolume(0.2f);
         SFXInstance.start();
         jumpCount++;
         _playerAnimation.SetAnimation((_playerControll.Userinput.AxisState>=0)
@@ -281,17 +295,19 @@ public class PlayerMove : MonoBehaviour
         }
         isBlink = false;
     }
-    
-    private void OnCollisionEnter2D(Collision2D other)
+
+     void OnCollisionEnter2D(Collision2D collision)
     {
-       
+        
     }
 
-    private void OnCollisionExit2D(Collision2D other)
+     void OnCollisionExit2D(Collision2D collision)
     {
-
+        
     }
-    
+
+
+   
     public void GetKnockBack(Vector3 pos, float knokbackfos,bool isDie = false)
     {
         if (isIgnore) return;
@@ -450,6 +466,14 @@ public class PlayerMove : MonoBehaviour
             GetKnockBack(other.ClosestPoint(transform.position), 20,true);
             GameOverTask().Forget();
         }
+
+        if (other.CompareTag("death"))
+        {
+            DeathInstance.setVolume(2.0f);
+            DeathInstance.start();
+            soundstop = true; 
+        }
+
     }
 
     public static void unlockfreeze()

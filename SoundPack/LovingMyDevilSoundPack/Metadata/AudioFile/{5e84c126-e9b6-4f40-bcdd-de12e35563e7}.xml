@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{5e84c126-e9b6-4f40-bcdd-de12e35563e7}">
+		<property name="assetPath">
+			<value>Stage4/SatanBattleTheme.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>71.111111111111114</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{62f0a37e-a725-4d66-a488-d5a76a16330b}</destination>
+		</relationship>
+	</object>
+</objects>

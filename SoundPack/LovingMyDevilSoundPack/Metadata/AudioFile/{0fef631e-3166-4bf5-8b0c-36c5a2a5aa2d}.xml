@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{0fef631e-3166-4bf5-8b0c-36c5a2a5aa2d}">
+		<property name="assetPath">
+			<value>Stage4/satan_Idletheme.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>20.268843537414966</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{62f0a37e-a725-4d66-a488-d5a76a16330b}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -8,6 +8,8 @@ using UnityEngine;
 public class GameManager : MonoSingleton<GameManager>
 {
     public int graffitiactive1 = 0;
+    public int clear = 0; 
+
     public event EventHandler OnMakeOverGraffiti;
     
     public float progress;
@@ -83,18 +85,21 @@ public class GameManager : MonoSingleton<GameManager>
         switch (CurStage)
         {
             case Stage.stage2:
+                clear = 1; 
                 await UniTask.Delay(TimeSpan.FromSeconds(3f));
                 UImanager.Instance.Fade(false);
                 await UniTask.Delay(TimeSpan.FromSeconds(3f));
                 LoadingSceneManager.LoadScene("Stage3",2);
                 break;
             case Stage.stage3:
+                clear = 1;
                 await UniTask.Delay(TimeSpan.FromSeconds(10f));
                 UImanager.Instance.Fade(false);
                 await UniTask.Delay(TimeSpan.FromSeconds(3f));
                 LoadingSceneManager.LoadScene("Stage4",3);
                 break;
             case Stage.stage4:
+                clear = 1;
                 LoadingSceneManager.LoadScene("TitleScene",4);
                 break;
         }

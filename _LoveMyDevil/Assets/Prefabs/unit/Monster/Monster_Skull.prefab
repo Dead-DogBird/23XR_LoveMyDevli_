@@ -409,6 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44a3d2306d3ae8469685a744507a013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SFXCtrl: event:/Mobs/Skull/New Event
   MonsterBody: {fileID: 4187212518943859630}
   RightPos: {fileID: 8446977109938075844}
   LeftPos: {fileID: 8145071301690789758}

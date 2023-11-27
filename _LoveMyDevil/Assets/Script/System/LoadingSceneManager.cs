@@ -6,6 +6,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using FMODUnity;
+using FMOD.Studio;
+
 
 [System.Serializable]
 struct Videos
@@ -15,6 +18,13 @@ struct Videos
 
 public class LoadingSceneManager : MonoBehaviour
 {
+    [FMODUnity.EventRef]
+    public string SFXCtrl;
+
+    bool soundeffect = false; 
+
+    private FMOD.Studio.EventInstance SFXInstance;
+
     public static string nextScene;
     [SerializeField] Image progressBar;
     [SerializeField] Image AnimationCurtain;
@@ -29,6 +39,26 @@ public class LoadingSceneManager : MonoBehaviour
     {
         LoadScene().Forget();
         VideoPlayer.loopPointReached += NextVideo;
+
+        SFXInstance = FMODUnity.RuntimeManager.CreateInstance(SFXCtrl);
+
+        SFXInstance.set3DAttributes(RuntimeUtils.To3DAttributes(transform.position));
+
+        SFXInstance.start();
+        SFXInstance.setVolume(2);
+    }
+
+    private void Update()
+    {
+        if(soundeffect == true)
+        {
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("soundlowhigh", 0.7f);
+        }
+
+        if(soundeffect == false)
+        {
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("soundlowhigh", 2.0f);
+        }
     }
 
     public static void LoadScene(string sceneName)
@@ -84,21 +114,33 @@ public class LoadingSceneManager : MonoBehaviour
             VideoPlayer.Play();
             await UniTask.WaitUntil(()=>nextVideo);
             CurVideo++;
-            if (CurVideo >= maxVideo)
-                break;
+            if (CurVideo >= maxVideo)            
+            break;
         }
+        SFXInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         OnCutSceneEnd = true;
     }
     void NextVideo(VideoPlayer vp)
     {
+
+        soundeffect = true; 
         nextVideo = true;
         //TODO: 닫았다가 여는 애니메이션 재생
         CutainAnimation.Play("CurtainClose");
+        StartCoroutine(lowsound());
     }
+
+    IEnumerator lowsound()
+    {
+        yield return new WaitForSeconds(1f);
+        soundeffect = false;
+    }
+
 
     private bool isSkip;
     public void SkipButton()
     {
         isSkip = true;
+        SFXInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 }

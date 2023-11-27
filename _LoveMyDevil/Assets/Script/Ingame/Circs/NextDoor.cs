@@ -4,14 +4,21 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.UI.CanvasScaler;
 
-public class NextDoor : MonoBehaviour
+
+public class NextDoor : MonoSingleton<NextDoor>
 {
-    
+  
+
+    public int value = 0;
+
+   
+
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
@@ -23,11 +30,15 @@ public class NextDoor : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         NextStage(other).Forget();
+        
+        
     }
 
     async UniTaskVoid NextStage(Collider2D other)
     {
+        value = 1;
         UImanager.Instance.Fade(false);
+        
         await UniTask.Delay(TimeSpan.FromSeconds(3f));
         
         if (other.gameObject.CompareTag("Player") && GameManager.Instance.GetProgress)
@@ -43,6 +54,10 @@ public class NextDoor : MonoBehaviour
         if (other.collider.CompareTag("Player") && GameManager.Instance.GetProgress)
         {
             LoadingSceneManager.LoadScene("Stage2",1);
+           
         }
+
+       
+
     }
 }

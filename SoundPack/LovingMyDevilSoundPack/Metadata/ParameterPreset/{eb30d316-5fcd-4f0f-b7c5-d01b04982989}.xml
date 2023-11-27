@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{eb30d316-5fcd-4f0f-b7c5-d01b04982989}">
+		<property name="name">
+			<value>soundlowhigh</value>
+		</property>
+		<relationship name="folder">
+			<destination>{82bcee70-c84c-4054-8d44-e28598a03854}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{a18564e0-b480-4445-a4b8-5ee0389112d6}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{a18564e0-b480-4445-a4b8-5ee0389112d6}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

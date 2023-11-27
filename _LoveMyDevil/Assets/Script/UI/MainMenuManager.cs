@@ -67,6 +67,9 @@ public class MainMenuManager : MonoBehaviour
             SettingCanvasBG.color += (Color.black - SettingCanvasBG.color) *
                                      (Time.unscaledDeltaTime * 5);
         }
+
+       
+
     }
 
     public void SettingButton(bool isOn)

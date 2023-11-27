@@ -440,6 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c970d911903d11d428924a47cb1e93b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SFXCtrl: event:/Mobs/GhostChase/Ghost_chase
   _body: {fileID: 8626715337664312999}
   _checkCollider: {fileID: 3234370483199826652}
   _speed: 3

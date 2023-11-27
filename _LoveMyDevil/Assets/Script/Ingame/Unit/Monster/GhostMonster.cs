@@ -4,9 +4,16 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using FMOD.Studio;
+using FMODUnity;
 
 public class GhostMonster : MonoBehaviour
 {
+    [FMODUnity.EventRef]
+    public string SFXCtrl;
+
+    private FMOD.Studio.EventInstance SFXInstance;
+
     [SerializeField] private GameObject _body;
     [SerializeField] private ColliderCallbackController _checkCollider;
 
@@ -43,6 +50,9 @@ public class GhostMonster : MonoBehaviour
         _bodyRigid = _body.GetComponent<Rigidbody2D>();
         SpawnPos = _body.transform.position;
         MoveSelect().Forget();
+
+        SFXInstance = FMODUnity.RuntimeManager.CreateInstance(SFXCtrl);
+        SFXInstance.setVolume(2.0f);
     }
 
     void Update()
@@ -130,13 +140,17 @@ public class GhostMonster : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            SFXInstance.start();
             ghostState = State.Targeted;
             player = other.gameObject;
         }
     }
     void OnCheckTriggerExit(Collider2D other)
     {
-
+        if (other.CompareTag("Player"))
+        {
+            SFXInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
     }
     
     

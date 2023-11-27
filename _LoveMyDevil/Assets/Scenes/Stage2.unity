@@ -10958,6 +10958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graffitiactive1: 0
+  clear: 0
   progress: 0
   CurStage: 1
 --- !u!114 &1873437446

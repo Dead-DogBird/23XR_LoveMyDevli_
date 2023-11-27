@@ -25,6 +25,7 @@ TagManager:
   - BossAttack
   - FallDownCollider
   - KeeperOver
+  - death
   layers:
   - Default
   - TransparentFX

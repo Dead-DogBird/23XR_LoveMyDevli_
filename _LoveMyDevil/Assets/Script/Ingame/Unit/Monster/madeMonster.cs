@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMOD.Studio;
+using FMODUnity;
 
 public class madeMonster : MonoBehaviour
 {
+    [FMODUnity.EventRef]
+    public string SFXCtrl;
+
+    private FMOD.Studio.EventInstance SFXInstance;
+
     enum State
     {
         NonTargeting,
@@ -25,6 +32,9 @@ public class madeMonster : MonoBehaviour
         targetCallbackCollider.onColliderEnter += OnTriggerEnterTargetCollider;
         targetCallbackCollider.onColliderExit += OnTriggerExitTargetCollider;
         _body.GetComponent<ColliderCallbackController>().onColliderEnter += OnTriggerEnterBodyCollider;
+
+
+        SFXInstance = FMODUnity.RuntimeManager.CreateInstance(SFXCtrl);
     }
 
     void Update()
@@ -99,6 +109,8 @@ public class madeMonster : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            SFXInstance.setParameterByName("Maid_pa", 2.0f);
+            SFXInstance.start();
             madeState = State.Targeting;
             player = other.gameObject;
         }
@@ -111,6 +123,8 @@ private void OnTriggerExitTargetCollider(Collider2D other)
         {
             if(madeState == State.Targeting)
                 madeState = State.NonTargeting;
+            SFXInstance.setParameterByName("Maid_pa", 1.0f);
+            SFXInstance.start();
         }
     }
     //body의 충돌처리

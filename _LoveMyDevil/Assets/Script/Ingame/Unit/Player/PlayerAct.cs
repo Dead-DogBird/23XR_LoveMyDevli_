@@ -7,10 +7,17 @@ using System.IO.Pipes;
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
+using UnityEngine.SceneManagement; 
+
 
 
 public class PlayerAct : MonoBehaviour
 {
+
+    string scenename;
+
+    bool scenecheck = false; 
+
     [FMODUnity.EventRef]
     public string LowSpraySfx;
 
@@ -57,6 +64,12 @@ public class PlayerAct : MonoBehaviour
         _playerEffect.SprayEffect.transform.parent = mousePointer;
         _playerEffect.SprayEffect.transform.localPosition = new Vector3(0, 0, 0);
         SFXInstance = FMODUnity.RuntimeManager.CreateInstance(LowSpraySfx);
+
+        scenename = SceneManager.GetActiveScene().name; 
+        if(scenename == "stage4")
+        {
+            scenecheck = true; 
+        }
     }
 
     void Update()
@@ -176,10 +189,13 @@ public class PlayerAct : MonoBehaviour
 
     IEnumerator spraysoundout()
     {
-        SFXInstance.setVolume(0.7f);
-        SFXInstance.start();
-        yield return new WaitForSeconds(3);
-        lowspray = false; 
+        if (scenecheck == false)
+        {
+            SFXInstance.setVolume(0.7f);
+            SFXInstance.start();
+            yield return new WaitForSeconds(3);
+            lowspray = false;
+        }
     }
 
 }

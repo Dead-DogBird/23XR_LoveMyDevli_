@@ -35,11 +35,13 @@ public class texter3 : MonoBehaviour
         {
             lucypanel.rectTransform.anchoredPosition = new Vector2(0, 700);
             normalpanel.rectTransform.anchoredPosition = new Vector2(0, 700);
+            textObj.rectTransform.anchoredPosition = new Vector2(0, 700);
             textObj.fontSize = 35;
         }
 
         if (checker == 8)
         {
+            textObj.rectTransform.anchoredPosition = new Vector2(0, 227);
             normalpanel.rectTransform.anchoredPosition = new Vector2(0, 227);
         }
 
