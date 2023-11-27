@@ -21,6 +21,8 @@ public class Stage2FaceController : MonoBehaviour
     public Image[] MonstersFaces;
 
 
+    [Header("maid face")]
+    public Image[] maidface;
 
 
 
@@ -34,7 +36,7 @@ public class Stage2FaceController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        checker = Stage2Typing.instance.inputcount;
+        checker = TypingManager.instance.inputcount;
 
         if(checker == 2)
         {
@@ -51,6 +53,14 @@ public class Stage2FaceController : MonoBehaviour
             LucyFaces[2].color = new Color(1, 1, 1, 0);
             LucyFaces[3].color = new Color(1, 1, 1, 1);
         }
+
+        if(checker == 10)
+        {
+            maidface[0].color = new Color(1, 1, 1, 0);
+            maidface[1].color = new Color(1, 1, 1, 1);
+        }
+           
+
 
     }
 }

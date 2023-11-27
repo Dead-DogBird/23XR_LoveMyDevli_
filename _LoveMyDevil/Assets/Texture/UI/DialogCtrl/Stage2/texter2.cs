@@ -7,8 +7,13 @@ using System.Security.Cryptography;
 using AmplifyShaderEditor;
 using TMPro;
 
-public class texter2 : MonoBehaviour
+public class texter2 : MonoSingleton<texter2>
 {
+    public bool playercantmove = true; 
+
+
+    public bool maidcol = false;
+
     int checker;
     int checker2stage;
 
@@ -24,7 +29,7 @@ public class texter2 : MonoBehaviour
     //네임택
     public TextMeshProUGUI normalname;
 
-
+    bool maidtextstart = false;
 
 
     // update callback
@@ -35,9 +40,7 @@ public class texter2 : MonoBehaviour
     [Header("Dialogs")]
     public string[] textstring;
     public string[] textstring2;
-    public string[] textstring3;
-    public string[] textstring4;
-    public string[] textstring5; 
+    
 
 
     public TextMeshProUGUI textObj;
@@ -58,95 +61,32 @@ public class texter2 : MonoBehaviour
 
         checker = TypingManager.instance.inputcount;
 
-        checker2stage = Stage2Typing.instance.inputcount;
+        
 
         if(checker == 5)
         {
             noonetalk();           
             trigerdeny = 1;
-            check1 = true;
-            check2 = true;
-            check3 = true; 
-
+            textObj.text = "";
         }
 
-        /*
-            if (trigerdeny == 1)
-            {
-            if (check1 == true)
-            {
-                if (stage2dialtriger == 1)
-                {
-                    StartCoroutine(SkullText());
-                }
-            }
-            if (check2 == true)
-            {
-                if (stage2dialtriger == 2)
-                {
-                    StartCoroutine(Maidtext());
-                }
-            }
-            if (check3 == true)
-            {
-                if (stage2dialtriger == 3)
-                {
-                    StartCoroutine(ghosttext());
-                }
-            }
-            }
-
-        if (trigerdeny == 2)
+        if(maidcol == true)
         {
-            if (check1 == true)
+            if(maidtextstart == false)
             {
-                if (stage2dialtriger == 1)
-                {
-                    StartCoroutine(SkullText());
-                }
+                maidtext(); 
             }
-            if (check2 == true)
-            {
-                if (stage2dialtriger == 2)
-                {
-                    StartCoroutine(Maidtext());
-                }
-            }
-            if (check3 == true)
-            {
-                if (stage2dialtriger == 3)
-                {
-                    StartCoroutine(ghosttext());
-                }
-            }
+
+           
         }
 
-        if (trigerdeny == 3)
+        if(checker == 11)
         {
-            if (check1 == true)
-            {
-                if (stage2dialtriger == 1)
-                {
-                    StartCoroutine(SkullText());
-                }
-            }
-            if (check2 == true)
-            {
-                if (stage2dialtriger == 2)
-                {
-                    StartCoroutine(Maidtext());
-                }
-            }
-            if (check3 == true)
-            {
-                if (stage2dialtriger == 3)
-                {
-                    StartCoroutine(ghosttext());
-                }
-            }
+            noonetalk();
+            playercantmove = false;
+            PlayerMove.freeze = false;
+            PlayerMove.speed = 5.3f;
         }
-
-        */
     }
 
 
@@ -162,64 +102,31 @@ public class texter2 : MonoBehaviour
         }
     }
     
-    IEnumerator SkullText()
+   
+    void maidtext()
     {
-        check1 = false; 
-        trigerdeny  += 1; 
-       
-        textObj.text = "";
-        noonetalk();
-
-        yield return new WaitForSeconds(2);
-
-        lucytalk();
-        Stage2Typing.instance.Typing(textstring2, textObj);
-        
-    }
-    
-    IEnumerator Maidtext()
-    {
-        check2 = false; 
-        trigerdeny += 1;
-        
-        textObj.text = "";
-        noonetalk();
-
-        yield return new WaitForSeconds(2);
-
-        normaltalk();
-        normalname.text = "메이드";
-        Stage2Typing.instance.Typing(textstring3, textObj);
-    }
-
-    IEnumerator ghosttext() 
-    {
-        check3 = false; 
-        trigerdeny += 1;
-        
-        textObj.text = "";
-        noonetalk();
-
-        yield return new WaitForSeconds(2);
-
-        normaltalk();
-        normalname.text = "유령";
-        Stage2Typing.instance.Typing(textstring4, textObj);
+        maidtextstart = true;
+        StartCoroutine(maidscript());
 
     }
 
-    IEnumerator endtext()
+    IEnumerator maidscript()
     {
-        trigerdeny += 1;
+        PlayerMove.freeze = true;
+        PlayerMove.speed = 0;
 
-        textObj.text = "";
-        noonetalk();
+        yield return new WaitForSeconds(0.5f);
 
-        yield return new WaitForSeconds(2);
-
-        lucytalk();
-        Stage2Typing.instance.Typing(textstring5, textObj);
+        if(TypingManager.instance.inputcount == 5)
+        {
+            normaltalk();
+            textObj.rectTransform.anchoredPosition = new Vector2(0, 227);
+            TypingManager.instance.Typing(textstring2, textObj);
+        }
     }
+
+
+
 
 
     void lucytalk()

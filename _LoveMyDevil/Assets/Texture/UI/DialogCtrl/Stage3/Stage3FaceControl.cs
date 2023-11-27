@@ -81,5 +81,17 @@ public class Stage3FaceControl : MonoBehaviour
             KeeperFaces[1].color = new Color(1, 1, 1, 0);
             KeeperFaces[0].color = new Color(1, 1, 1, 1);
         }
+
+        if(checker == 19)
+        {
+            KeeperFaces[0].color = new Color(1, 1, 1, 0);
+            KeeperFaces[3].color = new Color(1, 1, 1, 1);
+        }
+
+        if(checker == 23)
+        {
+            KeeperFaces[3].color = new Color(1, 1, 1, 0);
+            KeeperFaces[4].color = new Color(1, 1, 1, 1);
+        }
     }
 }
