@@ -1670,7 +1670,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3107164484428374694, guid: 002768e1f11f6bf4f8da48fe44c16730, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.41
+      value: 12.49
       objectReference: {fileID: 0}
     - target: {fileID: 3107164484428374694, guid: 002768e1f11f6bf4f8da48fe44c16730, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7439,9 +7439,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 9.751752, y: 0.026360154}
+    - - {x: 8.994897, y: -0.18387711}
       - {x: 11.149044, y: -4.709458}
-      - {x: 25.5117, y: -3.7528563}
+      - {x: 25.568815, y: -8.703026}
       - {x: 25.499947, y: -11.955362}
       - {x: -9.0201, y: -11.928346}
       - {x: -9.013509, y: -5.010997}
@@ -8791,6 +8791,10 @@ PrefabInstance:
     - target: {fileID: 5922965705640579138, guid: 72998f8e14f9ae146b302826984bf939, type: 3}
       propertyPath: Blinkmode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5922965705640579138, guid: 72998f8e14f9ae146b302826984bf939, type: 3}
+      propertyPath: jumpForce
+      value: 600
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11570,10 +11574,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 9.87806, y: 0.17047715}
+    - - {x: 9.247348, y: -0.123855114}
       - {x: 11.345576, y: -4.5391016}
-      - {x: 16.107492, y: -4.21964}
-      - {x: 25.575891, y: -3.6021364}
+      - {x: 16.126532, y: -5.419104}
+      - {x: 25.404541, y: -8.000173}
       - {x: 25.524097, y: 4.5483623}
       - {x: 9.821339, y: 4.5572023}
   m_UseDelaunayMesh: 0
