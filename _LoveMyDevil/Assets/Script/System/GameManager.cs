@@ -7,6 +7,9 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
+
+   
+
     public int graffitiactive1 = 0;
     public int clear = 0; 
 
@@ -75,6 +78,7 @@ public class GameManager : MonoSingleton<GameManager>
             GetNextStage().Forget();
     }
 
+    //public 해제하기
     async UniTaskVoid GetNextStage()
     {
         await UniTask.Delay(TimeSpan.FromSeconds(1f));
@@ -99,7 +103,7 @@ public class GameManager : MonoSingleton<GameManager>
                 await UniTask.Delay(TimeSpan.FromSeconds(3f));
                 LoadingSceneManager.LoadScene("Stage4",3);
                 break;
-            case Stage.stage4:
+            case Stage.stage4:               
                 clear = 1;
                 await UniTask.Delay(TimeSpan.FromSeconds(3f));
                 UImanager.Instance.Fade(false);

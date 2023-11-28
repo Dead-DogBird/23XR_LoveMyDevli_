@@ -462,7 +462,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -1.4, y: -1.38}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &57836668
 Rigidbody2D:
   serializedVersion: 4
@@ -827,7 +827,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 3.8, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &110039623
 Rigidbody2D:
   serializedVersion: 4
@@ -1042,7 +1042,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &129210277
 Rigidbody2D:
   serializedVersion: 4
@@ -1257,7 +1257,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 4.39, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &146979858
 Rigidbody2D:
   serializedVersion: 4
@@ -2287,7 +2287,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -3.31, y: 0.61}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &291344089
 Rigidbody2D:
   serializedVersion: 4
@@ -3013,7 +3013,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 1.93, y: 0.67}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &515970972
 Rigidbody2D:
   serializedVersion: 4
@@ -3380,7 +3380,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -2.58, y: -2.4}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &584927130
 Rigidbody2D:
   serializedVersion: 4
@@ -3851,7 +3851,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.19, y: 0.7}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &640198316
 Rigidbody2D:
   serializedVersion: 4
@@ -4361,7 +4361,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &736974047
 Rigidbody2D:
   serializedVersion: 4
@@ -4863,7 +4863,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.98, y: 0.26}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &801229302
 Rigidbody2D:
   serializedVersion: 4
@@ -5309,7 +5309,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 2.92, y: -0.97}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &817362832
 Rigidbody2D:
   serializedVersion: 4
@@ -5576,7 +5576,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 3.76, y: -2.17}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &888836822
 Rigidbody2D:
   serializedVersion: 4
@@ -6191,7 +6191,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.43, y: 1.7}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &1115726025
 Rigidbody2D:
   serializedVersion: 4
@@ -6646,7 +6646,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -2.15, y: 0.15}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &1192932868
 Rigidbody2D:
   serializedVersion: 4
@@ -7011,7 +7011,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.94, y: -1.6}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &1276028423
 Rigidbody2D:
   serializedVersion: 4
@@ -7226,7 +7226,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -1}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &1279220557
 Rigidbody2D:
   serializedVersion: 4
@@ -7441,7 +7441,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.76, y: 1.18}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &1319397958
 Rigidbody2D:
   serializedVersion: 4
@@ -7781,7 +7781,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 2.35, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &1346080612
 Rigidbody2D:
   serializedVersion: 4
@@ -8154,7 +8154,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &1446734951
 Rigidbody2D:
   serializedVersion: 4
@@ -9093,7 +9093,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -3.69, y: -0.12}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &1544547654
 Rigidbody2D:
   serializedVersion: 4
@@ -9339,7 +9339,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -5.51, y: 1.57}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &1591130917
 Rigidbody2D:
   serializedVersion: 4
@@ -9381,7 +9381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 292225673047587837, guid: 72998f8e14f9ae146b302826984bf939, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.75
+      value: -4.69
       objectReference: {fileID: 0}
     - target: {fileID: 292225673047587837, guid: 72998f8e14f9ae146b302826984bf939, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9537,7 +9537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5922965705640579138, guid: 72998f8e14f9ae146b302826984bf939, type: 3}
       propertyPath: Getspray
-      value: 100
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5922965705640579138, guid: 72998f8e14f9ae146b302826984bf939, type: 3}
       propertyPath: Blinkmode
@@ -9883,7 +9883,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &1640313858
 Rigidbody2D:
   serializedVersion: 4
@@ -10098,7 +10098,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 1.36, y: 1.03}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &1642695710
 Rigidbody2D:
   serializedVersion: 4
@@ -10313,7 +10313,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -5.4, y: -0.62}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &1663561806
 Rigidbody2D:
   serializedVersion: 4
@@ -11157,7 +11157,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -5.44, y: 2.22}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &1789639772
 Rigidbody2D:
   serializedVersion: 4
@@ -12140,7 +12140,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -3.88, y: 2.27}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &2006212569
 Rigidbody2D:
   serializedVersion: 4
@@ -12580,7 +12580,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -2.64, y: 1.09}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &2060278665
 Rigidbody2D:
   serializedVersion: 4
@@ -12795,7 +12795,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 1.86, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &2077956432
 Rigidbody2D:
   serializedVersion: 4
@@ -13010,7 +13010,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -3.82, y: -0.65}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &2100800482
 Rigidbody2D:
   serializedVersion: 4
