@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.VisualScripting;
-using System.Security.Cryptography;
-using AmplifyShaderEditor;
+
 using TMPro;
 
 public class texter2 : MonoSingleton<texter2>

@@ -4,8 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.VisualScripting;
-using System.Security.Cryptography;
-using AmplifyShaderEditor;
 
 public class texter4 : MonoBehaviour
 {

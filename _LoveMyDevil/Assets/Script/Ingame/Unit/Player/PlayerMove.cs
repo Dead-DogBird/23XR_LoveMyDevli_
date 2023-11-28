@@ -107,9 +107,16 @@ public class PlayerMove : MonoSingleton<PlayerMove>
         SceneManager.sceneLoaded += LoadedsceneEvent;
     }
 
-    private void OnEnable()
+    void OnEnable()
     {
+        SceneManager.sceneLoaded += LoadedsceneEvent;
     }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= LoadedsceneEvent;
+    }
+
 
     void Update()
     {
@@ -494,8 +501,7 @@ public class PlayerMove : MonoSingleton<PlayerMove>
 
     private void LoadedsceneEvent(Scene scene, LoadSceneMode mode)
     {
-        soundstop = false; // 사운드멈춤취소
-        StopAllCoroutines();
+        soundstop = false; // 사운드멈춤취소      
     }
 
 }

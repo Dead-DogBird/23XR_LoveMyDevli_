@@ -61,10 +61,11 @@ public class GhostMonster : MonoBehaviour
     {
         switch (ghostState)
         {
-            case State.NonTargeted:
+            case State.NonTargeted:              
                 NonTargetedMove();
                 break;
             case State.Targeted:
+              
                 TargetedMove();
                 break;
             
@@ -143,6 +144,7 @@ public class GhostMonster : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             SFXInstance.start();
+            SFXInstance.setVolume(2);
             ghostState = State.Targeted;
             player = other.gameObject;
             _animation.AnimationName = "animation2";
@@ -157,9 +159,11 @@ public class GhostMonster : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            SFXInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             _animation.AnimationName = "animation1";
             _animation.loop = true;
-            SFXInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            
+            
         }
     }
     

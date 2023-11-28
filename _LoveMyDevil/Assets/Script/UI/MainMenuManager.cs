@@ -6,8 +6,7 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 using FMODUnity;
 using FMOD.Studio;
-using static UnityEditor.Profiling.RawFrameDataView;
-using static UnityEngine.Rendering.DebugUI;
+
 
 public class MainMenuManager : MonoBehaviour
 {

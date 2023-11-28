@@ -38,13 +38,19 @@ public class Stage4BGMCtrl_ : MonoBehaviour
         BGMInstance2.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
 
 
-        SceneManager.sceneLoaded += LoadedsceneEvent;
+       
 
     }
 
+     void OnEnable()
+    {
+        SceneManager.sceneLoaded += LoadedsceneEvent;
+    }
 
-
-
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= LoadedsceneEvent;
+    }
 
     // Update is called once per frame
     void Update()

@@ -183,6 +183,17 @@ private void OnTriggerExitTargetCollider(Collider2D other)
             {
                 texter3.Instance.maidcol = true;
                 speed = 0;
+                if (_animation)
+                    _animation.SetAnimation(MaidAnimation.States.cry, true);
+                else
+                {
+                    Debug.Log("_animation 없음");
+                }
+                isDial = true;
+
+
+
+
             }
             _body.transform.localScale = new Vector3(1, 1, 1);
         }

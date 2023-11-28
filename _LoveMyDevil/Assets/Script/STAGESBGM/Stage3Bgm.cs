@@ -21,6 +21,17 @@ public class Stage3Bgm : MonoBehaviour
     private FMOD.Studio.EventInstance BGMInstance;
     private FMOD.Studio.EventInstance SFXInstance; 
 
+  private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OncseneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OncseneLoaded;
+    }
+
+
     // Start is called before the first frame update
    protected void Start()
     {
@@ -29,14 +40,20 @@ public class Stage3Bgm : MonoBehaviour
         SFXInstance = FMODUnity.RuntimeManager.CreateInstance(SFXCtrl);
 
 
+        Debug.Log(PlayerMove.soundstop);
+
+        
         BGMInstance.start();
         BGMInstance.setParameterByName("Parameter 3", 7.0f);
         
-        //stop ±¸Çö X 
+
+      
         BGMInstance.setVolume(0.5f);
 
-        SceneManager.sceneLoaded += LoadedsceneEvent;
+        
     }
+
+  
 
     // Update is called once per frame
     void Update()
@@ -116,10 +133,10 @@ public class Stage3Bgm : MonoBehaviour
         BGMInstance.setVolume(0.5f);
     }
 
-    private void LoadedsceneEvent(Scene scene, LoadSceneMode mode)
+    private void OncseneLoaded(Scene scene, LoadSceneMode mode)
     {
 
-        BGMInstance.start();
+       
         BGMInstance.setParameterByName("Parameter 3", 7.0f);
         BGMInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         StopAllCoroutines();
