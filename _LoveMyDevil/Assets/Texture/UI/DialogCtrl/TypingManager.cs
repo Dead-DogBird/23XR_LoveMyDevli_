@@ -44,6 +44,11 @@ public class TypingManager : MonoBehaviour
         
 
         DialInstance.set3DAttributes(RuntimeUtils.To3DAttributes(transform.position));
+
+
+
+        SceneManager.sceneLoaded += LoadedsceneEvent;
+
     }
 
 
@@ -172,6 +177,10 @@ public class TypingManager : MonoBehaviour
         }       
     }
 
-   
+    private void LoadedsceneEvent(Scene scene, LoadSceneMode mode)
+    {
+        StopAllCoroutines();
+        inputcount = 0;
+    }
 
 }

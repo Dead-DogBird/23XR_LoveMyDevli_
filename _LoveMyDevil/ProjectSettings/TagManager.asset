@@ -26,6 +26,9 @@ TagManager:
   - FallDownCollider
   - KeeperOver
   - death
+  - skullforstage3
+  - ghostforstage3
+  - 3
   layers:
   - Default
   - TransparentFX

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
+using UnityEngine.SceneManagement;
 
 public class Stage3Bgm : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class Stage3Bgm : MonoBehaviour
     private FMOD.Studio.EventInstance SFXInstance; 
 
     // Start is called before the first frame update
-    void Start()
+   protected void Start()
     {
         BGMInstance = FMODUnity.RuntimeManager.CreateInstance(BgmCtrl);
         // BGMInstance.start();
@@ -33,6 +34,8 @@ public class Stage3Bgm : MonoBehaviour
         
         //stop ±¸Çö X 
         BGMInstance.setVolume(0.5f);
+
+        SceneManager.sceneLoaded += LoadedsceneEvent;
     }
 
     // Update is called once per frame
@@ -40,6 +43,7 @@ public class Stage3Bgm : MonoBehaviour
     {
         if(PlayerMove.soundstop == true)
         {
+            Debug.Log("¤·¤·");
             BGMInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
 
@@ -102,6 +106,7 @@ public class Stage3Bgm : MonoBehaviour
     }
 
     IEnumerator SwapSound()
+
     {  SFXInstance.start();
         yield return new WaitForSeconds(0.2f);
         BGMInstance.setVolume(0);
@@ -109,5 +114,16 @@ public class Stage3Bgm : MonoBehaviour
         
         yield return new WaitForSeconds(0.5f);
         BGMInstance.setVolume(0.5f);
+    }
+
+    private void LoadedsceneEvent(Scene scene, LoadSceneMode mode)
+    {
+
+        BGMInstance.start();
+        BGMInstance.setParameterByName("Parameter 3", 7.0f);
+        BGMInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        StopAllCoroutines();
+
+
     }
 }

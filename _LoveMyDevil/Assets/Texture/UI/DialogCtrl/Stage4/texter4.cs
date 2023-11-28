@@ -56,13 +56,14 @@ public class texter4 : MonoBehaviour
         }
         if(checker == 15)
         {
-            textObj.fontSize = 35;
-            textObj.color = Color.blue; 
+            textObj.fontSize = 50;
+            textObj.color = Color.white; 
             lucytalk();
         }
         if(checker == 16)
         {
             textObj.color = Color.white;
+            textObj.fontSize = 35;
             satanmpanel.rectTransform.anchoredPosition = new Vector2(0, 700);
             lucypanel.rectTransform.anchoredPosition = new Vector2(0, 700);
         }

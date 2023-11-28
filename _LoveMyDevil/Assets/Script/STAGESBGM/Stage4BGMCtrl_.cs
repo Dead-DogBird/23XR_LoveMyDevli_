@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FMOD.Studio;
-using FMODUnity; 
+using FMODUnity;
+using UnityEngine.SceneManagement;
 
 public class Stage4BGMCtrl_ : MonoBehaviour
 {
@@ -26,17 +27,20 @@ public class Stage4BGMCtrl_ : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         BGMInstance = FMODUnity.RuntimeManager.CreateInstance(BgmCtrl);
         SFXInstance = FMODUnity.RuntimeManager.CreateInstance(SFXCtrl);
         BGMInstance2 = FMODUnity.RuntimeManager.CreateInstance(BgmCtrl2);
 
-
+       
         BGMInstance.start();
+        BGMInstance2.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+
+
+        SceneManager.sceneLoaded += LoadedsceneEvent;
+
     }
-
-
 
 
 
@@ -53,6 +57,11 @@ public class Stage4BGMCtrl_ : MonoBehaviour
             {
                 sfxstartbgmstop();
             }
+        }
+
+        if(PlayerMove.soundstop == true)
+        {
+            BGMInstance2.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
     }
 
@@ -75,6 +84,15 @@ public class Stage4BGMCtrl_ : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         SFXInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         
-        //¿¸≈ı∫Ò¡ˆø• §°§°
+        
     }
+
+    private void LoadedsceneEvent(Scene scene, LoadSceneMode mode)
+    {
+        isenddial = false;
+        StopAllCoroutines();
+        BGMInstance2.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
+
+
 }

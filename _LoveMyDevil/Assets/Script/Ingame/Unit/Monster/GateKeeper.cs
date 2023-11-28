@@ -10,6 +10,10 @@ using FMODUnity;
 
 public class GateKeeper : MonoBehaviour
 {
+    
+
+
+
     [FMODUnity.EventRef]
     public string SFXCtrl;
 
@@ -51,6 +55,8 @@ public class GateKeeper : MonoBehaviour
         Jump();
 
         SFXInstance = FMODUnity.RuntimeManager.CreateInstance(SFXCtrl);
+
+
     }
 
     IEnumerator readygo()
@@ -116,10 +122,20 @@ public class GateKeeper : MonoBehaviour
         Collider2D[] hit = Physics2D.OverlapBoxAll(transform.position, Attackarea, 0);
         foreach(Collider2D i in hit) 
         {
-            if (i.CompareTag("Platform") || i.CompareTag ("ColoredPlatform") || i.CompareTag("DropPlatform")) 
+            if (i.CompareTag("Platform") || i.CompareTag ("ColoredPlatform") ) 
             {
                 Destroy(i.gameObject);
             }
+
+            if (i.CompareTag("DropPlatform"))
+            {
+                SpriteRenderer collidedRenderer = i.gameObject.GetComponent<SpriteRenderer>();
+
+                Color newColor = collidedRenderer.color;
+                newColor.a = 0f;
+                collidedRenderer.color = newColor;
+            }
+
 
             if (i.CompareTag("KeeperOver"))
             {

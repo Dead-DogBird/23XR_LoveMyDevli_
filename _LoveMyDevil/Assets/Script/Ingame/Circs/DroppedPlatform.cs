@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class DroppedPlatform : MonoBehaviour
 {
+    private BoxCollider2D boxCollider2D; 
     private SpriteRenderer _sprite;
     private Tween _tween;
     [SerializeField] private float dropdelay = 0.5f;
@@ -25,6 +26,7 @@ public class DroppedPlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        boxCollider2D = GetComponent<BoxCollider2D>();
         _sprite = GetComponent<SpriteRenderer>();
         oriPos = transform.position;
         oriColor = _sprite.color;
@@ -48,6 +50,7 @@ public class DroppedPlatform : MonoBehaviour
     {
         gravity += (gravity * Time.deltaTime) / 2;
         transform.position -= new Vector3(0, gravity);
+
     }
     public async UniTaskVoid Dropped()
     {
@@ -62,7 +65,12 @@ public class DroppedPlatform : MonoBehaviour
         }
         _tween = _sprite.DOColor(new Color(40 / 255f, 36 / 255f, 90 / 255f), 0.1f);
         await UniTask.Delay(TimeSpan.FromSeconds(1.2f));
+
+        //
+
         isDrop = true;
+        boxCollider2D.isTrigger = true; 
+
         while (respawnDelay > 0f)
         {
             if (!isActive) return;
@@ -70,9 +78,11 @@ public class DroppedPlatform : MonoBehaviour
             await UniTask.Delay(TimeSpan.FromSeconds(0.1f));
 
         }
+
+        boxCollider2D.isTrigger = false;
         isDrop = false;
         _tween.Complete();
-        _sprite.color = oriColor;
+        _sprite.color = oriColor;     
         transform.position = oriPos;
         respawnDelay = proDelay;
         gravity = 0.03f;

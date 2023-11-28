@@ -104,7 +104,7 @@ public class PlayerMove : MonoSingleton<PlayerMove>
         SFXInstance = FMODUnity.RuntimeManager.CreateInstance(SFXCtrl);
         DeathInstance = FMODUnity.RuntimeManager.CreateInstance(DeathSFXCtrl);
 
-
+        SceneManager.sceneLoaded += LoadedsceneEvent;
     }
 
     private void OnEnable()
@@ -381,7 +381,7 @@ public class PlayerMove : MonoSingleton<PlayerMove>
         }
         _playerAnimation.SetColor(Color.white);
     }
-    async UniTaskVoid GameOverTask()
+    async UniTaskVoid GameOverTask() //게임오버 
     {
         GetComponent<BoxCollider2D>().enabled = false;
         float timer = 3;
@@ -390,6 +390,7 @@ public class PlayerMove : MonoSingleton<PlayerMove>
             timer -= 0.1f;
             transform.rotation = Quaternion.Euler(0, 0,transform.eulerAngles.z+6f);
             await UniTask.Delay(TimeSpan.FromSeconds(0.1f));
+            soundstop = true; 
         }
         //TODO : 게임오버 연출
         SceneManager.LoadScene("stage4");
@@ -490,4 +491,11 @@ public class PlayerMove : MonoSingleton<PlayerMove>
         await UniTask.Delay(TimeSpan.FromSeconds(2));
         SceneManager.LoadScene("Stage3");
     }
+
+    private void LoadedsceneEvent(Scene scene, LoadSceneMode mode)
+    {
+        soundstop = false; // 사운드멈춤취소
+        StopAllCoroutines();
+    }
+
 }

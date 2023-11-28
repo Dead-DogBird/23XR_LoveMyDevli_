@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 
 public class madeMonster : MonoBehaviour
 {
+    Transform transform;
+
+
     string mapname;
 
     [FMODUnity.EventRef]
@@ -41,8 +44,8 @@ public class madeMonster : MonoBehaviour
         SFXInstance = FMODUnity.RuntimeManager.CreateInstance(SFXCtrl);
 
         mapname = SceneManager.GetActiveScene().name;
-        
 
+        transform = GetComponent<Transform>();
     }
 
     void Update()
@@ -121,6 +124,11 @@ public class madeMonster : MonoBehaviour
             SFXInstance.start();
             madeState = State.Targeting;
             player = other.gameObject;
+        }
+
+        if (other.CompareTag("3"))
+        {
+            transform.position = new Vector3(0, 100, 0);
         }
     }
 

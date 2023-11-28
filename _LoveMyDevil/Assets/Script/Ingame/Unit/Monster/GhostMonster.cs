@@ -143,6 +143,11 @@ public class GhostMonster : MonoBehaviour
             SFXInstance.start();
             ghostState = State.Targeted;
             player = other.gameObject;
+            
+        }
+        if (other.CompareTag("3"))
+        {
+            Destroy(gameObject);
         }
     }
     void OnCheckTriggerExit(Collider2D other)

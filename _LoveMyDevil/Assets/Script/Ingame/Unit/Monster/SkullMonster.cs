@@ -41,6 +41,8 @@ public class SkullMonster : MonoBehaviour
             MonsterBody.transform.localScale = nextMove > 0 ? new Vector3(-1,1) : new Vector3(1,1);
         }
 
+        
+
         if (other.CompareTag("Player"))
         {
             other.GetComponent<PlayerMove>().GetKnockBack(MonsterBody.transform.position,_knockbackFos);

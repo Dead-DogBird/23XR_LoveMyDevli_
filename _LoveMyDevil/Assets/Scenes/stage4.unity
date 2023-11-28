@@ -9417,7 +9417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1163080099079794968, guid: 72998f8e14f9ae146b302826984bf939, type: 3}
       propertyPath: isBossStage
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1394634977943076499, guid: 72998f8e14f9ae146b302826984bf939, type: 3}
       propertyPath: m_Mesh
