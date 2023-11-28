@@ -29,6 +29,7 @@ TagManager:
   - skullforstage3
   - ghostforstage3
   - 3
+  - camerastop2
   layers:
   - Default
   - TransparentFX

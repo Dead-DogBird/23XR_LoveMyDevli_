@@ -26,7 +26,7 @@ public class PlayerMove : MonoSingleton<PlayerMove>
     private FMOD.Studio.EventInstance SFXInstance;
     private FMOD.Studio.EventInstance WalkInstance;
 
-    private FMOD.Studio.EventInstance DeathInstance;
+    public FMOD.Studio.EventInstance DeathInstance;
 
 
 
@@ -172,7 +172,7 @@ public class PlayerMove : MonoSingleton<PlayerMove>
         
 
 
-        if (XcameraCtrl.PlayerDeath == true)
+        if (XcameraCtrl.Instance.PlayerDeath == true)
         {
             deathfromkeeper();
         }
@@ -488,12 +488,23 @@ public class PlayerMove : MonoSingleton<PlayerMove>
 
     }
 
+    /*
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "GateKepper (1)")
+        {
+            Debug.Log("시발");
+            deathfromkeeper();
+        }
+    }
+    */
+
     public static void unlockfreeze()
     {
         freeze = false; 
     }
 
-    async UniTaskVoid DeathTask()
+   public async UniTaskVoid DeathTask()
     {
         await UniTask.Delay(TimeSpan.FromSeconds(2));
         SceneManager.LoadScene("Stage3");

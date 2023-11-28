@@ -6,7 +6,7 @@ using DG.Tweening.Plugins.Options;
 using UnityEngine;
 using FMOD.Studio;
 using FMODUnity;
-
+using UnityEngine.SceneManagement;
 
 public class GateKeeper : MonoBehaviour
 {
@@ -71,6 +71,16 @@ public class GateKeeper : MonoBehaviour
     {
         if(!isDie)
             ColliderCheckCallback();
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            XcameraCtrl.Instance.PlayerDeath = true;
+           /* PlayerMove.Instance.DeathInstance.setVolume(2.0f);
+            PlayerMove.Instance.DeathInstance.start();
+            PlayerMove.soundstop = true;
+            PlayerMove.Instance.DeathTask().Forget();
+           */
+        }
     }
 
     void Jump()
@@ -135,12 +145,17 @@ public class GateKeeper : MonoBehaviour
                 newColor.a = 0f;
                 collidedRenderer.color = newColor;
             }
-
-
             if (i.CompareTag("KeeperOver"))
             {
                 KeeperOver();
+            }     
+            
+            /*
+            if (i.CompareTag("Player"))
+            {
+                XcameraCtrl.Instance.PlayerDeath = true;
             }
+            */
         }
     }
     //0. LeftJump, 1. LeftLanding, 2. RightJump, 3. RightLanding

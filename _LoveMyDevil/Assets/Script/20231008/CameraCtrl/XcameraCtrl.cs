@@ -5,9 +5,9 @@ using Cinemachine;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class XcameraCtrl : MonoBehaviour
+public class XcameraCtrl : MonoSingleton<XcameraCtrl>
 {
-    public static bool PlayerDeath = false;
+    public  bool PlayerDeath = false;
     public bool cameraishere = false;
 
     [Header("카메라 이동 딜레이")]
@@ -40,6 +40,12 @@ public class XcameraCtrl : MonoBehaviour
         {
             StartCoroutine(Death());
         }
+        /*
+        if ((collision.gameObject.CompareTag("camerastop2")))
+        {
+            StartCoroutine(Death());
+        }
+        */
     }
 
     IEnumerator Death()
