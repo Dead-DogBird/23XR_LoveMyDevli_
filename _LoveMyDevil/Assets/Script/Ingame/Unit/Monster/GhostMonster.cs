@@ -6,6 +6,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using FMOD.Studio;
 using FMODUnity;
+using Spine.Unity;
 
 public class GhostMonster : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class GhostMonster : MonoBehaviour
     private GameObject player;
     private Vector3 toPos;
     private int nextMove = 1;
+    [SerializeField] private SkeletonAnimation _animation;
     enum State
     {
         NonTargeted,
@@ -143,7 +145,8 @@ public class GhostMonster : MonoBehaviour
             SFXInstance.start();
             ghostState = State.Targeted;
             player = other.gameObject;
-            
+            _animation.AnimationName = "animation2";
+            _animation.loop = true;
         }
         if (other.CompareTag("3"))
         {
@@ -154,6 +157,8 @@ public class GhostMonster : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            _animation.AnimationName = "animation1";
+            _animation.loop = true;
             SFXInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
     }

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using FMOD.Studio;
 using FMODUnity;
@@ -33,19 +35,27 @@ public class madeMonster : MonoBehaviour
 
     private GameObject player;
 
+    private MaidAnimation _animation;
+
+    private bool isDial=false;
     //Rigidbody2D 
     void Start()
     {
         targetCallbackCollider.onColliderEnter += OnTriggerEnterTargetCollider;
         targetCallbackCollider.onColliderExit += OnTriggerExitTargetCollider;
         _body.GetComponent<ColliderCallbackController>().onColliderEnter += OnTriggerEnterBodyCollider;
-
+       // _body.GetComponent<ColliderCallbackController>().onCollisionEnter += OnCollisionEnterBodyCollider;
+        _animation = GetComponent<MaidAnimation>();
+        _animation.SetAnimation(MaidAnimation.States.idle,true);
 
         SFXInstance = FMODUnity.RuntimeManager.CreateInstance(SFXCtrl);
-
-        mapname = SceneManager.GetActiveScene().name;
-
+       
         transform = GetComponent<Transform>();
+    }
+
+    private void OnEnable()
+    {
+        mapname = SceneManager.GetActiveScene().name;
     }
 
     void Update()
@@ -56,8 +66,13 @@ public class madeMonster : MonoBehaviour
                 NonTargetedMove();
                 break;
             case State.Targeting:
-                TargetedMove();
+                if(isTargeted)TargetedMove();
                 break;
+        }
+
+        if (isDial && _animation.NowStates == MaidAnimation.States.cry&&TypingManager.instance.inputcount==11)
+        {
+            _animation.SetAnimation(MaidAnimation.States.siittingCry,true);
         }
     }
 
@@ -115,12 +130,15 @@ public class madeMonster : MonoBehaviour
         }
     }
 
+    private bool isTargeted = false;
     //인식범위 객체의 충돌처리
     private void OnTriggerEnterTargetCollider(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             SFXInstance.setParameterByName("Maid_pa", 2.0f);
+            if(!isTargeted)
+                TargetedAnimationTask().Forget();
             SFXInstance.start();
             madeState = State.Targeting;
             player = other.gameObject;
@@ -152,6 +170,13 @@ private void OnTriggerExitTargetCollider(Collider2D other)
             {
                 texter2.Instance.maidcol = true;
                 speed = 0;
+                if(_animation)
+                    _animation.SetAnimation(MaidAnimation.States.cry,true);
+                else
+                {
+                    Debug.Log("_animation 없음");
+                }
+                isDial = true;
             }
 
             if (mapname == "Stage3")
@@ -162,6 +187,14 @@ private void OnTriggerExitTargetCollider(Collider2D other)
             _body.transform.localScale = new Vector3(1, 1, 1);
         }
         
+    }
+
+    async UniTaskVoid TargetedAnimationTask()
+    {
+        _animation.SetAnimation(MaidAnimation.States.targeted);
+        await UniTask.Delay(TimeSpan.FromSeconds(1));
+        _animation.SetAnimation(MaidAnimation.States.run,true);
+        isTargeted = true;
     }
 
 

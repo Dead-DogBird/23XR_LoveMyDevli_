@@ -37,6 +37,7 @@ public class LoadingSceneManager : MonoBehaviour
     //0: 인트로,1: 1스테이지 완료,2:2스테이지 완료,3:3스테이지 완료 4: 4스테이지 완료(엔딩씬은 별도)
     private void Start()
     {
+        Cursor.visible = true;
         LoadScene().Forget();
         VideoPlayer.loopPointReached += NextVideo;
 

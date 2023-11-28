@@ -69,7 +69,7 @@ public class GameManager : MonoSingleton<GameManager>
         graffitiactive1 += 1;
         UImanager.Instance.SetStageProgress(nowPoints / allPoints);
         if(CurStage==Stage.stage2&&nowPoints / allPoints*100>50f)
-            DialogManagerv.Instance.SetID(2);
+            DialogManagerv.Instance.SetID(3);
         if (nowPoints >= allPoints)
             GetNextStage().Forget();
     }
