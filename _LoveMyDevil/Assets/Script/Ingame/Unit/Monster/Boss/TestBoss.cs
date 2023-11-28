@@ -181,7 +181,7 @@ public class TestBoss : MonoBehaviour
         {
             SFXInstance.start();
             pos = Random.Range(0, 2)==1 ? 1.6f : -1.6f;
-            var temp = Instantiate(Laser, new Vector3(pos,4.25f+YposCorrection), quaternion.identity);
+            var temp = Instantiate(Laser, new Vector3(pos,5.75f+YposCorrection), quaternion.identity);
             temp.transform.rotation = Quaternion.Euler(0, 0,
                 CustomAngle.PointDirection(temp.transform.position, temp.transform.position+new Vector3(0,-4.25f+YposCorrection)));
             Destroy(temp, 1.6f);
@@ -210,7 +210,7 @@ public class TestBoss : MonoBehaviour
             SFXInstance.start();
 
 
-            var temp = Instantiate(Laser, new Vector3(-1.6f-i*2f,4.25f+YposCorrection), quaternion.identity);
+            var temp = Instantiate(Laser, new Vector3(-1.6f-i*2f,5.75f+YposCorrection), quaternion.identity);
             temp.transform.rotation = Quaternion.Euler(0, 0,
                 CustomAngle.PointDirection(temp.transform.position, temp.transform.position+new Vector3(0,-4.25f+YposCorrection)));
             Destroy(temp, 1.6f);
@@ -223,7 +223,7 @@ public class TestBoss : MonoBehaviour
             SFXInstance.start();
 
 
-            var temp = Instantiate(Laser, new Vector3(1.6f+i*2f,4.25f+YposCorrection), quaternion.identity);
+            var temp = Instantiate(Laser, new Vector3(1.6f+i*2f,5.75f+YposCorrection), quaternion.identity);
             temp.transform.rotation = Quaternion.Euler(0, 0,
                 CustomAngle.PointDirection(temp.transform.position, temp.transform.position+new Vector3(0,-4.25f+YposCorrection)));
             Destroy(temp, 1.6f);
