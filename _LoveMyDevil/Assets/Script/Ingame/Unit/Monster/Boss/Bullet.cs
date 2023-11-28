@@ -59,7 +59,7 @@ public class Bullet : MonoBehaviour
     {
         toVector = CustomAngle.VectorRotation(CustomAngle.PointDirection(transform.position,
             _toVector));
-        transform.rotation = Quaternion.Euler(0, 0,CustomAngle.PointDirection(transform.position, _toVector));
+        //transform.rotation = Quaternion.Euler(0, 0,CustomAngle.PointDirection(transform.position, _toVector));
         Destroy(gameObject,deleteDelay);
         isFire = true;
     }
