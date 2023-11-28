@@ -40,6 +40,7 @@ public class GameManager : MonoSingleton<GameManager>
     void Start()
     {
         Cursor.visible = false;
+        Application.targetFrameRate = 60;
     }
 
     private void OnEnable()

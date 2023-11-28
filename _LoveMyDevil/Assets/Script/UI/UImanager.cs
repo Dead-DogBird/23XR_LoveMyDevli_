@@ -40,12 +40,18 @@ public class UImanager : MonoSingleton<UImanager>
     }
     void Update()
     {      
+
+    }
+
+    private void FixedUpdate()
+    {
         if (isplayer)
         {
-            sprayGaugeBg.transform.position =
-                _camera.WorldToScreenPoint(GameManager.Instance._player.transform.position-new Vector3(0.5f,-0.5f));
+            sprayGaugeBg.transform.position +=(
+                _camera.WorldToScreenPoint(GameManager.Instance._player.transform.position-new Vector3(0.5f,-0.5f))-sprayGaugeBg.transform.position) * (Time.deltaTime * 20);
         }
     }
+
     public void SetSprayGauge(float _gauge)
     {
         if (Math.Abs(_gauge - 100) <= 0.01f&&!isBossStage)

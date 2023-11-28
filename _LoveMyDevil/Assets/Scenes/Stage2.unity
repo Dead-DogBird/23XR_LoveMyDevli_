@@ -211,6 +211,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3880895478237333902, guid: 10469e469e8a4b040aef1a678236716a, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3880895478237333902, guid: 10469e469e8a4b040aef1a678236716a, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3880895478237333902, guid: 10469e469e8a4b040aef1a678236716a, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 3880895478237333902, guid: 10469e469e8a4b040aef1a678236716a, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 4719538547673087992, guid: 10469e469e8a4b040aef1a678236716a, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -8506,6 +8522,10 @@ PrefabInstance:
     - target: {fileID: 6038200442908456795, guid: 72998f8e14f9ae146b302826984bf939, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6083132202056320529, guid: 72998f8e14f9ae146b302826984bf939, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
